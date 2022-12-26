@@ -1,0 +1,6 @@
+# VS Code
+.vscode
+
+# MkDocs
+_build
+site

@@ -1,0 +1,237 @@
+# Website information
+site_name: Rasa 中文文档
+site_url: https://rasa.leovan.tech
+site_author: Leo Van | 范叶亮
+site_description: Rasa 中文文档
+
+# Repository
+repo_name: leovan/rasa-doc
+repo_url: https://github.com/leovan/rasa-doc
+edit_uri: edit/main/docs/
+
+# Copyright
+copyright: 翻译：<a href="https://leovan.me" target="_blank">Leo Van | 范叶亮</a>
+
+# Navigation
+nav:
+  - 简介: index.md
+  - Rasa Playground: playground.md
+  - 安装:
+    - 环境配置: installation/environment-set-up.md
+    - 安装开源 Rasa: installation/installing-rasa-open-source.md
+    - 安装 Rasa Pro:
+      - 架构概述: rasa-pro/architecture-overview.md
+      - Rasa Pro 安装: rasa-pro/installation.md
+  - 构建对话机器人:
+    - 从其他工具迁移（测试）: migrate-from.md
+    - 命令行界面: command-line-interface.md
+    - 最佳实践:
+      - 对话驱动的开发: conversation-driven-development.md
+      - 生成 NLU 数据: generating-nlu-data.md
+      - 编写对话数据: writing-stories.md
+    - 对话模式:
+      - 闲聊和 FAQ: chitchat-faqs.md
+      - 处理业务逻辑: business-logic.md
+      - 回退和移交人工: fallback-handoff.md
+      - 处理非预期输入: unexpected-input.md
+      - 上下文对话: contextual-conversations.md
+      - 触达用户: reaching-out-to-user.md
+    - 为生产环境做准备:
+      - 连接至消息和语音频道: messaging-and-voice-channels.md
+      - NLU 模型调优: tuning-your-model.md
+      - 测试对话机器人: testing-your-assistant.md
+      - 设置 CI/CD: setting-up-ci-cd.md
+    - Rasa 词汇表: glossary.md
+  - 部署对话机器人:
+    - 简介: deploy/introduction.md
+    - 部署 Rasa: deploy/deploy-rasa.md
+    - 部署动作服务器: deploy/deploy-action-server.md
+    - 部署 Rasa Plus: deploy/deploy-rasa-plus.md
+    - 部署 Rasa Pro 服务: deploy/deploy-rasa-pro-services.md
+  - 监控和分析对话机器人:
+    - 分析:
+      - 开始使用: monitoring/analytics/getting-started-with-analytics.md
+      - 示例查询: monitoring/analytics/example-queries.md
+      - 数据结构参考: monitoring/analytics/data-structure-reference.md
+    - 追踪: monitoring/tracing.md
+  - 概念:
+    - 训练数据:
+      - 训练数据格式: training-data-format.md
+      - NLU 训练数据: nlu-training-data.md
+      - 故事: stories.md
+      - 规则: rules.md
+    - 领域: domain.md
+    - 配置:
+      - 概述: model-configuration.md
+      - 管道组件: components.md
+      - 策略: policies.md
+      - 自定义图组件: custom-graph-components.md
+      - 导入器: training-data-importers.md
+      - 语言支持: language-support.md
+      - 图配方: graph-recipe.md
+    - 动作:
+      - 概述: actions.md
+      - 响应: responses.md
+      - 自定义动作: custom-actions.md
+      - 表单: forms.md
+      - 默认动作: default-actions.md
+      - 槽验证动作: slot-validation-actions.md
+    - 验证:
+      - 标记: markers.md
+    - 频道连接器:
+      - 个人网站: connectors/your-own-website.md
+      - Facebook Messenger: connectors/facebook-messenger.md
+      - Slack: connectors/slack.md
+      - Telegram: connectors/telegram.md
+      - Twilio: connectors/twilio.md
+      - Google Hangouts Chat: connectors/hangouts.md
+      - Microsoft Bot Framework: connectors/microsoft-bot-framework.md
+      - Cisco Webex Teams: connectors/cisco-webex-teams.md
+      - RocketChat: connectors/rocketchat.md
+      - Mattermost: connectors/mattermost.md
+      - 自定义连接器: connectors/custom-connectors.md
+    - 架构:
+      - 概述: arch-overview.md
+      - 追踪器存储: tracker-stores.md
+      - 事件代理: event-brokers.md
+      - 模型存储: model-storage.md
+      - 锁存储: lock-stores.md
+      - 仅使用 NLU: nlu-only.md
+      - NLG 服务器: nlg.md
+  - 动作服务器:
+    - 简介: action-server.md
+    - 动作服务器基础:
+      - 动作: action-server/actions.md
+      - 事件: action-server/events.md
+    - 使用 Rasa SDK:
+      - 运行一个 Rasa SDK 服务器: action-server/running-action-server.md
+      - 编写自定义动作:
+        - 动作: action-server/sdk-actions.md
+        - 追踪器: action-server/sdk-tracker.md
+        - 分发器: action-server/sdk-dispatcher.md
+        - 事件: action-server/sdk-events.md
+        - 特殊动作类型:
+          - 知识库动作: action-server/knowledge-bases.md
+          - 槽验证动作: action-server/validation-action.md
+      - 部署动作服务器: action-server/deploy-action-server.md
+  - API:
+    - HTTP API: http-api.md
+    - 仅 NLU 服务器: nlu-only-server.md
+  - 参考:
+    - Rasa 遥测: telemetry/telemetry.md
+    - 遥测事件参考: telemetry/reference.md
+    - 代码参考: https://rasa.com/docs/rasa/reference/rasa/cli/arguments/data
+  - 更新日志:
+    - 开源 Rasa 变更日志: changelog.md
+    - Rasa SDK 变更日志: sdk_changelog.md
+    - 兼容性矩阵: compatibility-matrix.md
+    - 版本迁移指南: migration-guide.md
+    - 活跃维护版本: https://rasa.com/rasa-product-release-and-maintenance-policy/
+  - API 规范页面:
+    - Rasa HTTP API: https://rasa.com/docs/rasa/pages/http-api
+    - Rasa Action Server API: https://rasa.com/docs/rasa/pages/action-server-api
+
+# Theme
+theme:
+  name: material
+  custom_dir: overrides
+  include_search_page: false
+  search_index_only: true
+  language: zh
+  features:
+    - tabs
+    - search.suggest
+    - search.highlight
+    - navigation.top
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/weather-night
+        name: 暗黑
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/white-balance-sunny
+        name: 明亮
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: images/favicon.ico
+  logo: images/rasa-icon-horizontal.svg
+
+# Plugins
+plugins:
+  - search:
+      lang: en
+
+# Extra
+extra:
+  social:
+    - icon: material/home
+      link: https://leovan.me
+      name: 个人主页
+    - icon: material/github
+      link: https://github.com/leovan
+      name: Github
+  analytics:
+    provider: google
+    property: G-7D9SN7BLD3
+extra_css:
+  - css/button.css
+  - css/image.css
+  - css/table.css
+  - css/google-adsense.css
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - js/math.js
+
+# Markdown extensions
+markdown_extensions:
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: leovan
+      repo: cytoscape-manual
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde

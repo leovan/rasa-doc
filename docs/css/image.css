@@ -1,0 +1,7 @@
+p img, li img {
+  vertical-align: middle;
+}
+
+figure p img {
+  display: inline !important;
+}

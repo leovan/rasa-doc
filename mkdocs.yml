@@ -1,5 +1,5 @@
 # Website information
-site_name: Rasa 中文文档
+site_name: Rasa 文档
 site_url: https://rasa.leovan.tech
 site_author: Leo Van | 范叶亮
 site_description: Rasa 中文文档
@@ -120,7 +120,7 @@ nav:
   - 参考:
     - Rasa 遥测: telemetry/telemetry.md
     - 遥测事件参考: telemetry/reference.md
-    - 代码参考: https://rasa.com/docs/rasa/reference/rasa/cli/arguments/data
+    - 代码参考: https://rasa.com/docs/rasa/reference/rasa/cli/arguments/data/
   - 更新日志:
     - 开源 Rasa 变更日志: changelog.md
     - Rasa SDK 变更日志: sdk_changelog.md
@@ -128,8 +128,8 @@ nav:
     - 版本迁移指南: migration-guide.md
     - 活跃维护版本: https://rasa.com/rasa-product-release-and-maintenance-policy/
   - API 规范页面:
-    - Rasa HTTP API: https://rasa.com/docs/rasa/pages/http-api
-    - Rasa Action Server API: https://rasa.com/docs/rasa/pages/action-server-api
+    - Rasa HTTP API: https://rasa.com/docs/rasa/pages/http-api/
+    - Rasa Action Server API: https://rasa.com/docs/rasa/pages/action-server-api/
 
 # Theme
 theme:

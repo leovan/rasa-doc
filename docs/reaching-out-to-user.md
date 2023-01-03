@@ -4,13 +4,13 @@
 
 ## 率先触达 {#reaching-out-first}
 
-在大多数用例中，当用户打开同对话机器人的聊天窗口时，你会希望对话机器人发送第一条消息。这样可以让用户了解机器人能做什么或不能做什么，并让他们可以有一个更成功的对话。某些[消息或语音频道](/messaging-and-voice-channels)具有现成的配置选项，可以在用户首次开始对话时向对话机器人发送有效负载，但你也可以将此选项添加到你自己的[自定义频道](/connectors/your-own-website)中。
+在大多数用例中，当用户打开同对话机器人的聊天窗口时，你会希望对话机器人发送第一条消息。这样可以让用户了解机器人能做什么或不能做什么，并让他们可以有一个更成功的对话。某些[消息或语音频道](/messaging-and-voice-channels/)具有现成的配置选项，可以在用户首次开始对话时向对话机器人发送有效负载，但你也可以将此选项添加到你自己的[自定义频道](/connectors/your-own-website/)中。
 
 配置为频道发送有效负载后，你需要指定对话机器人应该如何回应和问候用户。你可以重复使用现有意图行为，也可以为此指定新的意图和规则。以下是有关如何指定一个欢迎规则的指南。
 
 ### 更新配置 {#update-the-configuration}
 
-由于对该行为使用规则，因此需要将 [RulePolicy](/policies#rule-policy) 添加到配置文件中：
+由于对该行为使用规则，因此需要将 [RulePolicy](/policies/#rule-policy) 添加到配置文件中：
 
 ```yaml title='config.yml'
 policies:
@@ -49,7 +49,7 @@ responses:
 
 ### 触发意图 {#trigger-an-intent}
 
-要让来自外部设备的事件改变正在进行的对话过程，你可以让设备 POST 请求对话的 [`trigger_intent` 接口](/pages/http-api#operation/triggerConversationIntent)。`trigger_intent` 接口将用户意图（可能带有实体）注入到你的对话中。对于 Rasa，就好像你输入了一条按特定意图和实体分类的消息。然后，对话机器人像往常一样预测并执行下一个动作。
+要让来自外部设备的事件改变正在进行的对话过程，你可以让设备 POST 请求对话的 [`trigger_intent` 接口](/pages/http-api/#operation/triggerConversationIntent)。`trigger_intent` 接口将用户意图（可能带有实体）注入到你的对话中。对于 Rasa，就好像你输入了一条按特定意图和实体分类的消息。然后，对话机器人像往常一样预测并执行下一个动作。
 
 例如，如下 POST 请求会将 `EXTERNAL_dry_plant` 意图和 `plant` 实体注入到同 ID 为 `user123` 的对话中：
 
@@ -119,7 +119,7 @@ responses:
 
 ### 试用 {#try-it-out}
 
-要试用植物提醒对话机器人，你需要启动一个 [CallbackChannel](/connectors/your-own-website#callbackinput)。
+要试用植物提醒对话机器人，你需要启动一个 [CallbackChannel](/connectors/your-own-website/#callbackinput)。
 
 !!! caution "注意"
 
@@ -144,7 +144,7 @@ curl -H "Content-Type: application/json" -X POST -d \
 
 ## 提醒 {#reminders}
 
-你可以使用[提醒](https://rasa.com/docs/action-server/events#ReminderScheduled)让对话机器人在设定的时间后与用户联系。如下示例来自[提醒示例对话机器人](https://github.com/RasaHQ/rasa/blob/main/examples/reminderbot)。你可以克隆并按照 `README` 中的说明试用完整版。
+你可以使用[提醒](/action-server/events/#ReminderScheduled)让对话机器人在设定的时间后与用户联系。如下示例来自[提醒示例对话机器人](https://github.com/RasaHQ/rasa/blob/main/examples/reminderbot)。你可以克隆并按照 `README` 中的说明试用完整版。
 
 ### 设置提醒 {#scheduling-reminders}
 
@@ -247,7 +247,7 @@ pipeline:
 
 在 `trigger_intent` 接口收到 POST 请求后，对话机器人则会触达用户。但是，提醒会在一定时间后使用 `ReminderScheduled` 事件中定义的名称自动将请求发送到正确的对话 ID 上。
 
-要定义提醒的反馈，你需要编写一个[规则](/rules)，告诉对话机器人在收到提醒意图时采取什么行动。
+要定义提醒的反馈，你需要编写一个[规则](/rules/)，告诉对话机器人在收到提醒意图时采取什么行动。
 
 在呼叫提醒示例中，你希望使用提醒附带的实体来提醒你呼叫特定的人，因此你需要编写一个自定义动作来执行此操作：
 
@@ -362,6 +362,6 @@ intents:
 
 ### 测试 {#try-it-out-1}
 
-要测试提醒，你需要启动一个 [CallbackChannel](/connectors/your-own-website#callbackinput)。你还需要启动动作服务来设置、反馈和取消提醒。更多信息请参见提醒对话机器人的 [README](https://github.com/RasaHQ/rasa/blob/main/examples/reminderbot) 文件。
+要测试提醒，你需要启动一个 [CallbackChannel](/connectors/your-own-website/#callbackinput)。你还需要启动动作服务来设置、反馈和取消提醒。更多信息请参见提醒对话机器人的 [README](https://github.com/RasaHQ/rasa/blob/main/examples/reminderbot) 文件。
 
 然后，如果你向机器人发送类似 `Remind me to call Paul Pots` 的消息。你将在 5 分钟后收到一条提醒 `Remember to call Paul Pots!`。

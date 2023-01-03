@@ -15,7 +15,7 @@ Rasa SDK 中有两个帮助类，用于执行自定义槽提取和验证：
 
 !!! note "注意"
 
-    `ValidationAction` 旨在提取表单上下文之外的槽。它将忽略任何具有在[槽映射 `conditions`](/domain#mapping-conditions)下指定形式的槽的提取和验证方法。当指定的表单处于活动状态或没有表单处于活动状态时，它不会运行这些方法。请扩展 [`FormValidationAction`](/action-server/validation-action#formvalidationaction-class) 类来仅在表单的上下文中应用自定义槽映射。
+    `ValidationAction` 旨在提取表单上下文之外的槽。它将忽略任何具有在[槽映射 `conditions`](/domain/#mapping-conditions)下指定形式的槽的提取和验证方法。当指定的表单处于活动状态或没有表单处于活动状态时，它不会运行这些方法。请扩展 [`FormValidationAction`](/action-server/validation-action/#formvalidationaction-class) 类来仅在表单的上下文中应用自定义槽映射。
 
 ### 如何继承 `ValidationAction` {#how-to-subclass-validationaction}
 
@@ -23,7 +23,7 @@ Rasa SDK 中有两个帮助类，用于执行自定义槽提取和验证：
 
 你应该只创建一个 `ValidationAction` 子类，它应该根据你的用例包含不同槽的所有提取和验证方法。
 
-使用此选项，你无需在[自定义槽映射](/domain#custom-slot-mappings)中指定 `action` 键，因为默认动作 [`action_extract_slots`](/default-actions#action_extract_slots) 会自动运行 `action_validate_slot_mappings`，如果领域的 `action` 部分存在。
+使用此选项，你无需在[自定义槽映射](/domain/#custom-slot-mappings)中指定 `action` 键，因为默认动作 [`action_extract_slots`](/default-actions/#action_extract_slots) 会自动运行 `action_validate_slot_mappings`，如果领域的 `action` 部分存在。
 
 #### 使用预定义映射验证槽 {#validation-of-slots-with-predefined-mappings}
 
@@ -114,13 +114,13 @@ async ValidationAction.run(dispatcher, tracker, domain)
 
 参数：
 
-- `dispatcher`：用于将消息发送回用户的分发器。使用 `dispatcher.utter_message()` 或任何其他 `rasa_sdk.executor.CollectingDispatcher` 方法。请参阅[分发器的文档](/action-server/sdk-dispatcher)。
-- `tracker`：当前用户的状态追踪器。你可以使用 `tracker.get_slot(slot_name)` 访问槽值，最新的用户消息是 `tracker.latest_message.text` 和任何其他 `rasa_sdk.Tracker` 属性。请参[阅追踪器文档](https://rasa.com/docs/rasa/action-server/sdk-tracker)。
+- `dispatcher`：用于将消息发送回用户的分发器。使用 `dispatcher.utter_message()` 或任何其他 `rasa_sdk.executor.CollectingDispatcher` 方法。请参阅[分发器的文档](/action-server/sdk-dispatcher/)。
+- `tracker`：当前用户的状态追踪器。你可以使用 `tracker.get_slot(slot_name)` 访问槽值，最新的用户消息是 `tracker.latest_message.text` 和任何其他 `rasa_sdk.Tracker` 属性。请参[阅追踪器文档](/action-server/sdk-tracker/)。
 - `domain`：对话机器人的领域。
 
 返回：
 
-`rasa_sdk.events.Event` 实例的列表。请参阅[事件文档](/action-server/sdk-events)。
+`rasa_sdk.events.Event` 实例的列表。请参阅[事件文档](/action-server/sdk-events/)。
 
 返回类型：
 
@@ -148,7 +148,7 @@ async ValidationAction.get_extraction_events(dispatcher, tracker, domain)
 
 返回：
 
-`rasa_sdk.events.SlotSet` 实例的列表。请参阅 [`SlotSet` 事件的文档](/action-server/sdk-events#slotset)。
+`rasa_sdk.events.SlotSet` 实例的列表。请参阅 [`SlotSet` 事件的文档](/action-server/sdk-events/#slotset)。
 
 `ValidationAction.get_validation_events`
 
@@ -160,7 +160,7 @@ async ValidationAction.get_validation_events(dispatcher, tracker, domain)
 
 返回：
 
-`rasa_sdk.events.SlotSet` 实例的列表。请参阅 [`SlotSet` 事件文档](/action-server/sdk-events#slotset)。
+`rasa_sdk.events.SlotSet` 实例的列表。请参阅 [`SlotSet` 事件文档](/action-server/sdk-events/#slotset)。
 
 ## `FormValidationAction` 类 {#formvalidationaction-class}
 
@@ -168,7 +168,7 @@ async ValidationAction.get_validation_events(dispatcher, tracker, domain)
 
 由于扩展 `FormValidationAction` 的自定义动作仅在表单处于活动状态时在每个用户轮次上运行，因此在这种情况下不需要使用映射条件。
 
-要了解有关如何实现此类的更多信息，请参阅表单[高级用法](/forms#advanced-usage)。
+要了解有关如何实现此类的更多信息，请参阅表单[高级用法](/forms/#advanced-usage)。
 
 ### `FormValidationAction` 类实现 {#formvalidationaction-class-implementation}
 
@@ -192,8 +192,8 @@ async ValidationAction.get_validation_events(dispatcher, tracker, domain)
 
 该方法所需的参数有：
 
-- [分发器](/action-server/sdk-dispatcher)
-- [追踪器](/action-server/sdk-tracker)
+- [分发器](/action-server/sdk-dispatcher/)
+- [追踪器](/action-server/sdk-tracker/)
 - 机器人的领域
 
 `FormValidationAction.run`

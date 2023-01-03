@@ -121,7 +121,7 @@ USER 1001
 docker build . -t rasa-oracle:3.2.5-oracle-full
 ```
 
-现在可以如上述在 `endpoints.yml` 中配置追踪器存储，并启动容器了。此设置的方言参数为 `oracle+cx_oracle`。更多信息请参见[部署 Rasa 对话机器人](/deploy/introduction)。
+现在可以如上述在 `endpoints.yml` 中配置追踪器存储，并启动容器了。此设置的方言参数为 `oracle+cx_oracle`。更多信息请参见[部署 Rasa 对话机器人](/deploy/introduction/)。
 
 ## RedisTrackerStore {#redistrackerstore}
 

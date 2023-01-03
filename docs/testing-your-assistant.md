@@ -20,9 +20,9 @@ rasa data validate --max-history <max_history>
 
 !!! note "注意"
 
-    运行 `rasa data validate` 不会测试你的[规则](/rules)是否与故事一致。但是，在训练期间，`RulePolicy` 会检查规则和故事之间的冲突。任何此类冲突都会中止训练。
+    运行 `rasa data validate` 不会测试你的[规则](/rules/)是否与故事一致。但是，在训练期间，`RulePolicy` 会检查规则和故事之间的冲突。任何此类冲突都会中止训练。
 
-要阅读有关验证器和所有可用选项的更多信息，请参见 [`rasa data validate` 的文档](/command-line-interface#rasa-data-validate)。
+要阅读有关验证器和所有可用选项的更多信息，请参见 [`rasa data validate` 的文档](/command-line-interface/#rasa-data-validate)。
 
 ## 编写测试故事 {#writing-test-stories}
 
@@ -134,13 +134,13 @@ rasa test
 
 对话测试仅确保包含的用例测试的准确性，因此你应该持续增加测试故事集来改进对话机器人。一个好的经验法则是，你的目标应该是让你的测试故事能代表真实对话的分布。
 
-有关更多配置选项，请参见 [`rasa test` 的 CLI 文档](/command-line-interface#rasa-test)。
+有关更多配置选项，请参见 [`rasa test` 的 CLI 文档](/command-line-interface/#rasa-test)。
 
 !!! caution "测试自定义动作"
 
-    [自定义动作](/custom-actions)并不作为测试故事的一部分执行。如果你的自定义动作将任意事件附加到对话中，这必须反应在你的测试故事中（例如，通过将 `slot_was_set` 事件添加到你的测试故事）。
+    [自定义动作](/custom-actions/)并不作为测试故事的一部分执行。如果你的自定义动作将任意事件附加到对话中，这必须反应在你的测试故事中（例如，通过将 `slot_was_set` 事件添加到你的测试故事）。
 
-    要测试自定义动作的代码，你应该为他们编写单元测试并将这些测试包含在 [CI/CD 管道中](/setting-up-ci-cd)。
+    要测试自定义动作的代码，你应该为他们编写单元测试并将这些测试包含在 [CI/CD 管道中](/setting-up-ci-cd/)。
 
 ## 评估 NLU 模型 {#evaluating-an-nlu-model}
 
@@ -151,7 +151,7 @@ rasa test
 
 ### 使用保留的测试集 {#using-a-held-out-test-set}
 
-如果你使用训练-测试集方法，最好在每次评估模型时使用 `rasa data split` 对数据进行[混洗和拆分](/command-line-interface#rasa-data-split)，而不是使用容易过时的静态 NLU 测试集。
+如果你使用训练-测试集方法，最好在每次评估模型时使用 `rasa data split` 对数据进行[混洗和拆分](/command-line-interface/#rasa-data-split)，而不是使用容易过时的静态 NLU 测试集。
 
 你可以使用如下方法将 NLU 数据拆分为训练集和测试集：
 
@@ -255,7 +255,7 @@ rasa test nlu --nlu data/nlu.yml
 
 `rasa test` 以与评估意图分类器相同的方式评估响应选择器，生成报告（`response_selection_report.json`）、混淆矩阵（`response_selection_confusion_matrix.png`）、置信度直方图（`response_selection_histogram.png`）和错误（`response_selection_errors.json`）。如果你的管道包含多个响应选择器，则会在单个报告中对它们进行评估。
 
-报告记录[检索意图](/glossary#retrieval-intent)的每个子意图的准确率、召回率和 f1-score，并提供总体的平均值。你可以使用 `--report` 参数将这些报告保存为 JSON 文件。
+报告记录[检索意图](/glossary/#retrieval-intent)的每个子意图的准确率、召回率和 f1-score，并提供总体的平均值。你可以使用 `--report` 参数将这些报告保存为 JSON 文件。
 
 #### 实体提取 {#entity-extraction}
 
@@ -281,7 +281,7 @@ stories:
 
 #### 实体评分 {#entity-scoring}
 
-为了评估实体提取，我们采用了一种简单的标记方法。我们并没有完全参考 [BILOU 标签](/nlu-training-data#bilou-entity-tagging)，而是只考虑基本的每个词的实体类型标签。对于像“near Alexanderplatz”这样的位置实体，我们希望的标签为 `LOC LOC` 而不是基于 BILOU 的 `B-LOC L-LOC`。
+为了评估实体提取，我们采用了一种简单的标记方法。我们并没有完全参考 [BILOU 标签](/nlu-training-data/#bilou-entity-tagging)，而是只考虑基本的每个词的实体类型标签。对于像“near Alexanderplatz”这样的位置实体，我们希望的标签为 `LOC LOC` 而不是基于 BILOU 的 `B-LOC L-LOC`。
 
 在评估方面，我们的方法更加宽松，因为它鼓励部分提取且不惩罚实体的拆分。例如，给定上述实体“near Alexanderplatz”和提取的“Alexanderplatz”，我们的方法鼓励提取“Alexanderplatz”并惩罚遗漏的单词“near”。
 
@@ -311,9 +311,9 @@ rasa test core --stories test_stories.yml --out results
 
 ### 解释生成的警告 {#interpreting-the-generated-warnings}
 
-测试脚本还会生成一个名为 `results/stories_with_warnings.yml` 的警告文件。该文件包含在任何对话轮次中都预测了 [`action_unlikely_intent`](/default-actions#action_unlikely_intent) 但原始故事中的所有动作都被正确预测的所有测试故事。但是，如果一个测试故事最初就包含一个 `action_unlikely_intent`，例如为了[确保一个规则在一个 `action_unlikely_intent` 之后触发对话路径](/default-actions#customization-1)，但策略集未能做到，那么相应的故事也将作为一个失败的故事出现在 `results/failed_test_stories.yml` 中。
+测试脚本还会生成一个名为 `results/stories_with_warnings.yml` 的警告文件。该文件包含在任何对话轮次中都预测了 [`action_unlikely_intent`](/default-actions/#action_unlikely_intent) 但原始故事中的所有动作都被正确预测的所有测试故事。但是，如果一个测试故事最初就包含一个 `action_unlikely_intent`，例如为了[确保一个规则在一个 `action_unlikely_intent` 之后触发对话路径](/default-actions/#customization-1)，但策略集未能做到，那么相应的故事也将作为一个失败的故事出现在 `results/failed_test_stories.yml` 中。
 
-这些故事按 `action_unlikely_intent` 预测的严重程度进行排序。严重程度由 [`UnexpecTEDIntentPolicy`](/policies#unexpected-intent-policy) 在预测时计算。值越大越严重，越不可能为意图，因此审查特定的对话路径变得更加关键。
+这些故事按 `action_unlikely_intent` 预测的严重程度进行排序。严重程度由 [`UnexpecTEDIntentPolicy`](/policies/#unexpected-intent-policy) 在预测时计算。值越大越严重，越不可能为意图，因此审查特定的对话路径变得更加关键。
 
 请注意，`action_unlikely_intent` 是由 `UnexpecTEDIntentPolicy` 预测的，它在后台采用基于机器学习的模型，因此也可能导致错误警告。如果这些故事中的对话路径已经存在于训练故事中，你可以选择忽略此类警告。
 
@@ -330,7 +330,7 @@ rasa train core -c config_1.yml config_2.yml \
   --out comparison_models --runs 3 --percentages 0 5 25 50 70 95
 ```
 
-与[评估 NLU 模型](/testing-your-assistant#comparing-nlu-pipelines)的方式类似，上述命令在多种配置和不同数量的训练数据上训练模型。对于提供的每个配置文件，开源 Rasa 将训练对话模型，其中 0%、5%、25%、50%、70% 和 95% 的训练故事将从训练数据中排除。重复此操作 3 次以确保结果一致。
+与[评估 NLU 模型](/testing-your-assistant/#comparing-nlu-pipelines)的方式类似，上述命令在多种配置和不同数量的训练数据上训练模型。对于提供的每个配置文件，开源 Rasa 将训练对话模型，其中 0%、5%、25%、50%、70% 和 95% 的训练故事将从训练数据中排除。重复此操作 3 次以确保结果一致。
 
 脚本结束后，你可以将多个模型传递给测试脚本来比较刚才训练的模型：
 

@@ -18,7 +18,7 @@
 
 你的 CI 管道应该包括模型训练和测试，来简化部署过程。保存新训练数据后的第一步是启动管道。这可以手动启动，也可以在创建或更新拉取请求时启动。
 
-接下来，你需要于运行多组测试来查看更改的影响。这包括运行数据验证测试、NLU 交叉验证和故事测试。有关测试的更多信息，请参见[测试对话机器人](/testing-your-assistant)。
+接下来，你需要于运行多组测试来查看更改的影响。这包括运行数据验证测试、NLU 交叉验证和故事测试。有关测试的更多信息，请参见[测试对话机器人](/testing-your-assistant/)。
 
 最后一步是查看测试结果并在测试成功时推送变更。一旦新模型经过训练和测试，就可以使用持续部署管道自动部署了。
 
@@ -75,7 +75,7 @@ Rasa Train-Test Github Action 的可配置参数的完整列表可在仓库的 [
 
 ### 部署 Rasa 模型 {#deploying-your-rasa-model}
 
-如果在 CI 管道中运行[测试故事](/testing-your-assistant)，你应该已经有一个训练好的模型。如果 CI 的结果令人满意，可以设置 CD 管道将经过训练的模型上传到 Rasa 服务器。例如，将模型上传到 Rasa X/Enterprise：
+如果在 CI 管道中运行[测试故事](/testing-your-assistant/)，你应该已经有一个训练好的模型。如果 CI 的结果令人满意，可以设置 CD 管道将经过训练的模型上传到 Rasa 服务器。例如，将模型上传到 Rasa X/Enterprise：
 
 ```shell
 curl -k -F "model=@models/my_model.tar.gz" "https://example.rasa.com/api/projects/default/models?api_token={your_api_token}"
@@ -93,7 +93,7 @@ curl -X PUT "https://example.rasa.com/api/projects/default/models/my_model/tags/
 
 ### 部署动作服务 {#deploying-your-action-server}
 
-你可以[为动作服务自动构建和上传一个新的镜像](https://rasa.com/docs/action-server/deploy-action-server#building-an-action-server-image)至镜像仓库来更新动作代码。如上所述，如果动作服务与当前生产模型不兼容，请小心自动将新的镜像部署到生产中。
+你可以[为动作服务自动构建和上传一个新的镜像](/action-server/deploy-action-server/#building-an-action-server-image)至镜像仓库来更新动作代码。如上所述，如果动作服务与当前生产模型不兼容，请小心自动将新的镜像部署到生产中。
 
 ## 示例 CI/CD 管道 {#example-cicd-pipelines}
 

@@ -21,7 +21,7 @@ nlu:
     - Who's the US President?
 ```
 
-同其他意图一样，你应该[从真实对话](/conversation-driven-development)中获取大部分样本。
+同其他意图一样，你应该[从真实对话](/conversation-driven-development/)中获取大部分样本。
 
 ### 定义响应消息 {#defining-the-response-message}
 
@@ -57,7 +57,7 @@ rules:
 
 ### NLU 回退 {#nlu-fallback}
 
-要处理 NLU 置信度较低的信息，可以使用 [FallbackClassifier](/components#fallbackclassifier)。使用此配置，当所有其他意图预测低于配置的置信度阈值时，则将预测为 `nlu_fallback` 意图。然后你可以为预测 `nlu_fallback` 时机器人应该做什么编写规则。
+要处理 NLU 置信度较低的信息，可以使用 [FallbackClassifier](/components/#fallbackclassifier)。使用此配置，当所有其他意图预测低于配置的置信度阈值时，则将预测为 `nlu_fallback` 意图。然后你可以为预测 `nlu_fallback` 时机器人应该做什么编写规则。
 
 #### 更新配置 {#updating-the-configuration}
 
@@ -82,7 +82,7 @@ responses:
 
 #### 创建一个 NLU 回退规则 {#creating-an-nlu-fallback-rule}
 
-以下[规则](/rules)将要求用户在发送分类为低置信度消息时重新对话：
+以下[规则](/rules/)将要求用户在发送分类为低置信度消息时重新对话：
 
 ```yaml title='rules.yml'
 rules:
@@ -94,9 +94,9 @@ rules:
 
 ### 处理低置信度动作 {#handling-low-action-confidence}
 
-由于用户可能发送非预期的消息，因此他们的行为可能会导致走上未知的对话路径。Rasa 的机器学习策略（例如 [TED 策略](/policies#ted-policy)）经过优化可以用来处理这些未知路径。
+由于用户可能发送非预期的消息，因此他们的行为可能会导致走上未知的对话路径。Rasa 的机器学习策略（例如 [TED 策略](/policies/#ted-policy)）经过优化可以用来处理这些未知路径。
 
-要处理当机器学习策略无法以高置信度预测下一个动作时的情况，你可以配置[规则策略](/policies#rule-policy)在没有[策略](/policies)能给出下一个预测置信度高于配置的阈值的情况下预测一个默认的动作。
+要处理当机器学习策略无法以高置信度预测下一个动作时的情况，你可以配置[规则策略](/policies/#rule-policy)在没有[策略](/policies/)能给出下一个预测置信度高于配置的阈值的情况下预测一个默认的动作。
 
 你可以使用以下步骤配置在动作置信度低的情况下运行的动作以及相应的置信度阈值：
 
@@ -129,7 +129,7 @@ responses:
 
 #### 自定义默认动作（可选） {#customizing-the-default-action-optional}
 
-`action_default_fallback` 是开源 Rasa 中的默认动作，它将发送 `utter_default` 响应给用户。你可以创建自己的自定义动作用作回退（更多信息请参见[自定义动作](/actions#custom-actions)）。以下代码片段是一个自定义动作的实现，它与 `action_default_fallback` 相同但使用一个不同的模板 `utter_fallback_template`：
+`action_default_fallback` 是开源 Rasa 中的默认动作，它将发送 `utter_default` 响应给用户。你可以创建自己的自定义动作用作回退（更多信息请参见[自定义动作](/actions/#custom-actions)）。以下代码片段是一个自定义动作的实现，它与 `action_default_fallback` 相同但使用一个不同的模板 `utter_fallback_template`：
 
 ```python title='actions.py'
 from typing import Any, Text, Dict, List
@@ -177,7 +177,7 @@ class ActionDefaultFallback(Action):
 
 #### 更新配置 {#updating-the-configuration-2}
 
-将 FallbackClassifier 添加到管道中，并将 [RulePolicy](/policies#rule-policy) 添加到策略配置中：
+将 FallbackClassifier 添加到管道中，并将 [RulePolicy](/policies/#rule-policy) 添加到策略配置中：
 
 ```yaml title='config.yml'
 recipe: default.v1
@@ -201,11 +201,11 @@ responses:
   - text: I'm sorry, I didn't quite understand that. Could you rephrase?
 ```
 
-Rasa 提供了默认实现来询问用户的意图以及要求用户重新表述。要自定义这些动作的行为，请参见[默认动作](/default-actions)的文档。
+Rasa 提供了默认实现来询问用户的意图以及要求用户重新表述。要自定义这些动作的行为，请参见[默认动作](/default-actions/)的文档。
 
 #### 定义两阶段回退规则 {#defining-a-two-stage-fallback-rule}
 
-将以下[规则](/rules)添加到训练数据中。这个规则将确保在收到分类置信度较低的消息时激活两阶段回退：
+将以下[规则](/rules/)添加到训练数据中。这个规则将确保在收到分类置信度较低的消息时激活两阶段回退：
 
 ```yaml title='rules.yml'
 rules:
@@ -226,7 +226,7 @@ responses:
   - text: I'm sorry, I can't help you.
 ```
 
-或者你可以通过编写[自定义动作](/actions#custom-actions)来自定义 `action_default_fallback` 以获得更复杂的行为。例如，如果你希望机器人呼叫人类并停止与用户的交互：
+或者你可以通过编写[自定义动作](/actions/#custom-actions)来自定义 `action_default_fallback` 以获得更复杂的行为。例如，如果你希望机器人呼叫人类并停止与用户的交互：
 
 ```python title='actions.py'
 from typing import Any, Dict, List, Text
@@ -264,7 +264,7 @@ class ActionDefaultFallback(Action):
 
 ## 移交人工 {#human-handoff}
 
-作为回退动作的一部分，你可能希望对话机器人将其移交给人工。例如作为两阶段回退中的最终动作，或者当用户明确要求人工时。实现人工切换的一种直接方法是配置[消息或语音频道](/messaging-and-voice-channels)，来根据特定的机器人或用户消息切换它监听的主机。
+作为回退动作的一部分，你可能希望对话机器人将其移交给人工。例如作为两阶段回退中的最终动作，或者当用户明确要求人工时。实现人工切换的一种直接方法是配置[消息或语音频道](/messaging-and-voice-channels/)，来根据特定的机器人或用户消息切换它监听的主机。
 
 例如作为两阶段回退的最后一个动作，对话机器人可以问用户：“Would you like to be transferred to a human assistant?”，如果回答是，对话机器人会发送一条带有特定有效负载的消息，例如“handoff_to_human”到频道中。当频道看到此消息时，它将停止监听 Rasa 服务器，并向人工频道发送一条消息，其中包含截至该点的聊天对话记录。
 

@@ -12,7 +12,7 @@
 
 Rasa Pro 是一款有开源对话式 AI 框架提供支持的开放核心产品，其具有额外的分析、安全性和可观察性等功能。
 
-Rasa Pro 是我们企业解决方案 Rasa Platform 的一部分。组成 Rasa Platform 的另一个产品是 Rasa X/Enterprise。这是一个低代码的用户界面，支持对话式 AI 团队大规模审查和改进 AI 对话机器人。其必须同 Rasa Pro 一起使用。要了解有关 Rasa X/Enterprise 的更多信息，请参阅 [Rasa X/Enterprise 文档](https://rasa.com/docs/rasa-enterprise)。
+Rasa Pro 是我们企业解决方案 Rasa Platform 的一部分。组成 Rasa Platform 的另一个产品是 Rasa X/Enterprise。这是一个低代码的用户界面，支持对话式 AI 团队大规模审查和改进 AI 对话机器人。其必须同 Rasa Pro 一起使用。要了解有关 Rasa X/Enterprise 的更多信息，请参阅 [Rasa X/Enterprise 文档](https://rasa.com/docs/rasa-enterprise/)。
 
 你还可以在 [Rasa Product Release and Maintenance Policy](https://rasa.com/rasa-product-release-and-maintenance-policy/) 中了解发布和维护信息。
 
@@ -30,7 +30,7 @@ Rasa Pro 是我们企业解决方案 Rasa Platform 的一部分。组成 Rasa Pl
 
     你需要一个许可证才能够使用 Rasa Pro。[请与 Rasa 专家联系](https://rasa.com/connect-with-rasa/)。
 
-    如果不确定是否需要 Rasa Pro？[可以免费试用](https://info.rasa.com/rasa-platform-trial-request)。
+    如果不确定是否需要 Rasa Pro？[可以免费试用](https://info.rasa.com/rasa-platform-trial-request/)。
 
 Rasa Pro 是一个由开源 Rasa 提供支持的对话式 AI 框架，其包括额外的功能、API 和服务，可满足企业在安全性、可观察性混合规模方面的特定需求。
 

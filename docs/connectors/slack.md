@@ -83,9 +83,9 @@ slack:
 
 ## 接受消息 {#receiving-messages}
 
-在继续之前，请确保你已配置用于[发送消息](/connectors/slack#sending-messages)的 Slack 应用并将 Slack 凭据添加到 `credentials.yml` 文件中。
+在继续之前，请确保你已配置用于[发送消息](/connectors/slack/#sending-messages)的 Slack 应用并将 Slack 凭据添加到 `credentials.yml` 文件中。
 
-要接收消息，你需要一个公开的 URL，以便 Slack 访问你的对话机器人并告诉你最新的消息。如果在本地运行，可以使用 [ngrok 测试频道](/messaging-and-voice-channels#testing-channels-on-your-local-machine)。
+要接收消息，你需要一个公开的 URL，以便 Slack 访问你的对话机器人并告诉你最新的消息。如果在本地运行，可以使用 [ngrok 测试频道](/messaging-and-voice-channels/#testing-channels-on-your-local-machine)。
 
 1. 要配置对话机器人接收消息，你的机器人需要首先运行。使用如下命令启动对话机器人：
 
@@ -136,7 +136,7 @@ slack:
 
 完成发送消息和接收消息后，对话机器人就可以开始使用了。如果你想使用 Slack 的交互组件（按钮或菜单），你需要做一些额外的配置：
 
-打开 `Interactivity & Shortcuts` 页面并将 `Interactivity` 切换为打开。之后，你需要在[接收消息](/connectors/slack#receiving-messages)的第二步中使用的 `Request URL` 字段中输入相同的 URL，例如：`https://<host>/webhooks/slack/webhook`。
+打开 `Interactivity & Shortcuts` 页面并将 `Interactivity` 切换为打开。之后，你需要在[接收消息](/connectors/slack/#receiving-messages)的第二步中使用的 `Request URL` 字段中输入相同的 URL，例如：`https://<host>/webhooks/slack/webhook`。
     <figure markdown>
       ![](/images/connectors/slack/slack-interactivity.png)
       <figcaption>开启交互</figcaption>

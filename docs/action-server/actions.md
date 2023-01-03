@@ -155,7 +155,7 @@
 - `latest_event_time`：最后一个事件添加到追踪器的时间戳
 - `followup_action`：调用的动作是强制的后续动作
 - `paused`：对话当前是否暂停
-- `events`：所有先前[事件](/action-server/events)的列表
+- `events`：所有先前[事件](/action-server/events/)的列表
 - `latest_input_channel`：接收到最后一条用户消息的输入频道
 - `active_form`：当前活动表单的名称，如果有
 - `latest_action_name`：机器人执行的最后一个动作的名称
@@ -176,7 +176,7 @@ Rasa 服务器需要一个 `events` 和 `responses` 字典作为对自定义动�
 
 ### `events` {#events}
 
-[事件](/action-server/events)表示动作服务器如何影响对话。在示例中，自定义动作应将最高温度存储在 `temperature` 槽中，因此它需要返回一个 [`slot` 事件](/action-server/events#slot)。要设置槽并不执行任何其他操作，响应负载应如下所示：
+[事件](/action-server/events/)表示动作服务器如何影响对话。在示例中，自定义动作应将最高温度存储在 `temperature` 槽中，因此它需要返回一个 [`slot` 事件](/action-server/events/#slot)。要设置槽并不执行任何其他操作，响应负载应如下所示：
 
 ```json
 {
@@ -196,7 +196,7 @@ Rasa 服务器需要一个 `events` 和 `responses` 字典作为对自定义动�
 
 ### `responses` {#responses}
 
-响应可以是[富响应文档](/responses#rich-responses)中描述的任何响应类型。有关预期格式，请参阅 [API 规范](https://rasa.com/docs/rasa/pages/action-server-api)的响应示例。
+响应可以是[富响应文档](/responses/#rich-responses)中描述的任何响应类型。有关预期格式，请参阅 [API 规范](https://rasa.com/docs/rasa/pages/action-server-api/)的响应示例。
 
 在示例案例中，你希望向用户发送包含天气预报的消息。要发送常规文本消息，响应负载将如下所示：
 
@@ -256,8 +256,8 @@ Rasa 服务器需要一个 `events` 和 `responses` 字典作为对自定义动�
 
 ## 特殊动作类型 {#special-action-types}
 
-在某些情况下会自动触发一些特殊的动作类型，即[默认动作](/default-actions)和[槽验证动作](/slot-validation-actions)。这些特殊动作类型具有预定义的命名约定，必须遵循这些约定以保持自动触发行为。
+在某些情况下会自动触发一些特殊的动作类型，即[默认动作](/default-actions/)和[槽验证动作](/slot-validation-actions/)。这些特殊动作类型具有预定义的命名约定，必须遵循这些约定以保持自动触发行为。
 
-可以通过实现具有完全相同名称的自定义动作来自定义默认动作。请参阅有关[默认动作的文档](/default-actions)来了解每个动作的预期行为。
+可以通过实现具有完全相同名称的自定义动作来自定义默认动作。请参阅有关[默认动作的文档](/default-actions/)来了解每个动作的预期行为。
 
-槽验证动作在每个用户轮次运行，具体取决于表单是否处于活动状态。当表单不活动时应该运行的槽验证动作必须名为 `action_validate_slot_mappings`。当表单处于活动状态时应该运行的槽验证动作必须名为 `validate_<form name>`。这些动作应该只返回 `SlotSet` 事件，并且分别表现得像 Rasa SDK [`ValidationAction` 类](/action-server/validation-action#validationaction-class-implementation)和 [`FormValidationAction` 类](/action-server/validation-action#formvalidationaction-class-implementation)。
+槽验证动作在每个用户轮次运行，具体取决于表单是否处于活动状态。当表单不活动时应该运行的槽验证动作必须名为 `action_validate_slot_mappings`。当表单处于活动状态时应该运行的槽验证动作必须名为 `validate_<form name>`。这些动作应该只返回 `SlotSet` 事件，并且分别表现得像 Rasa SDK [`ValidationAction` 类](/action-server/validation-action/#validationaction-class-implementation)和 [`FormValidationAction` 类](/action-server/validation-action/#formvalidationaction-class-implementation)。

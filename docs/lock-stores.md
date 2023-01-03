@@ -24,9 +24,9 @@ Rasa 使用一种票据锁机制来确保以正确的顺序处理给定对话 ID
 
     你需要一个许可证才能使用 Rasa Pro。[请与 Rasa 专家联系](https://rasa.com/connect-with-rasa/)。
 
-    如果不确定是否需要 Rasa Pro？[可以免费试用](https://info.rasa.com/rasa-platform-trial-request)。
+    如果不确定是否需要 Rasa Pro？[可以免费试用](https://info.rasa.com/rasa-platform-trial-request/)。
 
-`ConcurrentRedisLockStore` 是一个新的锁存储，它使用 Redis 作为持久层，可以安全地与多个 Rasa 服务器副本一起使用。参阅[迁移部分](/lock-stores#migration-guide)来了解如何切换到此锁存储。
+`ConcurrentRedisLockStore` 是一个新的锁存储，它使用 Redis 作为持久层，可以安全地与多个 Rasa 服务器副本一起使用。参阅[迁移部分](/lock-stores/#migration-guide)来了解如何切换到此锁存储。
 
 ### 描述 {#description-1}
 

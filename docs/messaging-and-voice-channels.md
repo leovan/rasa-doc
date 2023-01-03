@@ -6,17 +6,17 @@
 
 了解如何让对话机器人在如下频道中可用：
 
-- [个人网站](/connectors/your-own-website)
-- [Facebook Messenger](/connectors/facebook-messenger)
-- [Slack](/connectors/slack)
-- [Telegram](/connectors/telegram)
-- [Twilio](/connectors/twilio)
-- [Microsoft Bot Framework](/connectors/microsoft-bot-framework)
-- [Cisco Webex Teams](/connectors/cisco-webex-teams)
-- [RocketChat](/connectors/rocketchat)
-- [Mattermost](/connectors/mattermost)
-- [Google Hangouts Chat](/connectors/hangouts)
-- [自定义连接器](/connectors/custom-connectors)
+- [个人网站](/connectors/your-own-website/)
+- [Facebook Messenger](/connectors/facebook-messenger/)
+- [Slack](/connectors/slack/)
+- [Telegram](/connectors/telegram/)
+- [Twilio](/connectors/twilio/)
+- [Microsoft Bot Framework](/connectors/microsoft-bot-framework/)
+- [Cisco Webex Teams](/connectors/cisco-webex-teams/)
+- [RocketChat](/connectors/rocketchat/)
+- [Mattermost](/connectors/mattermost/)
+- [Google Hangouts Chat](/connectors/hangouts/)
+- [自定义连接器](/connectors/custom-connectors/)
 
 ## 在本地测试频道 {#testing-channels-on-your-local-machine}
 

@@ -2,7 +2,7 @@
 
 你可以使用自定义 NLU 组件和策略扩展开源 Rasa。本页面提供了有关如何开发自定义图组件的指南。
 
-开源 Rasa 提供了各种开箱即用的 [NLU 组件](/components)和[策略](/policies)，通过自定义图组件可以从头对其进行自定义或创建自己的组件。
+开源 Rasa 提供了各种开箱即用的 [NLU 组件](/components/)和[策略](/policies/)，通过自定义图组件可以从头对其进行自定义或创建自己的组件。
 
 要将你的自定义图组件同开源 Rasa 一起使用，它必须满足一下条件：
 
@@ -13,12 +13,12 @@
 
 ## 图组件 {#graph-components}
 
-开源 Rasa 使用传入的[模型配置](/model-configuration)来构建[有向无环图](https://en.wikipedia.org/wiki/Directed_acyclic_graph)。此图描述了模型配置中的项目之间的依赖关系以及数据在它们之间的流动方式。这主要有两个好处：
+开源 Rasa 使用传入的[模型配置](/model-configuration/)来构建[有向无环图](https://en.wikipedia.org/wiki/Directed_acyclic_graph)。此图描述了模型配置中的项目之间的依赖关系以及数据在它们之间的流动方式。这主要有两个好处：
 
 - 开源 Rasa 可以使用计算图来优化模型的执行。这方面的示例是有效缓存训练步骤或并行执行独立步骤。
 - 开源 Rasa 可以灵活地表示不同的模型架构。只要图保持非循环，开源 Rasa 理论上可以根据模型配置将任何数据传递给任何图组件，而无需将底层软件架构与使用的模型架构联系起来。
 
-当将模型配置转换为计算图时，[策略](/policies)和 [NLU 组件](/components)成为该图中的节点。虽然模型配置中的策略和 NLU 组件之间存在区别，但是当他们被放置在图中时，区别就被抽象掉了。此时策略和 NLU 组件成为抽象图组件。在实践中，这由 [`GraphComponent`](/custom-graph-components#the-graphcomponent-interface) 接口表示：策略和 NLU 组件都必须继承该接口，才能与 Rasa 的图兼容并可执行。
+当将模型配置转换为计算图时，[策略](/policies/)和 [NLU 组件](/components/)成为该图中的节点。虽然模型配置中的策略和 NLU 组件之间存在区别，但是当他们被放置在图中时，区别就被抽象掉了。此时策略和 NLU 组件成为抽象图组件。在实践中，这由 [`GraphComponent`](/custom-graph-components/#the-graphcomponent-interface) 接口表示：策略和 NLU 组件都必须继承该接口，才能与 Rasa 的图兼容并可执行。
 
 <figure markdown>
   ![](/images/custom-graph-components/graph-architecture.png){ width="600" }
@@ -27,7 +27,7 @@
 
 ## 开始 {#getting-started}
 
-在开始之前，你需要决定要实现自定义 [NLU 组件](/components)还是[策略](/policies)。如果实现自定义策略，我们建议继承 `rasa.core.policies.policy.Policy` 类，该类实现了 `GraphComponent` 接口。
+在开始之前，你需要决定要实现自定义 [NLU 组件](/components/)还是[策略](/policies/)。如果实现自定义策略，我们建议继承 `rasa.core.policies.policy.Policy` 类，该类实现了 `GraphComponent` 接口。
 
 ```python
 from rasa.core.policies.policy import Policy
@@ -211,7 +211,7 @@ class GraphComponent(ABC):
 - `execution_context`：其提供了有关当前执行模式的附加信息。
 - `model_id`：推理期间使用的模型的唯一标识符。此参数在训练期间为 `None`。
 - `should_add_diagnostic_data`：如果为 `True`，则应在实际预测之上将额外的诊断元数据添加到图组件的预测中。
-- `is_finetuning`：如果为 `True`，则可以使用[微调](/command-line-interface#incremental-training)来训练图组件。
+- `is_finetuning`：如果为 `True`，则可以使用[微调](/command-line-interface/#incremental-training)来训练图组件。
 - `graph_schema`：`graph_schema` 表述了用于训练对话机器人或使用它进行预测的计算图。
 - `node_name`：`node_name` 是图模式中步骤的唯一标识符，由调用的图组件实现。
 
@@ -388,7 +388,7 @@ class MyComponent(GraphComponent):
 
 ## 使用模型配置注册图组件 {#registering-graph-components-with-the-model-configuration}
 
-要使图组件可用于开源 Rasa，你可能必须使用一种配方注册图组件。开源 Rasa 使用配方将模型配置内容转换为可执行[图](/custom-graph-components#graph-components)。目前，开源 Rasa 支持 `default.v1` 和实验性的 `graph.v1` 配方。对于 `graph.v1` 配方，你需要使用 `DefaultV1Recipe.register` 装饰器注册图组件：
+要使图组件可用于开源 Rasa，你可能必须使用一种配方注册图组件。开源 Rasa 使用配方将模型配置内容转换为可执行[图](/custom-graph-components/#graph-components)。目前，开源 Rasa 支持 `default.v1` 和实验性的 `graph.v1` 配方。对于 `graph.v1` 配方，你需要使用 `DefaultV1Recipe.register` 装饰器注册图组件：
 
 ```python
 from rasa.engine.graph import GraphComponent
@@ -407,19 +407,19 @@ class MyComponent(GraphComponent):
 开源 Rasa 使用 `register` 饰器提供的信息和图组件在配置文件中的位置来规划图组件及其所需数据的执行。`DefaultV1Recipe.register` 装饰器允许你指定如下详细信息：
 
 - `component_types`：这指定了图组件在对话机器人中的用途。可以指定为多种类型（例如：如果图组件既是意图分类器又是实体提取器）：
-    - `ComponentType.MODEL_LOADER`：[语言模型](/components#language-models)的组件类型。这种类型的图组件为其他图组件的 `train`、`process_training_data` 和 `process` 方法提供预训练模型，如果它们指定了 `model_from=<model loader name>`。此图组件在训练和推理期间运行。开源 Rasa 将使用图组件的 `provide` 方法来检索应该提供给依赖图组件的模型。
-    - `ComponentType.MESSAGE_TOKENIZER`：[分词器](/components#tokenizers)的组件类型。此图组件在训练和推理期间运行。如果指定了 `is_trainable=True`，开源 Rasa 将使用图组件的 `train` 方法。开源 Rasa 将使用 `process_training_data` 对训练数据样本进行分词，并在推理过程中使用 `process` 对消息进行分词。
-    - `ComponentType.MESSAGE_FEATURIZER`：[特征化器](/components#featurizers)的组件类型。此图组件在训练和推理期间运行。如果指定了 `is_trainable=True`，开源 Rasa 将使用图组件的 `train` 方法。开源 Rasa 将使用 `process_training_data` 对训练数据样本进行特征化，并在推理过程中使用 `process` 对消息进行特征化。
-    - `ComponentType.INTENT_CLASSIFIER`：[意图分类器](/components#intent-classifiers)的组件类型。如果 `is_trainable=True`，此图组件仅在训练期间运行。图组件始终在推理期间运行。如果指定了 `is_trainable=True`，开源 Rasa 将使用图组件的 `train` 方法。开源 Rasa 将在推理过程中使用 `process` 对消息的意图进行分类。
-    - `ComponentType.ENTITY_EXTRACTOR`：[实体提取器](/components#entity-extractors)的组件类型。如果 `is_trainable=True`，此图组件仅在训练期间运行。图组件始终在推理期间运行。如果指定了 `is_trainable=True`，开源 Rasa 将使用图组件的 `train` 方法。开源 Rasa 将在推理过程中使用 `process` 来提取实体。
-    - `ComponentType.POLICY_WITHOUT_END_TO_END_SUPPORT`：不需要额外端到端功能的[策略](/rasa/policies)的组件类型（更多信息请参见[端到端训练](/stories#end-to-end-training)）。如果 `is_trainable=True`，此图组件仅在训练期间运行。图组件始终在推理期间运行。如果指定了 `is_trainable=True`，开源 Rasa 将使用图组件的 `train` 方法。开源 Rasa 将使用图形组件的 `predict_action_probabilities` 来预测应该在对话中运行的下一个动作。
-    - `ComponentType.POLICY_WITH_END_TO_END_SUPPORT`：需要额外端到端功能的[策略](/rasa/policies)的组件类型（更多信息请参见[端到端训练](/stories#end-to-end-training)）。端到端特征作为预计算参数传递到图组件的 `train` 和 `predict_action_probabilities` 中。如果 `is_trainable=True`，此图组件仅在训练期间运行。图组件始终在推理期间运行。如果指定了 `is_trainable=True`，开源 Rasa 将使用图组件的 `train` 方法。开源 Rasa 将使用图形组件的 `predict_action_probabilities` 来预测应该在对话中运行的下一个动作。
+    - `ComponentType.MODEL_LOADER`：[语言模型](/components/#language-models)的组件类型。这种类型的图组件为其他图组件的 `train`、`process_training_data` 和 `process` 方法提供预训练模型，如果它们指定了 `model_from=<model loader name>`。此图组件在训练和推理期间运行。开源 Rasa 将使用图组件的 `provide` 方法来检索应该提供给依赖图组件的模型。
+    - `ComponentType.MESSAGE_TOKENIZER`：[分词器](/components/#tokenizers)的组件类型。此图组件在训练和推理期间运行。如果指定了 `is_trainable=True`，开源 Rasa 将使用图组件的 `train` 方法。开源 Rasa 将使用 `process_training_data` 对训练数据样本进行分词，并在推理过程中使用 `process` 对消息进行分词。
+    - `ComponentType.MESSAGE_FEATURIZER`：[特征化器](/components/#featurizers)的组件类型。此图组件在训练和推理期间运行。如果指定了 `is_trainable=True`，开源 Rasa 将使用图组件的 `train` 方法。开源 Rasa 将使用 `process_training_data` 对训练数据样本进行特征化，并在推理过程中使用 `process` 对消息进行特征化。
+    - `ComponentType.INTENT_CLASSIFIER`：[意图分类器](/components/#intent-classifiers)的组件类型。如果 `is_trainable=True`，此图组件仅在训练期间运行。图组件始终在推理期间运行。如果指定了 `is_trainable=True`，开源 Rasa 将使用图组件的 `train` 方法。开源 Rasa 将在推理过程中使用 `process` 对消息的意图进行分类。
+    - `ComponentType.ENTITY_EXTRACTOR`：[实体提取器](/components/#entity-extractors)的组件类型。如果 `is_trainable=True`，此图组件仅在训练期间运行。图组件始终在推理期间运行。如果指定了 `is_trainable=True`，开源 Rasa 将使用图组件的 `train` 方法。开源 Rasa 将在推理过程中使用 `process` 来提取实体。
+    - `ComponentType.POLICY_WITHOUT_END_TO_END_SUPPORT`：不需要额外端到端功能的[策略](/rasa/policies/)的组件类型（更多信息请参见[端到端训练](/stories/#end-to-end-training)）。如果 `is_trainable=True`，此图组件仅在训练期间运行。图组件始终在推理期间运行。如果指定了 `is_trainable=True`，开源 Rasa 将使用图组件的 `train` 方法。开源 Rasa 将使用图形组件的 `predict_action_probabilities` 来预测应该在对话中运行的下一个动作。
+    - `ComponentType.POLICY_WITH_END_TO_END_SUPPORT`：需要额外端到端功能的[策略](/rasa/policies/)的组件类型（更多信息请参见[端到端训练](/stories/#end-to-end-training)）。端到端特征作为预计算参数传递到图组件的 `train` 和 `predict_action_probabilities` 中。如果 `is_trainable=True`，此图组件仅在训练期间运行。图组件始终在推理期间运行。如果指定了 `is_trainable=True`，开源 Rasa 将使用图组件的 `train` 方法。开源 Rasa 将使用图形组件的 `predict_action_probabilities` 来预测应该在对话中运行的下一个动作。
 - `is_trainable`：指定图组件是否需要在处理其他依赖图组件的训练数据之前或在它可以进行预测之前进行自训练。
-- `model_from`：指定是否需要为图组件的 `train`、`process_training_data` 和 `process` 方法提供预训练的[语言模型](/components#language-models)。这些方法必须支持 `model` 参数才能接收语言模型。请注意，你仍然需要确保提供此模型的图组件是模型配置的一部分。一个常见的用例是如果你想将 [SpacyNLP](/components#spacynlp) 语言模型暴露给你的其他 NLU 组件。
+- `model_from`：指定是否需要为图组件的 `train`、`process_training_data` 和 `process` 方法提供预训练的[语言模型](/components/#language-models)。这些方法必须支持 `model` 参数才能接收语言模型。请注意，你仍然需要确保提供此模型的图组件是模型配置的一部分。一个常见的用例是如果你想将 [SpacyNLP](/components/#spacynlp) 语言模型暴露给你的其他 NLU 组件。
 
 ## 在模型配置中使用自定义组件 {#using-custom-components-in-your-model-configuration}
 
-你可以像使用[模型配置](/model-configuration)中的任何其他 NLU 组件或策略一样使用自定义图组件。唯一的变化是你必须指定完整的模块名称而不是仅指定类名称。完整的模块名称取决于你的模块相对于指定 [PYTHONPATH](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH) 的位置。默认情况下，开源 Rasa 会将运行 CLI 的目录添加到 `PYTHONPATH` 中。如果例如从 `/Users/<user>/my-rasa-project` 运行 CLI 并且模块 `MyComponent` 位于 `/Users/<user>/my-rasa-project/custom_components/my_component.py` 中，则模块路径为 `custom_components.my_component.MyComponent`。除了 `name` 条目外所有内容都将作为 `config` 传递给组件。
+你可以像使用[模型配置](/model-configuration/)中的任何其他 NLU 组件或策略一样使用自定义图组件。唯一的变化是你必须指定完整的模块名称而不是仅指定类名称。完整的模块名称取决于你的模块相对于指定 [PYTHONPATH](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH) 的位置。默认情况下，开源 Rasa 会将运行 CLI 的目录添加到 `PYTHONPATH` 中。如果例如从 `/Users/<user>/my-rasa-project` 运行 CLI 并且模块 `MyComponent` 位于 `/Users/<user>/my-rasa-project/custom_components/my_component.py` 中，则模块路径为 `custom_components.my_component.MyComponent`。除了 `name` 条目外所有内容都将作为 `config` 传递给组件。
 
 ```yaml title="config.yml" hl_lines="5 6"
 recipe: default.v1
@@ -439,7 +439,7 @@ policies:
 
 ### 消息元数据 {#message-metadata}
 
-当[在训练数据中为意图样本定义元数据](/training-data-format#training-examples)时，NLU 组件可以在处理期间访问意图元数据和意图样本元数据：
+当[在训练数据中为意图样本定义元数据](/training-data-format/#training-examples)时，NLU 组件可以在处理期间访问意图元数据和意图样本元数据：
 
 ```python
 # in your component class
@@ -458,7 +458,7 @@ policies:
 
 ### 稠密消息特征化器 {#dense-message-featurizer}
 
-以下是使用预训练模型的稠密[消息特征化器](/components#featurizers)的示例：
+以下是使用预训练模型的稠密[消息特征化器](/components/#featurizers)的示例：
 
 ```python
 import numpy as np
@@ -613,7 +613,7 @@ class BytePairFeaturizer(DenseFeaturizer, GraphComponent):
 
 ### 稀疏特征化器 {#sparse-message-featurizer}
 
-以下是训练新模型的稀疏[消息特征化器](/components#featurizers)的示例：
+以下是训练新模型的稀疏[消息特征化器](/components/#featurizers)的示例：
 
 ```python
 import logging

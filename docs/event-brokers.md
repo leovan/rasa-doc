@@ -19,7 +19,7 @@
 }
 ```
 
-`event` 字段采用事件的 `type_name`（有关事件类型的更多信息，请参见[事件](/action-server/events)文档）。
+`event` 字段采用事件的 `type_name`（有关事件类型的更多信息，请参见[事件](/action-server/events/)文档）。
 
 ## Pika 事件代理 {#pika-event-broker}
 

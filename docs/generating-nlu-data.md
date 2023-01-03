@@ -33,11 +33,11 @@ NLU 接受诸如“I am looking for a French restaurant in the center of town”
 
 ### 尽早同测试用户分享 {#share-with-test-users-early}
 
-为了收集真实数据，需要获取真实的用户消息。对话机器人开发者仅能够给出有限的样本，同时用户总是会说出乎意料的话。这意味着你应该尽早与开发团队之外的测试用户共享对话机器人。更多有关信息请参见 [CDD 指南](/conversation-driven-development)。
+为了收集真实数据，需要获取真实的用户消息。对话机器人开发者仅能够给出有限的样本，同时用户总是会说出乎意料的话。这意味着你应该尽早与开发团队之外的测试用户共享对话机器人。更多有关信息请参见 [CDD 指南](/conversation-driven-development/)。
 
 ## 避免意图混淆 {#avoiding-intent-confusion}
 
-意图是指利用从训练样本中提取的字符或词级别特征的分类，具体取决于添加到 NLU 管道中的[特征提取器](/components)。当不同的意图包含以相似方式排序的单词时，这会给意图分类器造成混淆。
+意图是指利用从训练样本中提取的字符或词级别特征的分类，具体取决于添加到 NLU 管道中的[特征提取器](/components/)。当不同的意图包含以相似方式排序的单词时，这会给意图分类器造成混淆。
 
 ### 实体拆分与意图 {#splitting-on-entities-vs-intents}
 
@@ -81,21 +81,21 @@ stories:
 
 姓名、地址、城市等常见实体需要大量训练数据才能让 NLU 模型获得有效的泛化。
 
-开源 Rasa 为预训练提取提供了两个不错的选项：[`SpacyEntityExtractor`](/components#SpacyEntityExtractor) 和 [`DucklingEntityExtractor`](/components#DucklingEntityExtractor)。由于这些提取器已经在大量数据上进行了预训练，因此可以利用它们在无需对训练数据标注的情况下提取支持类型的实体。
+开源 Rasa 为预训练提取提供了两个不错的选项：[`SpacyEntityExtractor`](/components/#SpacyEntityExtractor) 和 [`DucklingEntityExtractor`](/components/#DucklingEntityExtractor)。由于这些提取器已经在大量数据上进行了预训练，因此可以利用它们在无需对训练数据标注的情况下提取支持类型的实体。
 
 ### 正则表达式 {#regexes}
 
-正则表达式可用于对结构化模式的信息提取，例如：5 位的美国邮政编码。正则表达式模式可以用于生成 NUL 模型学习的特征，或作为用于直接实体匹配的方法。更多信息请参见[正则表达式特征](/generating-nlu-data)。
+正则表达式可用于对结构化模式的信息提取，例如：5 位的美国邮政编码。正则表达式模式可以用于生成 NUL 模型学习的特征，或作为用于直接实体匹配的方法。更多信息请参见[正则表达式特征](/generating-nlu-data/)。
 
 ### 查找表 {#lookup-tables}
 
-查找表类似正则表达式模式，用于检查训练数据中是否存在查找表词条。与正则表达式类似，查找表可以用于为模型提供特征以改进实体识别，或用于基于匹配的实体识别。查找表的应用示例包括冰激淋口味、瓶装水品牌、甚至袜子长度风格（参见[查找表](/training-data-format#lookup-tables)）。
+查找表类似正则表达式模式，用于检查训练数据中是否存在查找表词条。与正则表达式类似，查找表可以用于为模型提供特征以改进实体识别，或用于基于匹配的实体识别。查找表的应用示例包括冰激淋口味、瓶装水品牌、甚至袜子长度风格（参见[查找表](/training-data-format/#lookup-tables)）。
 
 ### 同义词 {#synonyms}
 
 在训练数据中添加同义词有助于将某些实体值映射到一个规范化实体。但是，同义词并不意味着可以提高模型实体识别能力，其对 NUL 性能也没有任何影响。
 
-同义词的一个很好的用例是规范化属于不同组的实体。例如，在询问用户他们感兴趣的保险单的对话机器人中，他们可能会回答“my truck”、“a car”或“I drive o batmobile”。将 `truck`、`car` 和 `batmobile` 映射到标准化的 `auto` 是一个不错的主意，这样处理逻辑仅需要考虑一个更小的可能性集合（参见[同义词](/training-data-format#synonyms)）。
+同义词的一个很好的用例是规范化属于不同组的实体。例如，在询问用户他们感兴趣的保险单的对话机器人中，他们可能会回答“my truck”、“a car”或“I drive o batmobile”。将 `truck`、`car` 和 `batmobile` 映射到标准化的 `auto` 是一个不错的主意，这样处理逻辑仅需要考虑一个更小的可能性集合（参见[同义词](/training-data-format/#synonyms)）。
 
 ## 应对特殊问题 {#handling-edge-cases}
 
@@ -127,4 +127,4 @@ pipeline:
 
 使用 Github 或 Bitbucket 等版本控制系统来追踪数据更改，并在必要的时候回滚更新。
 
-确保为你的 NLU 模型构建测试，来[评估](/testing-your-assistant)训练数据和超参数时的模型性能。在 Jenkins 或 Git Workflow 等[持续集成管道](/setting-up-ci-cd)中自动执行这些测试，来简化开发流程并确保发布高质量的更新。
+确保为你的 NLU 模型构建测试，来[评估](/testing-your-assistant/)训练数据和超参数时的模型性能。在 Jenkins 或 Git Workflow 等[持续集成管道](/setting-up-ci-cd/)中自动执行这些测试，来简化开发流程并确保发布高质量的更新。

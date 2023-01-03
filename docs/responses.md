@@ -33,7 +33,7 @@ responses:
 
 !!! note "注意"
 
-    注意检索意图的响应名称的特殊格式。名称都以 `utter_` 开头，然后是检索意图的名称（此处为 `chitchat`），最后是指定不同 `response` 键的后缀（此处为 `ask_name` 和 `ask_weather`）。请参见 [NLU 训练样本文档](/training-data-format#training-examples)来了解更多信息。
+    注意检索意图的响应名称的特殊格式。名称都以 `utter_` 开头，然后是检索意图的名称（此处为 `chitchat`），最后是指定不同 `response` 键的后缀（此处为 `ask_name` 和 `ask_weather`）。请参见 [NLU 训练样本文档](/training-data-format/#training-examples)来了解更多信息。
 
 ### 在响应中使用变量 {#using-variables-in-responses}
 
@@ -47,7 +47,7 @@ responses:
 
 当使用 `utter_greet` 响应时，Rasa 会自动使用名为 `name` 的槽中找到值来填充变量。如果槽值不存在或为空，则该变量将填充为 `None`。
 
-填充变量的另一种方法是在[自定义动作](/custom-actions)中。在自定义动作代码中，你可以为响应提供值来填充特定变量。如果将 Rasa SDK 用于动作服务，可以将变量的值作为关键字参数传递给 [`dispatcher.utter_message`](/action-server/sdk-dispatcher)：
+填充变量的另一种方法是在[自定义动作](/custom-actions/)中。在自定义动作代码中，你可以为响应提供值来填充特定变量。如果将 Rasa SDK 用于动作服务，可以将变量的值作为关键字参数传递给 [`dispatcher.utter_message`](/action-server/sdk-dispatcher/)：
 
 ```python hl_lines="3"
 dispatcher.utter_message(
@@ -274,7 +274,7 @@ responses:
 
 !!! note "在 domain.yml 中转义花括号"
 
-    你需要在 `domain.yml` 中使用双花括号编写 `/intent{entities}` 简写响应，以便对话机器人不会将其视为[响应中的变量](/responses#using-variables-in-responses)并在花括号内插入内容。
+    你需要在 `domain.yml` 中使用双花括号编写 `/intent{entities}` 简写响应，以便对话机器人不会将其视为[响应中的变量](/responses/#using-variables-in-responses)并在花括号内插入内容。
 
 !!! caution "检查频道"
 
@@ -294,7 +294,7 @@ responses:
 
 你可以使用 `custom` 键将任意输出发送到输出频道。输出频道接受存储在 `custom` 键下的对象作为 JSON 有效载荷。
 
-如下是如何将[日期选择器](https://api.slack.com/reference/block-kit/block-elements#datepicker)发送到 [Slack 输出频道](/connectors/slack)的示例：
+如下是如何将[日期选择器](https://api.slack.com/reference/block-kit/block-elements#datepicker)发送到 [Slack 输出频道](/connectors/slack/)的示例：
 
 ```yaml title="domain.yml" hl_lines="3-14"
 responses:

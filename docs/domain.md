@@ -72,7 +72,7 @@ session_config:
 
 领域可以定义为单个 YAML 文件，也可以拆分为目录中的多个文件。当拆分为多个文件时，领域内容可被读取并自动合并在一起。
 
-你可以通过运行如下命令在[命令行界面](/command-line-interface#rasa-train)中训练具有拆分领域文件的模型：
+你可以通过运行如下命令在[命令行界面](/command-line-interface/#rasa-train)中训练具有拆分领域文件的模型：
 
 ```shell
 rasa train --domain path_to_domain_directory
@@ -80,7 +80,7 @@ rasa train --domain path_to_domain_directory
 
 ## 意图 {#intents}
 
-领域文件中的 `intents` 键列出了 [NLU 数据](/nlu-training-data)和[对话训练数据](/training-data-format#conversation-training-data)中使用的所有意图。
+领域文件中的 `intents` 键列出了 [NLU 数据](/nlu-training-data/)和[对话训练数据](/training-data-format/#conversation-training-data)中使用的所有意图。
 
 ### 忽略某些意图的实体 {#ignoring-entities-for-certain-intents}
 
@@ -113,7 +113,7 @@ intents:
 
 如果你在没有 `use_entities` 或 `ignore_entities` 参数的情况下列出意图，实体将被正常特征化。
 
-也可以通过将实体本身的 `influence_conversation` 标识设置为 `false` 来忽略所有意图的实体。更多详细信息请参见[实体部分](/domain#entities)。
+也可以通过将实体本身的 `influence_conversation` 标识设置为 `false` 来忽略所有意图的实体。更多详细信息请参见[实体部分](/domain/#entities)。
 
 排除的意图实体将不被特征化，因此不会影响下一个动作预测。当你有一个不关心被提取的实体的意图时，这很有用。
 
@@ -121,7 +121,7 @@ intents:
 
 !!! note "注意"
 
-    如果你希望这些实体不通过槽影响动作预测，请为具有相同名称的槽设置 [`influence_conversation: false`](/domain#slots-and-conversation-behavior)。
+    如果你希望这些实体不通过槽影响动作预测，请为具有相同名称的槽设置 [`influence_conversation: false`](/domain/#slots-and-conversation-behavior)。
 
 ## 实体
 
@@ -129,7 +129,7 @@ intents:
 
     从 3.1 版本开始，你可以在实体下使用 `influence_conversation` 标识。该标识可以设置为 `false` 来表明不应针对任何意图对实体进行特征化。它是一种将实体添加到领域中每个意图的 `ignore_entities` 列表的简写语法。该标识是可选的，模型行为保持不变。
 
-实体部分列出了可以由 NLU 管道中的任何[实体提取器](/components)提取的所有实体。
+实体部分列出了可以由 NLU 管道中的任何[实体提取器](/components/)提取的所有实体。
 
 例如：
 
@@ -143,7 +143,7 @@ entities:
 
 当使用多个领域文件时，可以在任何领域文件中指定实体，并可以在任何领域文件中被任何意图使用或忽略。
 
-如果使用[实体角色和分组](/nlu-training-data#entities-roles-and-groups)功能，你还需要在本节中列出实体的角色和组。
+如果使用[实体角色和分组](/nlu-training-data/#entities-roles-and-groups)功能，你还需要在本节中列出实体的角色和组。
 
 例如：
 
@@ -163,7 +163,7 @@ entities:
        - 2
 ```
 
-默认情况下，实体会影响动作预测。为了防止提取的实体影响特定意图的对话，你可以[忽略某些意图的实体](/domain#ignoring-entities-for-certain-intents)。要忽略所有意图的实体，不必在每个意图的 `ignore_entities` 标志下列出，可以在实体下将 `influence_conversation` 设置为 `false`。
+默认情况下，实体会影响动作预测。为了防止提取的实体影响特定意图的对话，你可以[忽略某些意图的实体](/domain/#ignoring-entities-for-certain-intents)。要忽略所有意图的实体，不必在每个意图的 `ignore_entities` 标志下列出，可以在实体下将 `influence_conversation` 设置为 `false`。
 
 ```yaml
 entities:
@@ -179,7 +179,7 @@ entities:
 
 槽是对话机器人的记忆。它作为键值存储用于存储用户提供的信息（例如：家乡）以及收集的有关外部的信息（例如：数据库查询结果）。
 
-槽在领域的 `slots` 部分中定义，包括它们的名称、[类型](/domain#slot-types)和他们是否以及如何[影响对话机器人的行为](/domain#slots-and-conversation-behavior)。以下示例定义了一个名为“slot_name”的槽，类型为 `text`，预定义槽映射 `from_entity`。
+槽在领域的 `slots` 部分中定义，包括它们的名称、[类型](/domain/#slot-types)和他们是否以及如何[影响对话机器人的行为](/domain/#slots-and-conversation-behavior)。以下示例定义了一个名为“slot_name”的槽，类型为 `text`，预定义槽映射 `from_entity`。
 
 ```yaml
 slots:
@@ -207,9 +207,9 @@ slots:
     influence_conversation: false
 ```
 
-定义槽时，如果你省略了 `influence_conversation` 或将其设置为 `true`，则该槽将影响下一个动作预测，除非它的槽类型为 `any`。槽影响对话的方式将取决于[槽的类型](/domain#slot-types)。
+定义槽时，如果你省略了 `influence_conversation` 或将其设置为 `true`，则该槽将影响下一个动作预测，除非它的槽类型为 `any`。槽影响对话的方式将取决于[槽的类型](/domain/#slot-types)。
 
-以下示例定义了一个影响对话的 `home_city` 槽。[`text` 槽](/domain#text-slot)将根据槽是否具有值来影响对话机器人的行为。`text` 槽的特定值（例如：Bangalore 或 New York 或 Hong Kong）没有任何区别。
+以下示例定义了一个影响对话的 `home_city` 槽。[`text` 槽](/domain/#text-slot)将根据槽是否具有值来影响对话机器人的行为。`text` 槽的特定值（例如：Bangalore 或 New York 或 Hong Kong）没有任何区别。
 
 ```yaml
 slots:
@@ -395,7 +395,7 @@ slots:
 
 - 描述
 
-    `any` 类型槽在对话期间总是被忽略。对于此槽类型，`influence_conversation` 属性不能设置为 `true`。如果要存储影响对话的自定义数据结构，请使用[自定义槽类型](/domain#custom-slot-types)。
+    `any` 类型槽在对话期间总是被忽略。对于此槽类型，`influence_conversation` 属性不能设置为 `true`。如果要存储影响对话的自定义数据结构，请使用[自定义槽类型](/domain/#custom-slot-types)。
 
 #### 自定义槽类型 {#custom-slot-types}
 
@@ -481,15 +481,15 @@ stories:
 
 !!! info "3.0 版本新功能"
 
-    从 3.0 版本开始，槽映射在领域文件中 `slots` 部分中定义。此更改删除了通过自动填充设置槽的隐含机制，并用在每个用户消息后设置槽的新显示机制取而代之。你需要在 `domain.yml` 文件的 `slots` 部分为每个槽显式定义槽映射。如果你是从早期版本迁移，请参见[迁移指南](/migration-guide#slot-mappings)来更新对话机器人。
+    从 3.0 版本开始，槽映射在领域文件中 `slots` 部分中定义。此更改删除了通过自动填充设置槽的隐含机制，并用在每个用户消息后设置槽的新显示机制取而代之。你需要在 `domain.yml` 文件的 `slots` 部分为每个槽显式定义槽映射。如果你是从早期版本迁移，请参见[迁移指南](/migration-guide/#slot-mappings)来更新对话机器人。
 
 开源 Rasa 带有 4 个预定义的映射，用于根据最新的用户消息填充槽。
 
-除了预定义的映射，你还可以定义[自定义槽映射](/domain#custom-slot-mappings)。所有自定义槽映射都应包含 `custom` 类型的映射。
+除了预定义的映射，你还可以定义[自定义槽映射](/domain/#custom-slot-mappings)。所有自定义槽映射都应包含 `custom` 类型的映射。
 
 槽映射被指定为领域文件中 `mappings` 键下的 YAML 字典列表。槽映射按照他们在领域中列出的顺序排列优先级。第一个找到的槽映射将用于填充槽。
 
-默认行为是在每个用户消息之后应用槽映射，而不考虑对话上下文。要使槽映射仅在表单的上下文中使用，请参见[映射条件](/domain#mapping-conditions)。在表单上下文中应用 `from_entity` 槽映射还有一个额外的默认限制。更多详细信息，请参阅[唯一 `from_entity` 映射匹配](/domain#mapping-conditions)。
+默认行为是在每个用户消息之后应用槽映射，而不考虑对话上下文。要使槽映射仅在表单的上下文中使用，请参见[映射条件](/domain/#mapping-conditions)。在表单上下文中应用 `from_entity` 槽映射还有一个额外的默认限制。更多详细信息，请参阅[唯一 `from_entity` 映射匹配](/domain/#mapping-conditions)。
 
 请注意，你还可以为可选参数 `intent` 和 `not_intent` 定义意图列表。
 
@@ -563,7 +563,7 @@ forms:
     - arrival_date
 ```
 
-请注意，唯一的 `from_entity` 映射约束不会阻止填充不在活动表单的 `required_slots` 中的槽。无论映射的唯一性如何，这些映射将照常应用。要将槽映射的适用性限制为特定形式，请参见[映射条件](/domain#mapping-conditions)。
+请注意，唯一的 `from_entity` 映射约束不会阻止填充不在活动表单的 `required_slots` 中的槽。无论映射的唯一性如何，这些映射将照常应用。要将槽映射的适用性限制为特定形式，请参见[映射条件](/domain/#mapping-conditions)。
 
 #### `from_text` {#from_text}
 
@@ -583,7 +583,7 @@ slots:
 
 !!! note "注意"
 
-    要在使用 `from_text` 槽映射时保持 2.x 版本样式的行为，你必须使用[映射条件](/domain#mapping-conditions)，其中定义了 `active_loop` 和 `requested_slot` 键。
+    要在使用 `from_text` 槽映射时保持 2.x 版本样式的行为，你必须使用[映射条件](/domain/#mapping-conditions)，其中定义了 `active_loop` 和 `requested_slot` 键。
 
 #### `from_intent` {#from_intent}
 
@@ -651,7 +651,7 @@ slots:
 
 #### 自定义槽映射 {#custom-slot-mappings}
 
-当预定义映射都不适合你的用例时，你可以使用[槽验证动作](/slot-validation-actions)定义自定义槽映射。你必须将此槽映射定义为 `custom` 类型，例如：
+当预定义映射都不适合你的用例时，你可以使用[槽验证动作](/slot-validation-actions/)定义自定义槽映射。你必须将此槽映射定义为 `custom` 类型，例如：
 
 ```yaml
 slots:
@@ -689,22 +689,22 @@ slots:
 
 ## 响应 {#responses}
 
-响应是向用户发送消息而不运行任何自定代码或返回事件的动作。这些响应可以直接在领域文件的 `responses` 键下定义，并且可以包含丰富的内容，例如按钮和附件。有关响应以及如何定义它们的更多信息，请参见[响应](/responses)。
+响应是向用户发送消息而不运行任何自定代码或返回事件的动作。这些响应可以直接在领域文件的 `responses` 键下定义，并且可以包含丰富的内容，例如按钮和附件。有关响应以及如何定义它们的更多信息，请参见[响应](/responses/)。
 
 ## 表单 {#forms}
 
-表单是一种特殊类型的动作，旨在帮助对话机器人从用户那里收集信息。在领域文件的 `forms` 键下定义表单。有关表单以及如何定义它们的更多信息，请参见[表单](/forms)。
+表单是一种特殊类型的动作，旨在帮助对话机器人从用户那里收集信息。在领域文件的 `forms` 键下定义表单。有关表单以及如何定义它们的更多信息，请参见[表单](/forms/)。
 
 ## 动作 {#actions}
 
-[动作](/actions)是对话机器人实际上可以做的事情。例如，一个动作可以是：
+[动作](/actions/)是对话机器人实际上可以做的事情。例如，一个动作可以是：
 
 - 回复用户
 - 调用外部 API
 - 查询数据库
 - 几乎任何东西
 
-所有[自定义动作](/custom-actions)都应该列在领域文件中，除了不需要列在 `actions:` 下的响应，因为他们已经列在 `responses:` 下。
+所有[自定义动作](/custom-actions/)都应该列在领域文件中，除了不需要列在 `actions:` 下的响应，因为他们已经列在 `responses:` 下。
 
 ## 会话配置 {#session-configuration}
 
@@ -733,7 +733,7 @@ session_config:
 
 !!! note "注意"
 
-    会话启动会触发默认动作 `action_session_start`。它的默认实现将所有现有槽移动到新会话中。请注意，所有对话都以 `action_session_start` 开始。例如，覆盖此动作可用于使用来自外部 API 调用的槽初始化跟踪器，或使用对话机器人消息开始对话。[自定义会话启动动作](/default-actions#customization)文档可以向你展示如何做到这一点。
+    会话启动会触发默认动作 `action_session_start`。它的默认实现将所有现有槽移动到新会话中。请注意，所有对话都以 `action_session_start` 开始。例如，覆盖此动作可用于使用来自外部 API 调用的槽初始化跟踪器，或使用对话机器人消息开始对话。[自定义会话启动动作](/default-actions/#customization)文档可以向你展示如何做到这一点。
 
 ## 配置 {#config}
 
@@ -748,4 +748,4 @@ config:
 
 !!! info "在寻找 `config.yml`"
 
-    如果你正在寻找有关 `config.yml` 文件的信息，请参见有关[模型配置](/model-configuration)的文档。
+    如果你正在寻找有关 `config.yml` 文件的信息，请参见有关[模型配置](/model-configuration/)的文档。

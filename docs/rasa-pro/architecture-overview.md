@@ -2,4 +2,4 @@
 
 <button data-md-color-primary="amber">仅 Rasa Pro</button>
 
-https://rasa.com/docs/rasa/installation/rasa-pro/architecture-overview
+https://rasa.com/docs/rasa/installation/rasa-pro/architecture-overview/

@@ -20,7 +20,7 @@ rasa_sdk.events.SlotSet(
 )
 ```
 
-底层事件：[`slot`](/action-server/events#slot)
+底层事件：[`slot`](/action-server/events/#slot)
 
 参数：
 
@@ -40,7 +40,7 @@ evt = SlotSet(key = "name", value = "Mary")
 rasa_sdk.events.AllSlotsReset(timestamp: Optional[float] = None)
 ```
 
-底层事件：[`reset_slots`](/action-server/events#reset_slots)
+底层事件：[`reset_slots`](/action-server/events/#reset_slots)
 
 参数：
 
@@ -65,7 +65,7 @@ rasa_sdk.events.ReminderScheduled(
 )
 ```
 
-底层事件：[`reminder`](/action-server/events#reminder)
+底层事件：[`reminder`](/action-server/events/#reminder)
 
 参数：
 
@@ -100,7 +100,7 @@ ReminderCancelled(
 )
 ```
 
-底层事件：[`cancel_reminder`](/action-server/events#cancel_reminder)
+底层事件：[`cancel_reminder`](/action-server/events/#cancel_reminder)
 
 参数：
 
@@ -121,7 +121,7 @@ evt = ReminderCancelled(name = "remind_water_plants")
 ConversationPaused(timestamp: Optional[float] = None)
 ```
 
-底层事件：[`pause`](/action-server/events#pause)
+底层事件：[`pause`](/action-server/events/#pause)
 
 参数：
 
@@ -139,7 +139,7 @@ evt = ConversationPaused()
 ConversationResumed(timestamp: Optional[float] = None)
 ```
 
-底层事件：[`resume`](/action-server/events#resume)
+底层事件：[`resume`](/action-server/events/#resume)
 
 参数：
 
@@ -160,7 +160,7 @@ FollowupAction(
 )
 ```
 
-底层事件：[`followup`](/action-server/events#followup)
+底层事件：[`followup`](/action-server/events/#followup)
 
 参数：
 
@@ -179,7 +179,7 @@ evt = FollowupAction(name = "action_say_goodbye")
 UserUtteranceReverted(timestamp: Optional[float] = None)
 ```
 
-底层事件：[`rewind`](/action-server/events#rewind)
+底层事件：[`rewind`](/action-server/events/#rewind)
 
 参数：
 
@@ -197,7 +197,7 @@ evt = UserUtteranceReverted()
 ActionReverted(timestamp: Optional[float] = None)
 ```
 
-底层事件：[`undo`](/action-server/events#undo)
+底层事件：[`undo`](/action-server/events/#undo)
 
 参数：
 
@@ -215,7 +215,7 @@ evt = Restarted()
 Restarted(timestamp: Optional[float] = None)
 ```
 
-底层事件：[`restart`](/action-server/events#restart)
+底层事件：[`restart`](/action-server/events/#restart)
 
 参数：
 
@@ -233,7 +233,7 @@ evt = Restarted()
 SessionStarted(timestamp: Optional[float] = None)
 ```
 
-底层事件：[`session_started`](/action-server/events#session_started)
+底层事件：[`session_started`](/action-server/events/#session_started)
 
 参数：
 
@@ -256,7 +256,7 @@ UserUttered(
 )
 ```
 
-底层事件：[`user`](/action-server/events#user)
+底层事件：[`user`](/action-server/events/#user)
 
 参数：
 
@@ -282,12 +282,12 @@ BotUttered(
 )
 ```
 
-底层事件：[`bot`](/action-server/events#bot)
+底层事件：[`bot`](/action-server/events/#bot)
 
 参数：
 
 - `text`：对话机器人发送给用户的文本
-- `data`：对话机器人响应的任何非文本元素。数据结构与 [API 规范](https://rasa.com/docs/rasa/pages/action-server-api)中给出的 `responses` 结构相匹配。
+- `data`：对话机器人响应的任何非文本元素。数据结构与 [API 规范](https://rasa.com/docs/rasa/pages/action-server-api/)中给出的 `responses` 结构相匹配。
 - `metadata`：任意 KV 元数据
 - `timestamp`：可选的事件时间戳
 
@@ -308,7 +308,7 @@ ActionExecuted(
 )
 ```
 
-底层事件：[`action`](/action-server/events#action)
+底层事件：[`action`](/action-server/events/#action)
 
 参数：
 

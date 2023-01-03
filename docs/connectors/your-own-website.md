@@ -1,6 +1,6 @@
 # 个人网站
 
-如果你已经有一个网站并想为其添加 Rasa 对话机器人，可以使用 [Rasa Chat Widget](/connectors/your-own-website#chat-widget) 小组件，通过添加 HTML 片段将其合并到现有的网页中。
+如果你已经有一个网站并想为其添加 Rasa 对话机器人，可以使用 [Rasa Chat Widget](/connectors/your-own-website/#chat-widget) 小组件，通过添加 HTML 片段将其合并到现有的网页中。
 
 或者，你也可以构建自己的聊天小组件。
 

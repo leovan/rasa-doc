@@ -2,7 +2,7 @@
 
 !!! hint "想先探索？"
 
-    你可以在安装开源 Rasa 之前使用 [Rasa Playground](/playground) 进行在线探索。在教程结束后，你可以下载生成的对话机器人，在机器上安装 Rasa 后继续本地开发。
+    你可以在安装开源 Rasa 之前使用 [Rasa Playground](/playground/) 进行在线探索。在教程结束后，你可以下载生成的对话机器人，在机器上安装 Rasa 后继续本地开发。
 
 ## 安装开源 Rasa
 
@@ -20,7 +20,7 @@ pip3 install rasa
 
 !!! info "遥测报告"
 
-    当第一次运行开源 Rasa 时，你会看到一条消息通知你关于匿名使用数据的收集。你可以在[遥测文档](/telemetry/telemetry)中阅读更多关于如何收集数据及其用途的信息。
+    当第一次运行开源 Rasa 时，你会看到一条消息通知你关于匿名使用数据的收集。你可以在[遥测文档](/telemetry/telemetry/)中阅读更多关于如何收集数据及其用途的信息。
 
 恭喜，你已经成功安装了开源 Rasa！
 
@@ -30,7 +30,7 @@ pip3 install rasa
 rasa init
 ```
 
-你可以在[命令行界面](/command-line-interface)中了解重要的 Rasa 命令。
+你可以在[命令行界面](/command-line-interface/)中了解重要的 Rasa 命令。
 
 ## 从源代码构建
 
@@ -51,7 +51,7 @@ poetry install
 
 对于某些机器学习算法，你需要安装额外的 Python 包。为了占用较小的空间默认并不会安装它们。
 
-[模型调优](/tuning-your-model)页面可以帮助你为对话机器人选择正确的配置并提醒你相关的其他依赖项。
+[模型调优](/tuning-your-model/)页面可以帮助你为对话机器人选择正确的配置并提醒你相关的其他依赖项。
 
 !!! hint "全部都来！"
 

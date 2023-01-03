@@ -26,7 +26,7 @@
 
 ### 定义槽 {#defining-slots}
 
-[槽](/domain#slots)是对话机器人的记忆。槽存储了对话机器人需要参考的信息片段，并可以根据 `slot_was_set` 事件指导对话流。不同[类型的槽](/domain#slot-types)都有自己的方式影响对话流。
+[槽](/domain/#slots)是对话机器人的记忆。槽存储了对话机器人需要参考的信息片段，并可以根据 `slot_was_set` 事件指导对话流。不同[类型的槽](/domain/#slot-types)都有自己的方式影响对话流。
 
 在音乐会聊天机器人示例中，`likes_music` 槽是一个布尔类型槽。如果值为 `true`，则对话机器人会发送一条介绍消息。如果值为 `false`，则对话机器人会发生不同的消息。你可以在领域内定义一个槽及其类型：
 
@@ -40,7 +40,7 @@ slots:
 
 ### 创建故事 {#defining-slots}
 
-[故事](/stories)是对话应该如何进行的样本。在上面的示例中，音乐会对话机器人对喜欢音乐的用户和不喜欢音乐的用户的响应是不同的，因为有两个故事：
+[故事](/stories/)是对话应该如何进行的样本。在上面的示例中，音乐会对话机器人对喜欢音乐的用户和不喜欢音乐的用户的响应是不同的，因为有两个故事：
 
 ```yaml title='stories.yml'
 stories:
@@ -69,7 +69,7 @@ stories:
 
 ### 配置 TEDPolicy {#configuring-the-tedpolicy}
 
-除了添加故事来考虑上下文之外，机器学习策略还可以帮助你的模型泛化至未曾见过的对话路径。重要的是要了解使用机器学习策略并不意味着放弃对对话机器人的控制。如果基于规则的策略能做出预测，则该预测将始终具有更高的[策略优先级](/policies#policy-priority)，并将预测下一个动作。
+除了添加故事来考虑上下文之外，机器学习策略还可以帮助你的模型泛化至未曾见过的对话路径。重要的是要了解使用机器学习策略并不意味着放弃对对话机器人的控制。如果基于规则的策略能做出预测，则该预测将始终具有更高的[策略优先级](/policies/#policy-priority)，并将预测下一个动作。
 
 TEDPolicy 用于处理非预期的用户行为。例如，在下面的对话中（提取自[Rasa X/Enterprise](https://rasa.com/docs/rasa-enterprise/user-guide/review-conversations/) 中的一段对话）：
 
@@ -107,7 +107,7 @@ stories:
 
 #### 设置 `max_history` {#setting-max_history}
 
-通常，只有一定数据的上下文与对话机器人相关。[`max_history`](/policies#max-history) 是 Rasa 对话管理的一个超参数，它控制模型可以查看对话中多少步骤以决定下一步要采取的行动。
+通常，只有一定数据的上下文与对话机器人相关。[`max_history`](/policies/#max-history) 是 Rasa 对话管理的一个超参数，它控制模型可以查看对话中多少步骤以决定下一步要采取的行动。
 
 在下面的故事中，用户连续三次寻求帮助。前两次，机器人发送相同的消息，但第三次，它将其将给了人工。
 
@@ -133,7 +133,7 @@ policies:
     max_history: 5
 ```
 
-你需要将 `max_history` 设置的足够大，以确保对话机器人对下一步做什么做出预测时有足够的上下文。更多有关信息，请参见[特征提取器](/policies#featurizers)文档。
+你需要将 `max_history` 设置的足够大，以确保对话机器人对下一步做什么做出预测时有足够的上下文。更多有关信息，请参见[特征提取器](/policies/#featurizers)文档。
 
 ## 总结 {#summary}
 

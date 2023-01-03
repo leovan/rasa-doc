@@ -1,4 +1,4 @@
-# Rasa 中文文档 <img src="docs/images/rasa-icon-square.svg" align="right" alt="logo" height="100" style="border: none; float: right;">
+# Rasa 文档 <img src="docs/images/rasa-icon-square.svg" align="right" alt="logo" height="100" style="border: none; float: right;">
 ![License](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-blue.svg)
 ![Issues](https://img.shields.io/github/issues/leovan/rasa-doc.svg)
 

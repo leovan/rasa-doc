@@ -2,14 +2,14 @@
 
 开源 Rasa 具有用于收集和加载以 Rasa 格式编写的训练数据的内置逻辑，但你也可以使用自定义训练数据导入器自定义训练数据的导入方式。
 
-使用 [`--data` 命令行参数](/command-line-interface)，你可以指定 Rasa 应该在磁盘上查找训练数据的位置。然后 Rasa 会加载任何潜在的训练文件并使用它们来训练对话机器人。
+使用 [`--data` 命令行参数](/command-line-interface/)，你可以指定 Rasa 应该在磁盘上查找训练数据的位置。然后 Rasa 会加载任何潜在的训练文件并使用它们来训练对话机器人。
 
 如果需要，你还可以自定义 Rasa 导入训练数据的方式。潜在的用例可能有：
 
 - 使用自定义解析器以其他格式加载训练数据。
 - 使用不同的方式来收集训练数据（例如从不同的资源加载它们）。
 
-你可以[编写自定义导入器](/training-data-importers#writing-a-custom-importer)并通过将 `importers` 部分添加到配置文件并指定导入器及完整类路径来指示 Rasa 使用它：
+你可以[编写自定义导入器](/training-data-importers/#writing-a-custom-importer)并通过将 `importers` 部分添加到配置文件并指定导入器及完整类路径来指示 Rasa 使用它：
 
 ```yaml title="config.yml" hl_lines="2 3 4"
 importers:
@@ -23,7 +23,7 @@ importers:
 
 !!! note "注意"
 
-    `TrainingDataImporter` 及其子类从 Rasa 3.0 开始不包含异步方法。为了迁移自定义导入器并是他们与 Rasa 3.0 兼容，你还需要将异步方法替换为同步方法。请参见[迁移指南](/migration-guide#rasa-2x-to-30)了解更多信息。
+    `TrainingDataImporter` 及其子类从 Rasa 3.0 开始不包含异步方法。为了迁移自定义导入器并是他们与 Rasa 3.0 兼容，你还需要将异步方法替换为同步方法。请参见[迁移指南](/migration-guide/#rasa-2x-to-30)了解更多信息。
 
 !!! tips "提示"
 

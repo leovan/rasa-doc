@@ -4,9 +4,9 @@
 
 `recipe` 键允许不同类型的配置和模型架构。目前，支持 `default.v1` 和实验性的 `graph.v1`。
 
-`language` 和 `pipeline` 键指定模型用于进行 NLU 预测的[组件](/components)。`policies` 键定义模型用于预测下一步动作的[策略](/policies)。
+`language` 和 `pipeline` 键指定模型用于进行 NLU 预测的[组件](/components/)。`policies` 键定义模型用于预测下一步动作的[策略](/policies/)。
 
-如果你不知道要选择哪些组件或策略，可以使用[建议配置](/model-configuration#suggested-config)功能，该功能会推荐合理的默认值。
+如果你不知道要选择哪些组件或策略，可以使用[建议配置](/model-configuration/#suggested-config)功能，该功能会推荐合理的默认值。
 
 ## 建议配置 {#suggested-config}
 

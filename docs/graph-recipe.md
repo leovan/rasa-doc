@@ -233,7 +233,7 @@ predict_schema:
     uses: rasa.graph_components.converters.nlu_message_converter.NLUMessageConverter
     ```
 
-    不需要使用 Rasa 内部图组件类，你可以在此使用自己的组件。请参见[自定义图组件](/custom-graph-components)页面来了解如何编写自己的图组件。
+    不需要使用 Rasa 内部图组件类，你可以在此使用自己的组件。请参见[自定义图组件](/custom-graph-components/)页面来了解如何编写自己的图组件。
 
 - `constructor_name`：这是用于实例化组件的构造函数。例如：
 

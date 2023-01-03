@@ -218,7 +218,7 @@ Rasa 类：`rasa.core.events.Restarted`
 - 每当用户第一次开始与对话机器人对话时。
 - 每当会话过期的（在领域中指定 `session_expiration_time` 之后），用户恢复他们的对话。
 
-使用 [`restart`](/action-server/events#restart) 事件重新启动对话不会自动导致 `session_started` 事件。
+使用 [`restart`](/action-server/events/#restart) 事件重新启动对话不会自动导致 `session_started` 事件。
 
 JSON：
 
@@ -289,7 +289,7 @@ JSON：
 参数：
 
 - `text`：对话机器人发送给用户的文本
-- `data`：对话机器人响应的任何非文本元素。数据结构与 [API 规范](https://rasa.com/docs/rasa/pages/action-server-api)中给出的 `responses` 结构相匹配。
+- `data`：对话机器人响应的任何非文本元素。数据结构与 [API 规范](https://rasa.com/docs/rasa/pages/action-server-api/)中给出的 `responses` 结构相匹配。
 
 Rasa 类：`rasa.core.events.BotUttered`
 

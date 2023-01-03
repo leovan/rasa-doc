@@ -4,9 +4,9 @@
 
 你可以通过三种不同的方式加载经过训练的模型：
 
-1. 从本地磁盘加载模型（请参见[从磁盘加载模型](/model-storage#load-model-from-disk)）
-2. 从 HTTP 服务器获取模型（请参见[从服务器加载模型](/model-storage#load-model-from-server)）
-3. 从 S3 等云存储中获取模型（请参见[从云处加载模型](/model-storage#load-model-from-cloud)）
+1. 从本地磁盘加载模型（请参见[从磁盘加载模型](/model-storage/#load-model-from-disk)）
+2. 从 HTTP 服务器获取模型（请参见[从服务器加载模型](/model-storage/#load-model-from-server)）
+3. 从 S3 等云存储中获取模型（请参见[从云处加载模型](/model-storage/#load-model-from-cloud)）
 
 默认情况下，Rasa CLI 的所有命令都会从本地磁盘加载模型。
 

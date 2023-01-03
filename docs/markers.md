@@ -14,7 +14,7 @@
 
 标记有多种下游应用。例如，它们可用于定义和衡量对话机器人的关键绩效指标（KPI），例如对话完成或任务成功。以 [Carbon Bot](https://rasa.com/blog/using-conversation-tags-to-measure-carbon-bots-success-rate/) 为例，它可以帮助用户抵消飞行中的碳排放。对于 Carbon Bot，你可以将对话完成定位为“所有强制槽都已填充”，将任务成功定义为“所有强制槽都已填充且碳估算已成功计算”。标记这些重要时间的发生时间可以让你衡量 Carbon Bot 的成功率。
 
-标记还允许你通过显示重要事件来进行进一步检查并诊断对话。例如，你可能会观察到 Carbon Bot 倾向于成功设置 `travel_departure` 和 `travel_destination` 槽，但未能设置 `travel_flight_class` 槽。你可以定义一个标记来量化这种行为发生的频率，并将相关对话作为[对话驱动开发（CDD）](/conversation-driven-development)的一部分进行审查。
+标记还允许你通过显示重要事件来进行进一步检查并诊断对话。例如，你可能会观察到 Carbon Bot 倾向于成功设置 `travel_departure` 和 `travel_destination` 槽，但未能设置 `travel_flight_class` 槽。你可以定义一个标记来量化这种行为发生的频率，并将相关对话作为[对话驱动开发（CDD）](/conversation-driven-development/)的一部分进行审查。
 
 标记以 YAML 编写定义在标记配置文件中。例如，如下是为 Carbon Bot 定义对话完成和任务成功的标记：
 
@@ -139,7 +139,7 @@ marker_mood_expressed_and_name_not_provided:
 
 ## 提取标记 {#extracting-markers}
 
-标记是从已经存在在追踪器存储中的对话中提取的。要了解如何在追踪器存储中存储与对话机器人的交互，请参见[追踪器存储](/tracker-stores)页面。
+标记是从已经存在在追踪器存储中的对话中提取的。要了解如何在追踪器存储中存储与对话机器人的交互，请参见[追踪器存储](/tracker-stores/)页面。
 
 在标记配置文件中创建标记定义并在追踪器存储中存储一些对话后，你可以通过运行如下命令将标记应用于追踪器：
 
@@ -174,7 +174,7 @@ rasa evaluate markers <strategy> --help
 
 时间的索引和前面的用户轮次都可以只是到达重要事件（例如任务成功）所花费的时间。事件的索引将计算所有事件，包括不属于对话的事件，例如开始新会话或执行自定义操作。另一方面，前面的用户轮次可以更直观地指示对话长度，特别是从最终用户的角度来看。
 
-之前的用户轮次可用于评估和改进对话机器人。例如，假设用户不得不多次改写他们的话语，这导致他们的对话变得更长。对话最终可能会成功完成任务，但是将其显示出来可以让你识别对话机器人无法理解的话语。然后，你可以将这些有挑战性的话语用作额外的训练数据，作为[对话驱动开发（CDD）](/conversation-driven-development)的一部分来进一步改进对话机器人。
+之前的用户轮次可用于评估和改进对话机器人。例如，假设用户不得不多次改写他们的话语，这导致他们的对话变得更长。对话最终可能会成功完成任务，但是将其显示出来可以让你识别对话机器人无法理解的话语。然后，你可以将这些有挑战性的话语用作额外的训练数据，作为[对话驱动开发（CDD）](/conversation-driven-development/)的一部分来进一步改进对话机器人。
 
 !!! note "注意"
 
@@ -288,4 +288,4 @@ all,nan,marker_mood_expressed,max(number of preceding user turns),1
 
 ## 配置 CLI 命令 {#configuring-the-cli-command}
 
-访问 [CLI 页面](/command-line-interface#rasa-evaluate-markers)，了解有关配置标记提取和统计计算过程的更多信息。
+访问 [CLI 页面](/command-line-interface/#rasa-evaluate-markers)，了解有关配置标记提取和统计计算过程的更多信息。

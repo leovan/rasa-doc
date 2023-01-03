@@ -186,7 +186,7 @@ Python Logging Options:
                         None)
 ```
 
-有关数据增强如何工作以及如果为参数设置值可以参阅[数据增强](/policies#data-augmentation)部分。注意 `TEDPilicy` 是唯一受到数据增强影响的策略。
+有关数据增强如何工作以及如果为参数设置值可以参阅[数据增强](/policies/#data-augmentation)部分。注意 `TEDPilicy` 是唯一受到数据增强影响的策略。
 
 有关 `--epoch-fraction` 参数的更多信息，请参见如下有关[增量训练](#incremental-training)的部分。
 
@@ -196,7 +196,7 @@ Python Logging Options:
 
     此功能是实验性的。我们通过社区反馈引入了这一实验性功能，因此鼓励大家进行尝试。但是，相关功在未来可能会发生变更或删除。如果有任何正面或负面反馈，可以在[Rasa 论坛](https://forum.rasa.com/)上进行分享。
 
-为了提高对话机器人的性能，践行 [CDD](/conversation-driven-development) 和根据用户与机器人交谈的方式增加新的训练样本会很有帮助。通过 `rasa train --finetune` 可以使用已训练的模型来初始化整个流程，之后通过包含额外训练样本的新训练数据进行微调。这有助于减少训练新模型的时间。
+为了提高对话机器人的性能，践行 [CDD](/conversation-driven-development/) 和根据用户与机器人交谈的方式增加新的训练样本会很有帮助。通过 `rasa train --finetune` 可以使用已训练的模型来初始化整个流程，之后通过包含额外训练样本的新训练数据进行微调。这有助于减少训练新模型的时间。
 
 默认情况下，命令会选择 `models/` 目录中的最新模型。如果你希望改进特定的模型，则需要通过执行 `rasa train --finetune <path to model to finetune>` 来指定路径。微调模型通常在训练机器学习组件例如：`DIETClassifier`，`ResponseSelector` 和 `TEDPolicy` 时相比从头开始需要更少的时间。要么使用定义更少批次的模型微调配置，要么使用 `--epoch-fraction` 参数。在模型配置文件中，`--epoch-fraction` 会为每个机器学习组件指定部分批次。例如，训练 `DIETClassifier` 配置使用 100 个批次，指定 `--epoch-fraction 0.5` 将仅使用 50 个批次进行微调。
 
@@ -216,7 +216,7 @@ Python Logging Options:
 rasa interactive
 ```
 
-这将首先训练一个模型，然后启动一个交互式 Shell 会话。之后随着同对话机器人的交谈可以对其预测进行不断修正。如果 [UnexpecTEDIntentPolicy](/policies#unexpected-intent-policy) 包含在流程中，则可以在任意对话抡次中触发 [`action_unlikely_intent`](/default-actions#action_unlikely_intent)，之后会显示：
+这将首先训练一个模型，然后启动一个交互式 Shell 会话。之后随着同对话机器人的交谈可以对其预测进行不断修正。如果 [UnexpecTEDIntentPolicy](/policies/#unexpected-intent-policy) 包含在流程中，则可以在任意对话抡次中触发 [`action_unlikely_intent`](/default-actions/#action_unlikely_intent)，之后会显示：
 
 ```
 The bot wants to run 'action_unlikely_intent' to indicate that the last user message was unexpected
@@ -343,7 +343,7 @@ rasa shell --debug
 
 !!! note "注意"
 
-    为了在外部频道中查看问候语和会话起始行为，你可以通过显式发送 `/session_start` 作为第一条消息。否则，会话起始行为将按照[会话配置](/domain#session-configuration)中的描述开始。
+    为了在外部频道中查看问候语和会话起始行为，你可以通过显式发送 `/session_start` 作为第一条消息。否则，会话起始行为将按照[会话配置](/domain/#session-configuration)中的描述开始。
 
 如下参数可以用于配置此命令。大部分参数同 `rasa run` 相同。有关这些参数的更多信息，请参见[如下部分](#rasa-run)。
 
@@ -493,7 +493,7 @@ Rasa 默认会连接到 credentials 文件中指定的所有频道。在 `--conn
 rasa run --connector rest
 ```
 
-频道的名称需要同 credentials 文件中指定的名称相匹配。关于支持的频道请参见[消息和语音频道](/messaging-and-voice-channels)。
+频道的名称需要同 credentials 文件中指定的名称相匹配。关于支持的频道请参见[消息和语音频道](/messaging-and-voice-channels/)。
 
 如下参数可用于配置 Rasa 服务：
 
@@ -609,7 +609,7 @@ JWT Authentication:
                         authentication payload. (default: HS256)
 ```
 
-有关其他参数的更多信息，请参见[模型存储](/model-storage)。有关所有服务 API 的详细文档，请参见 Rasa [HTTP API](/http-api) 页面。
+有关其他参数的更多信息，请参见[模型存储](/model-storage/)。有关所有服务 API 的详细文档，请参见 Rasa [HTTP API](/http-api/) 页面。
 
 ## rasa run actions
 
@@ -729,7 +729,7 @@ rasa test core
 rasa rest nlu
 ```
 
-你可以在[评估 NLU 模型](/testing-your-assistant#evaluating-an-nlu-model)和[评估对话管理模型](/testing-your-assistant#evaluating-a-dialogue-model)中找到有关每种测试类型参数的更多信息。
+你可以在[评估 NLU 模型](/testing-your-assistant/#evaluating-an-nlu-model)和[评估对话管理模型](/testing-your-assistant/#evaluating-a-dialogue-model)中找到有关每种测试类型参数的更多信息。
 
 如下参数可以用于 `rasa test`：
 
@@ -939,7 +939,7 @@ rasa data migrate -d DOMAIN --out OUT_PATH
 
 此命令还会将 2.0 版本的领域文件备份到不同的 `original_domain.yml` 文件或标有 `original_domain` 的目录中。
 
-请注意，如果这些槽是表单 `required_slots` 的一部分，则迁移领域中的槽将包含[映射条件](/domain#mapping-conditions)。
+请注意，如果这些槽是表单 `required_slots` 的一部分，则迁移领域中的槽将包含[映射条件](/domain/#mapping-conditions)。
 
 !!! caution "警告"
 
@@ -971,7 +971,7 @@ rasa data validate stories
 
 !!! note "注意"
 
-    运行 `asa data validate` 不会测试[规则](/rules)是否和故事一致。但是在训练期间，`RulePolicy` 会检查规则和故事之间的冲突。任何此类冲突都会终止训练。
+    运行 `asa data validate` 不会测试[规则](/rules/)是否和故事一致。但是在训练期间，`RulePolicy` 会检查规则和故事之间的冲突。任何此类冲突都会终止训练。
 
     此外，如果你使用端到端的故事，那么可能无法捕获所有冲突。例如，如果两个用户的输入有不同的分词但有相同特征，那么这些输入之后可能存在冲突动作且不会被工具报告。
 
@@ -1084,7 +1084,7 @@ Python Logging Options:
 
     此功能目前是实验性的，未来可能发生更改或删除。你可以在论坛中进行反馈，来帮助其变为生产可用。
 
-如下命令将你在标记配置文件中定义的[标记](/markers)应用于存储在[追踪存储](/tracker-stores)中预先存在的对话，同时生成包含提取的标记和统计概要信息的 `.csv` 文件：
+如下命令将你在标记配置文件中定义的[标记](/markers/)应用于存储在[追踪存储](/tracker-stores/)中预先存在的对话，同时生成包含提取的标记和统计概要信息的 `.csv` 文件：
 
 ```shell
 rasa evaluate markers all extracted_markers.csv

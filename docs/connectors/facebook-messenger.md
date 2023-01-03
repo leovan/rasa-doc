@@ -19,7 +19,7 @@
 
 !!! note "配置 HTTPS"
 
-    Facebook Messenger 仅通过 https 将消息转到到 endpoint，因此请采取适当的措施将其添加到你的设置中。有关对话机器人的本地测试，请参见[在本地机器上测试频道](/messaging-and-voice-channels#testing-channels-on-your-local-machine)。
+    Facebook Messenger 仅通过 https 将消息转到到 endpoint，因此请采取适当的措施将其添加到你的设置中。有关对话机器人的本地测试，请参见[在本地机器上测试频道](/messaging-and-voice-channels/#testing-channels-on-your-local-machine)。
 
 有关更详细的步骤，请访问 [Messenger 文档](https://developers.facebook.com/docs/graph-api/webhooks)。
 

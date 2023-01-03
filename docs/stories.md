@@ -30,11 +30,11 @@ stories:
 
 在编写故事时，你不必处理用户发送消息的具体内容。相反，你可以利用 NLU 管道的输出，它允许你仅使用意图和实体的组合来表示可以表示相同含义的用户发送的所有可能消息。
 
-包含实体也是很重的，因为策略会根据意图和实体的组合来学习预测下一个动作（但是，你可以使用 [use_entities](/domain#ignoring-entities-for-certain-intents) 属性来更改此行为）。
+包含实体也是很重的，因为策略会根据意图和实体的组合来学习预测下一个动作（但是，你可以使用 [use_entities](/domain/#ignoring-entities-for-certain-intents) 属性来更改此行为）。
 
 ### 动作 {#actions}
 
-对话机器人执行的所有动作，包括的[响应](/responses)都列在故事的 `action` 键下。
+对话机器人执行的所有动作，包括的[响应](/responses/)都列在故事的 `action` 键下。
 
 你可以通过将来自你的领域的响应作为一个动作列在故事中。同样，你可以通过在领域中的 `actions` 列表中包含自定义动作的名称来指示故事应该调用自定义动作。
 
@@ -42,7 +42,7 @@ stories:
 
 在训练期间，开源 Rasa 不会调用动作服务器。这意味着你的对话机器人的对话管理模型不知道自定义动作将返回哪些事件。
 
-因此，诸如设置槽或激活/停用表单等事件必须作为故事的一部分明确写出。更多详细信息请参见有关[事件](https://rasa.com/docs/action-server/events)的文档。
+因此，诸如设置槽或激活/停用表单等事件必须作为故事的一部分明确写出。更多详细信息请参见有关[事件](/action-server/events/)的文档。
 
 #### 槽事件 {#slot-events}
 
@@ -68,11 +68,11 @@ stories:
 
 !!! note "编写表单故事"
 
-    为了避免忘记添加事件，推荐的编写这些故事的方法是使用[交互式学习](/writing-stories#using-interactive-learning)。
+    为了避免忘记添加事件，推荐的编写这些故事的方法是使用[交互式学习](/writing-stories/#using-interactive-learning)。
 
 ## 检查点和 OR 语句 {#checkpoints-and-or-statements}
 
-如果需要，应该谨慎使用检查点和 OR 语句。通常可以通过[规则](/rasa/rules)或 [ResponseSelector](/components#responseselector) 来更好地实现所需要的。
+如果需要，应该谨慎使用检查点和 OR 语句。通常可以通过[规则](/rasa/rules/)或 [ResponseSelector](/components/#responseselector) 来更好地实现所需要的。
 
 ### 检查点 {#checkpoints}
 
@@ -150,7 +150,7 @@ stories:
 
 ## 测试对话格式 {#test-conversation-format}
 
-测试对话格式是一种将 NLU 数据和故事合并到一个文件中进行评估的格式。有关此格式的更多信息，请参见[测试你的对话机器人](/testing-your-assistant)。
+测试对话格式是一种将 NLU 数据和故事合并到一个文件中进行评估的格式。有关此格式的更多信息，请参见[测试你的对话机器人](/testing-your-assistant/)。
 
 !!! warning "仅用于测试"
 
@@ -162,13 +162,13 @@ stories:
 
     端到端训练是一项实验性功能。我们引入实验性功能以获得社区的反馈，因此鼓励大家进行尝试。但是，未来功能可能发生变更或删除。如果你有正面或负面反馈，请在 [Rasa 论坛](https://forum.rasa.com/)上与我们分享。
 
-通过端到端训练，你不必处理由 NLU 管道提取的消息的特定意图或领域文件中的单独 `utter_` 响应。相反，你可以直接在故事中包含用户消息和/或机器人响应文本。有关如何编写端到端故事的详细说明，请参见[训练数据格式](/training-data-format#end-to-end-training)。
+通过端到端训练，你不必处理由 NLU 管道提取的消息的特定意图或领域文件中的单独 `utter_` 响应。相反，你可以直接在故事中包含用户消息和/或机器人响应文本。有关如何编写端到端故事的详细说明，请参见[训练数据格式](/training-data-format/#end-to-end-training)。
 
 你可以将端到端格式的训练数据与具有指定意图和动作的标记训练数据混合。故事可以具有意图/动作定义的一些步骤以及由用户或对话机器人对话直接定义的其他步骤。
 
 我们称其为端到端训练，是因为策略可以使用和预测真实的文本。对于端到端的用户输入，由 NLU 管道分类的意图和提取的实体则被忽略。
 
-只有[规则策略](/policies#rule-policy)和 [TED 策略](/policies#ted-policy) 允许端到端训练。
+只有[规则策略](/policies/#rule-policy)和 [TED 策略](/policies/#ted-policy) 允许端到端训练。
 
 - `RulePolicy` 在预测期间使用简单的字符串匹配。也就是说，基于用户文本的规则只有在规则中的用户文本字符串和预测期间的输入相同时才会匹配。
 - `TEDPolicy` 通过额外的神经网络传递用户文本来创建文本的隐含表示。为了获取稳健的性能，你需要提供足够的训练故事来为端到端对话捕获各种用户文本。

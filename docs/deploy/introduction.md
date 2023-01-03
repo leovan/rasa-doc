@@ -8,11 +8,11 @@
 
 ## 何时部署对话机器人 {#when-to-deploy-your-assistant}
 
-部署对话机器人并使其可用于测试用户的最佳时间是当它可以处理最重要的预期路径，或者我们称之为[最小可行对话机器人](/glossary)时。然后，你可以使用传入的对话来进一步开发对话机器人。
+部署对话机器人并使其可用于测试用户的最佳时间是当它可以处理最重要的预期路径，或者我们称之为[最小可行对话机器人](/glossary/)时。然后，你可以使用传入的对话来进一步开发对话机器人。
 
 ## 推荐的部署方式 {#recommended-deployment-method}
 
-[Rasa Helm Chart](https://github.com/RasaHQ/helm-charts/tree/main/charts/rasa) 是在 Kubernetes 或 Openshift 集群上进行生产部署的方法。更多详细信息，请参见[部署说明](/deploy/deploy-rasa)。
+[Rasa Helm Chart](https://github.com/RasaHQ/helm-charts/tree/main/charts/rasa) 是在 Kubernetes 或 Openshift 集群上进行生产部署的方法。更多详细信息，请参见[部署说明](/deploy/deploy-rasa/)。
 
 ### 集群要求 {#cluster-requirements}
 
@@ -27,6 +27,6 @@
 
 以下部署方法不适合生产环境部署，但可以用于开发和测试：
 
-- [在命令行中本地运行对话机器人](/command-line-interface#rasa-run)
-- [在 Docker 容器中开发对话机器人](/docker/building-in-docker)
-- [使用 Docker Compose 部署对话机器人](/docker/deploying-in-docker-compose)
+- [在命令行中本地运行对话机器人](/command-line-interface/#rasa-run)
+- [在 Docker 容器中开发对话机器人](/docker/building-in-docker/)
+- [使用 Docker Compose 部署对话机器人](/docker/deploying-in-docker-compose/)

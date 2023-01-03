@@ -8,7 +8,7 @@
 
 !!! note "配置 HTTPS"
 
-    Hangouts Chat 仅通过 https 将消息转到到 endpoint，因此请采取适当的措施将其添加到你的设置中。有关对话机器人的本地测试，请参见[在本地机器上测试频道](/messaging-and-voice-channels#testing-channels-on-your-local-machine)。
+    Hangouts Chat 仅通过 https 将消息转到到 endpoint，因此请采取适当的措施将其添加到你的设置中。有关对话机器人的本地测试，请参见[在本地机器上测试频道](/messaging-and-voice-channels/#testing-channels-on-your-local-machine)。
 
 在 Google Developer Console 中，获取你的项目 ID（也称为项目编号或应用 ID），其决定了 OAuth2 授权的范围，以防要使用 OAuth2。Hangouts Chat API 会随着每个请求发送一个 Bearer 令牌，但实际验证取决于对话机器人，因此该频道在没有此令牌的情况下也能正常工作。更多信息请参见 [Google Hangouts 文档](https://developers.google.com/hangouts/chat)。如果你希望完成验证，请务必在如下所示的 `credentials.yml` 文件中包含 `project_id`。
 

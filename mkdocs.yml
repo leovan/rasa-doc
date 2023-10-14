@@ -138,10 +138,10 @@ theme:
   search_index_only: true
   language: zh
   features:
-    - tabs
-    - search.suggest
-    - search.highlight
     - navigation.top
+    - search.highlight
+    - search.suggest
+    - tabs
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -221,7 +221,7 @@ markdown_extensions:
   - pymdownx.magiclink:
       repo_url_shorthand: true
       user: leovan
-      repo: cytoscape-manual
+      repo: rasa-doc
   - pymdownx.mark
   - pymdownx.smartsymbols
   - pymdownx.superfences:

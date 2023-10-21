@@ -25,6 +25,10 @@ telegram:
 
 重启你的 Rasa 服务器，使新的频道 Endpoint 可供 Telegram 发送消息。
 
+!!! info "处理 `/START` 消息"
+
+    在对话开始时，用户将按 Telegram 中的 Start 按钮。这将触发发送一条内容为 `/start` 的消息。在 NLU 训练数据文件中设定特定意图以确保对话机器人可以这个消息。然后将此 `start` 意图与故事或规则一起添加到领域中来处理它。
+
 ## 支持的回复附件 {#supported-response-attachments}
 
 除了典型的 `text` 响应之外，此频道还支持来自 [Telegram API](https://core.telegram.org/bots/api/#message) 的如下组件：

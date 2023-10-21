@@ -1,10 +1,10 @@
 # 组件
 
-组件构成 NLU 管道并按顺序工作以将用户输入处理为结构化输出。这些组件可用于实体提取、意图分类、响应选择、预处理等。
+组件构成 NLU 流水线并按顺序工作以将用户输入处理为结构化输出。这些组件可用于实体提取、意图分类、响应选择、预处理等。
 
 ## 语言模型 {#language-models}
 
-如果你想在管道中使用预训练的词向量，以下组件会加载所需的预训练模型。
+如果你想在流水线中使用预训练的词向量，以下组件会加载所需的预训练模型。
 
 ### MitieNLP {#mitienlp}
 
@@ -22,7 +22,7 @@
 
 - 描述
 
-    初始化 MITIE 结构。每个 MITIE 组件都依赖于此，因此应将其放在使用任何 MITIE 组件的管道开头。
+    初始化 MITIE 结构。每个 MITIE 组件都依赖于此，因此应将其放在使用任何 MITIE 组件的流水线开头。
 
 - 配置
 
@@ -35,13 +35,13 @@
       model: "data/total_word_feature_extractor.dat"
     ```
 
-    有关从何处获取该文件的更多信息，请参见[安装 MITIE](/installation/#dependencies-for-mitie)。
+    有关从何处获取该文件的更多信息，请参见[安装 MITIE](installation/installing-rasa-open-source.md#dependencies-for-mitie)。
 
 你还可以使用 MITIE 从一种语言语料训练自己的词向量。为此需要：
 
 - 获取一个干净的语料（例如维基百科）作为一组文本文件。
 - 在语料库上构建并运行 [MITIE Wordrep Tool](https://github.com/mit-nlp/MITIE/tree/master/tools/wordrep)。这可能需要几个小时或几天，具体取决于你的数据集和服务器。你需要 128G 的内训来运行 wordrep，可以尝试扩展 swap。
-- 将新的 `total_word_feature_extractor.dat` 路径设置为[配置](/model-configuration/)文件中 `MitieNLP` 组件的模型参数。
+- 将新的 `total_word_feature_extractor.dat` 路径设置为[配置](model-configuration.md)文件中 `MitieNLP` 组件的模型参数。
 
     有关如何训练 MITIE 词向量的完整示例，请参见[用 Rasa NLU 构建自己的中文 NLU 系统](http://www.crownpku.com/2017/07/27/%E7%94%A8Rasa_NLU%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AD%E6%96%87NLU%E7%B3%BB%E7%BB%9F.html)，这是一篇通过从中文维基百科构建 MITIE 模型的博客。
 
@@ -61,7 +61,7 @@
 
 - 描述
 
-    初始化 spaCy 结构。每个 spaCy 组件都依赖于此，因此应该将其放在使用任何 spaCy 组件的管道开头。
+    初始化 spaCy 结构。每个 spaCy 组件都依赖于此，因此应该将其放在使用任何 spaCy 组件的流水线开头。
 
 - 配置
 
@@ -81,7 +81,7 @@
       case_sensitive: False
     ```
 
-    有关如何下载 spaCy 模型的更多信息，请参见[安装 spaCy](/installation/#dependencies-for-spacy)。
+    有关如何下载 spaCy 模型的更多信息，请参见[安装 spaCy](installation/installing-rasa-open-source.md#dependencies-for-spacy)。
 
     除了 spaCy 的预训练语言模型外，你还可以使用此主键附加你自己训练的 spaCy 模型。
 
@@ -163,7 +163,7 @@
 
     使用专门针对中文的 Jieba 分词器创建词条。仅适用于中文。
 
-    !!! note "注意"
+    !!! info "注意"
 
         要使用 `JiebaTokenizer`，你需要先通过 `pip3 install jieba` 来安装 Jieba。
 
@@ -195,7 +195,7 @@
 
 - 要求
 
-    [MitieNLP](/components/#mitienlp)
+    [MitieNLP](components.md#mitienlp)
 
 - 描述
 
@@ -226,7 +226,7 @@
 
 - 要求
 
-    [SpacyNLP](/components/#spacynlp)
+    [SpacyNLP](components.md#spacynlp)
 
 - 描述
 
@@ -263,7 +263,7 @@
 
 - 要求
 
-    [MitieNLP](/components/#mitienlp)
+    [MitieNLP](components.md#mitienlp)
 
 - 类型
 
@@ -273,9 +273,9 @@
 
     使用 MITIE 特征化器为实体提取、意图分类和响应分类创建特征。
 
-    !!! note "注意"
+    !!! info "注意"
 
-        不适用于 `MitieIntentClassifier` 组件。但可以被管道中后续使用 `dense_features` 的任何组件使用。
+        不适用于 `MitieIntentClassifier` 组件。但可以被流水线中后续使用 `dense_features` 的任何组件使用。
 
 - 配置
 
@@ -301,7 +301,7 @@
 
 - 要求
 
-    [SpacyNLP](/components/#spacynlp)
+    [SpacyNLP](components.md#spacynlp)
 
 - 类型
 
@@ -341,15 +341,15 @@
 
     为实体提取、意图分类和响应分类创建特征。其使用 [default signature](https://github.com/PolyAI-LDN/polyai-models#tfhub-signatures) 来计算输入文本的向量表示。
 
-    !!! note "注意"
+    !!! info "注意"
 
         由于 `ConveRT` 模型仅在英文语料库上进行训练，因此仅当你的训练数据为英语时才应使用此特征化器。
 
-    !!! note "注意"
+    !!! info "注意"
 
         要使用 `ConveRTFeaturizer`，请使用 `pip3 install rasa[convert]` 安装开源 Rasa。
 
-        注意此组件目前无法运行在 M1/M2 架构的 macOS 上。有关此限制的更多信息，请参见[此处](/installation/environment-set-up/#m1--m2-apple-silicon-limitations)。
+        注意此组件目前无法运行在 M1/M2 架构的 macOS 上。有关此限制的更多信息，请参见[此处](installation/environment-set-up.md#m1--m2-apple-silicon-limitations)。
 
 - 配置
 
@@ -360,7 +360,7 @@
       "model_url": None
     ```
 
-    !!! caution "注意"
+    !!! warning "警告"
 
         由于 ConveRT 模型的公共 URL 已下线，现在必须将 `model_url` 参数设置为社区或自托管 URL 或包含模型文件的本地目录路径。
 
@@ -382,13 +382,13 @@
 
     为实体提取、意图分类和响应分类创建特征。其使用预训练的语言模型来计算输入文本的向量表示。
 
-    !!! note "注意"
+    !!! info "注意"
 
         请确保你使用的语言模型与你的训练数据在相同的语言预料上预训练。
 
 - 配置
 
-    在此组件之前包含一个[分词器](/components/#tokenizers)组件。
+    在此组件之前包含一个[分词器](components.md#tokenizers)组件。
 
     你应该通过 `model_name` 参数指定要加载的语言模型。有关当前支持的语言模型，请参见下表。要加载的权重可以通过附加参数 `model_weights` 指定。如果留空，它将使用表中列出的默认模型权重。
 
@@ -417,7 +417,7 @@
     - 模型具有预训练的 Tensorflow 权重（检查 `tf_model.h5` 文件是否存在）
     - 模型使用默认的分词器（`config.json` 不应该包含自定义的 `tokenizer_class` 设置）
 
-    !!! note "注意"
+    !!! info "注意"
 
         为 bert 架构默认加载的 LaBSE 权重提供了在 112 中语言上训练的多语言模型（请参见[教程](https://www.youtube.com/watch?v=7tAWk_Coj-s)和[论文](https://arxiv.org/pdf/2007.01852.pdf)）。我们强烈建议在尝试使用其他权重和架构优化此组件之前将其用作基线并端到端地测试对话机器人。
 
@@ -463,7 +463,7 @@
 
 - 描述
 
-    为实体提取和意图分类创建特征。在训练期间，`RegexFeaturizer` 创建以训练数据格式定义的正则表达式列表。对于每个正则表达式，将设置一个特征，标记该表达式是否在用户信息中找到。所有特征稍后将被送入意图分类器和实体提取器来简化分类（假设分类器在训练阶段已经学习，这该集合特征表示某个意图或实体）。目前仅 [CRFEntityExtractor](/components/#crfentityextractor) 和 [DIETClassifier](/components/#dietclassifier) 组件支持用于实体提取的正则表达式特征。
+    为实体提取和意图分类创建特征。在训练期间，`RegexFeaturizer` 创建以训练数据格式定义的正则表达式列表。对于每个正则表达式，将设置一个特征，标记该表达式是否在用户信息中找到。所有特征稍后将被送入意图分类器和实体提取器来简化分类（假设分类器在训练阶段已经学习，这该集合特征表示某个意图或实体）。目前仅 [CRFEntityExtractor](components.md#crfentityextractor) 和 [DIETClassifier](components.md#dietclassifier) 组件支持用于实体提取的正则表达式特征。
 
 - 配置
 
@@ -518,19 +518,19 @@
 
     有关配置参数的详细说明，请参见 [sklearn CountVectorizer 的文档](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html)。
 
-    使用 `analyzer` 配置参数可以将特征化器配置为使用单词或词组 n-grams。默认情况下，`analyzer` 设置为 `word`，因此单词标记计数作为特征使用。如果要使用字符 n-grams，请将 `analyzer` 设置为 `char` 或 `char_wb`。n-grams 的下界和上界可以通过参数 `min_ngram` 和 `max_ngram` 进行设置。默认情况下，他们的值都为 `1`。默认情况下，特征化器采用单词的词元，而不是直接使用单词。单词的词元目前仅由 [SpacyTokenizer](/components/#spacytokenizer) 设置。你可以通过将 `use_lemma` 设置为 `False` 来禁用此行为。
+    使用 `analyzer` 配置参数可以将特征化器配置为使用单词或词组 n-grams。默认情况下，`analyzer` 设置为 `word`，因此单词标记计数作为特征使用。如果要使用字符 n-grams，请将 `analyzer` 设置为 `char` 或 `char_wb`。n-grams 的下界和上界可以通过参数 `min_ngram` 和 `max_ngram` 进行设置。默认情况下，他们的值都为 `1`。默认情况下，特征化器采用单词的词元，而不是直接使用单词。单词的词元目前仅由 [SpacyTokenizer](components.md#spacytokenizer) 设置。你可以通过将 `use_lemma` 设置为 `False` 来禁用此行为。
 
-    !!! note "注意"
+    !!! info "注意"
 
         `char_wb` 选项仅从单词边界内的文本创建字符 n-gram。单词边缘的 n-grams 用空格填充。此选项可用于创建 [Subword Semantic Hashing](https://arxiv.org/abs/1810.07150)。
 
-    !!! note "注意"
+    !!! info "注意"
 
         对于字符 n-grams，不要忘记添加 `min_ngram` 和 `max_ngram` 参数。否则，词汇表将只包含单个字母。
 
     处理词汇表外（OOV）单词：
 
-    !!! note "注意"
+    !!! info "注意"
 
         仅当 `analyzer` 为 `word` 时启用。
 
@@ -543,11 +543,11 @@
     - `OOV_token` 设置为用于未见过词的关键字。如果训练数据在某些消息中包含 `OOV_token` 作为单词，则在训练期间为见过的词在预测期间将替换为 `OOV_token`。如果 `OOV_token=None`（默认行为）在训练期间未见过的词在预测期间将被忽略。
     - `OOV_words` 设置在训练期间被视为 `OOV_token` 的单词列表。如果已知应被视为词汇表外的单词列表，则可以将其设置为 `OOV_words` 而不是在训练数据中手动更改它或使用自定义预处理器。
 
-    !!! note "注意"
+    !!! info "注意"
 
         该特征化器通过单词计数来创建词袋表示，因此句子中 `OOV_token` 的数量可能很重要。
 
-    !!! note "注意"
+    !!! info "注意"
 
         提供 `OOV_words` 是可选的，训练数据可以包含手动输入的 `OOV_token` 或自定义附加预处理器。仅当训练数据中存在此标记或提供了 `OOV_words` 列表时，才会用 `OOV_token` 替换为见过的单词。
 
@@ -569,7 +569,7 @@
 
     用于增量训练的配置
 
-    为了确保 `sparse_features` 在[增量训练](/command-line-interface/#incremental-training)期间具有固定大小，应将组件配置为考虑将来额外词汇可能添加作为新训练样本的一部分。为此，请在从头开始训练基本模型是配置 `additional_vocabulary_size` 参数。
+    为了确保 `sparse_features` 在[增量训练](command-line-interface.md#incremental-training)期间具有固定大小，应将组件配置为考虑将来额外词汇可能添加作为新训练样本的一部分。为此，请在从头开始训练基本模型是配置 `additional_vocabulary_size` 参数。
 
     ```yaml hl_lines="3-6"
     pipeline:
@@ -703,9 +703,9 @@
 
     此配置也是默认配置。
 
-    !!! note "注意"
+    !!! info "注意"
 
-        如果你想使用 `pos` 或 `pos2`，你需要将 `SpacyTokenizer` 添加到你的管道中。
+        如果你想使用 `pos` 或 `pos2`，你需要将 `SpacyTokenizer` 添加到你的流水线中。
 
 ## 意图分类器 {#intent-classifiers}
 
@@ -723,7 +723,7 @@
 
 - 要求
 
-    用户消息的 `tokens` 和 [MitieNLP](/components/#mitienlp)
+    用户消息的 `tokens` 和 [MitieNLP](components.md#mitienlp)
 
 - 输出示例
 
@@ -737,7 +737,7 @@
 
     该分类器使用 MITIE 来执行意图分类。底层分类器使用具有稀疏线性核的多分类线性 SVM（请参见 [MITIE 训练器代码](https://github.com/mit-nlp/MITIE/blob/master/mitielib/src/text_categorizer_trainer.cpp)中的 `train_text_categorizer_classifier` 函数）。
 
-    !!! note "注意"
+    !!! info "注意"
 
         该分类器不依赖于任何特征化器，因为其自己可以提取特征。
 
@@ -848,7 +848,7 @@
 
 - 描述
 
-    Sklearn 意图分类器训练的一个通过网格搜索优化的线性 SVM。它还提供了未预测标签的排名。`SklearnIntentClassifier` 之前需要在管道中有一个稠密特征化器。这个稠密特征化器创建用于分类的特征。有关算法的更多信息，请参见 [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html) 文档。
+    Sklearn 意图分类器训练的一个通过网格搜索优化的线性 SVM。它还提供了未预测标签的排名。`SklearnIntentClassifier` 之前需要在流水线中有一个稠密特征化器。这个稠密特征化器创建用于分类的特征。有关算法的更多信息，请参见 [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html) 文档。
 
 - 配置
 
@@ -900,9 +900,9 @@
 
     该分类器通过在消息中搜索关键字来工作。默认情况下，匹配区分大小写，仅搜索用户消息中关键字字符串的完全匹配。用于意图的关键字即为 NLU 训练数据中该意图的样本。这意味着整个样本为关键字，而不是样本中的单个单词。
 
-    !!! note "注意"
+    !!! info "注意"
 
-        这个分类器适用于小型或入门项目。如果你的 NLU 训练数据很少，可以查看[模型调优](/tuning-your-model/)中建议的管道。
+        这个分类器适用于小型或入门项目。如果你的 NLU 训练数据很少，可以查看[模型调优](tuning-your-model.md)中建议的流水线。
 
 - 配置
 
@@ -960,11 +960,11 @@
 
     DIET（Dual Intent Entity Transformer）是一种用于意图分类和实体识别的多任务架构。该架构基于一个共享两个任务的 Transformer。实体标签序列基于输入词条序列对应的 Transformer 输出序列利用条件随机场在标记层进行预测。对于意图标签，用于完整消息和输出和意图标签被嵌入到同一个语义向量空间中。我们使用点积损失来最大化与目标标签的相似度同时最小化与负样本的相似度。
 
-    DIET 不提供预训练的词嵌入和语言模型，但是如果将其添加到管道中，则可以使用这些特征。想了解有关该模型的更多信息，请查看 Youtube 上的 [Algorithm Whiteboard](https://www.youtube.com/playlist?list=PL75e0qA87dlG-za8eLI6t0_Pbxafk-cxb) 系列视频，其中详细解释了模型的架构。
+    DIET 不提供预训练的词嵌入和语言模型，但是如果将其添加到流水线中，则可以使用这些特征。想了解有关该模型的更多信息，请查看 Youtube 上的 [Algorithm Whiteboard](https://www.youtube.com/playlist?list=PL75e0qA87dlG-za8eLI6t0_Pbxafk-cxb) 系列视频，其中详细解释了模型的架构。
 
-    !!! note "注意"
+    !!! info "注意"
 
-        在预测期间，如果消息仅包含训练期间为见过的单词，并且没有使用 Out-Of-Vocabulary 预处理器，则会以置信度为 `0` 的 `None` 空意图作为预测结果。如果仅将 [CountVectorsFeaturizer](/components/#countvectorsfeaturizer) 与 `word` 分析器一起用作特征化器，则可能发生这种情况。如使用 `char_wb` 分析器，你可以始终获得置信度大于 `0.0` 的意图。
+        在预测期间，如果消息仅包含训练期间为见过的单词，并且没有使用 Out-Of-Vocabulary 预处理器，则会以置信度为 `0` 的 `None` 空意图作为预测结果。如果仅将 [CountVectorsFeaturizer](components.md#countvectorsfeaturizer) 与 `word` 分析器一起用作特征化器，则可能发生这种情况。如使用 `char_wb` 分析器，你可以始终获得置信度大于 `0.0` 的意图。
 
     如果你只想将 `DIETClassifier` 用于意图分类，请将 `entity_recognition` 设置为 `False`。如果你只想进行实体识别，请将 `intent_classification` 设置为 `False`。默认情况下，`DIETClassifier` 会同时进行两项任务，即 `entity_recognition` 和 `intent_classification` 均设置为 `True`。
 
@@ -1140,11 +1140,11 @@
         +---------------------------------+------------------+--------------------------------------------------------------+
         ```
 
-        !!! note "注意"
+        !!! info "注意"
 
             在 `maximum_negative_similarity = maximum_positive_similarity` 和 `use_maximum_negative_similarity = False` 的情况下，将参数 `maximum_negative_similarity` 设置为负数来模仿原始 starspace 算法。更多信息请参见 [starspace 论文](https://arxiv.org/abs/1709.03856)。
 
-[^components-softmax]: 请注意，`model_confidence: cosineis` 在 2.3.4 版本中已弃用（请参见[变更日志](https://rasa.com/docs/rasa/changelog#234---2021-02-26)），并且无法在配置中设置，但如果指定了 `loss_type: margin`，则无论设置如何，都将使用 `model_confidence: cosine`。
+[^components-softmax]: 请注意，`model_confidence: cosineis` 在 2.3.4 版本中已弃用（请参见[变更日志](https://rasa.com/docs/rasa/changelog#234---2021-02-26){:target="_blank"}），并且无法在配置中设置，但如果指定了 `loss_type: margin`，则无论设置如何，都将使用 `model_confidence: cosine`。
 
 ### FallbackClassifier {#fallbackclassifier}
 
@@ -1190,7 +1190,7 @@
 
     `FallbackClassifier` 使用 `nlu_fallback` 意图对用户消息进行分类，以防先前的意图分类器无法对置信度大于或等于 `FallbackClassifier` 的 `threshold` 的意图进行分类。它可以在排名靠前的两个意图的置信度分数比 `ambiguity_threshold` 更接近的情况下预测回退意图。
 
-    你可以使用 `FallbackClassifier` 来实现一个[回退动作](/fallback-handoff/#fallbacks)，来处理带有不确定 NLU 预测的消息。
+    你可以使用 `FallbackClassifier` 来实现一个[回退动作](fallback-handoff.md#fallbacks)，来处理带有不确定 NLU 预测的消息。
 
     ```yaml
     rules:
@@ -1211,13 +1211,13 @@
 
 实体提取器从用户消息中提取实体，例如人名或位置。
 
-!!! note "注意"
+!!! info "注意"
 
-    如果你使用多个实体提取器，我们建议每个提取器都针对一组专有的实体类型。例如，使用 [Duckling](/components/#ducklingentityextractor) 提取日期和时间，使用 [DIETClassifier](/components/#dietclassifier-1) 提取人名。否则，如果多个提取器针对相同的实体类型，则很可能会多次提取实体。
+    如果你使用多个实体提取器，我们建议每个提取器都针对一组专有的实体类型。例如，使用 [Duckling](components.md#ducklingentityextractor) 提取日期和时间，使用 [DIETClassifier](components.md#dietclassifier-1) 提取人名。否则，如果多个提取器针对相同的实体类型，则很可能会多次提取实体。
 
-    例如，如果你使用两个或更多通用提取器，如 [MitieEntityExtractor](/components/#mitieentityextractor)，[DIETClassifier](/components/#dietclassifier-1) 或 [CRFEntityExtractor](/components/#crfentityextractor)，则训练数据中的实体类型均将被找到和提取。如果填充的[槽](/domain/#slots)的值是 `text` 类型，则会采用管道中最后一个提取器的结果。如果槽是 `list` 类型，则左右结果都将被添加到列表中，包括重复项。
+    例如，如果你使用两个或更多通用提取器，如 [MitieEntityExtractor](components.md#mitieentityextractor)，[DIETClassifier](components.md#dietclassifier-1) 或 [CRFEntityExtractor](components.md#crfentityextractor)，则训练数据中的实体类型均将被找到和提取。如果填充的[槽](domain.md#slots)的值是 `text` 类型，则会采用流水线中最后一个提取器的结果。如果槽是 `list` 类型，则左右结果都将被添加到列表中，包括重复项。
 
-    即使提取器专注于不同的实体类型，也可能发生另一种不太明显的重复/重叠的提取情况。假设一个送餐对话机器人和一条用户消息 `I would like to order the Monday special`。假设，如果时间提取器的性能不是很好，它可能会在这里提取 `Monday` 作为订单的时间，而其他提取器可能会提取 `Monday special` 作为餐点。如果遇到此类重复的实体，添加额外的训练数据来改进提取器可能是有意义的。如果这还不够，可以添加一个[自定义组件](/components/#custom-components)，根据你自己的逻辑解决实体提取中的冲突。
+    即使提取器专注于不同的实体类型，也可能发生另一种不太明显的重复/重叠的提取情况。假设一个送餐对话机器人和一条用户消息 `I would like to order the Monday special`。假设，如果时间提取器的性能不是很好，它可能会在这里提取 `Monday` 作为订单的时间，而其他提取器可能会提取 `Monday special` 作为餐点。如果遇到此类重复的实体，添加额外的训练数据来改进提取器可能是有意义的。如果这还不够，可以添加一个[自定义组件](components.md#custom-components)，根据你自己的逻辑解决实体提取中的冲突。
 
 ### MitieEntityExtractor {#mitieentityextractor}
 
@@ -1231,7 +1231,7 @@
 
 - 要求
 
-    [MitieNLP](/components/#mitienlp) 和 `tokens`。
+    [MitieNLP](components.md#mitienlp) 和 `tokens`。
 
 - 输出示例
 
@@ -1252,7 +1252,7 @@
 
     `MitieEntityExtractor` 使用 MITIE 实体提取来查找消息中的实体。底层分类器使用具有稀疏线性内核和自定义特征的多分类线性 SVM。MITIE 组件不提供实体置信度。
 
-    !!! note "注意"
+    !!! info "注意"
 
         该实体提取器不依赖任何特征化器，因为它自己可以提取特征。
 
@@ -1275,7 +1275,7 @@
 
 - 要求
 
-    [SpacyNLP](/components/#spacynlp)。
+    [SpacyNLP](components.md#spacynlp)。
 
 - 输出示例
 
@@ -1298,7 +1298,7 @@
 
     你可以在这个[交互式 Demo](https://explosion.ai/demos/displacy-ent) 中测试 spaCy 的实体提取模型。请注意，某些 spaCy 模型高度区分大小写。
 
-    !!! note "注意"
+    !!! info "注意"
 
         `SpacyEntityExtractor` 提取器不提供 `confidence` 等级并始终返回 `null`。
 
@@ -1346,7 +1346,7 @@
 
     该组件实现了一个条件随机场（CRF）来进行命名实体识别。CRF 可以看作一个无向马尔可夫链，其中单词作为时间，实体类型作为状态。单词的特征（大写，POS 标记等）给出了某些实体类型的概率，相邻实体标签之间的转换也是如此，然后计算并返回最可能的标签集合。
 
-    如果你想将自定义特征（例如预训练的词嵌入）传递给 `CRFEntityExtractor`，你可以在 `CRFEntityExtractor` 之前将任何稠密特征化器添加到管道中，然后将 `"text_dense_feature"` 添加到特征配置中来使用稠密特征。`CRFEntityExtractor` 自动查找额外的稠密特征并检查稠密特征是否为 `len(tokens)` 的可迭代项，其中每项都是一个向量。如果检查失败，将显示警告。但是，`CRFEntityExtractor` 将继续训练，而无需额外的自定义特征。如果存在稠密特征，`CRFEntityExtractor` 会将稠密特征传递给 `sklearn_crfsuite` 并使用它们进行训练。
+    如果你想将自定义特征（例如预训练的词嵌入）传递给 `CRFEntityExtractor`，你可以在 `CRFEntityExtractor` 之前将任何稠密特征化器添加到流水线中，然后将 `"text_dense_feature"` 添加到特征配置中来使用稠密特征。`CRFEntityExtractor` 自动查找额外的稠密特征并检查稠密特征是否为 `len(tokens)` 的可迭代项，其中每项都是一个向量。如果检查失败，将显示警告。但是，`CRFEntityExtractor` 将继续训练，而无需额外的自定义特征。如果存在稠密特征，`CRFEntityExtractor` 会将稠密特征传递给 `sklearn_crfsuite` 并使用它们进行训练。
 
 - 配置
 
@@ -1421,17 +1421,17 @@
           email: True
     ```
 
-    !!! note "注意"
+    !!! info "注意"
 
-        如果使用 POS 特征（`pos` 和 `pos2`），需要在管道中包含 `SpacyTokenizer`。
+        如果使用 POS 特征（`pos` 和 `pos2`），需要在流水线中包含 `SpacyTokenizer`。
 
-    !!! note "注意"
+    !!! info "注意"
 
-        如果使用 `pattern` 特征，需要在管道中包含 `RegexFeaturizer`。
+        如果使用 `pattern` 特征，需要在流水线中包含 `RegexFeaturizer`。
 
-    !!! note "注意"
+    !!! info "注意"
 
-        如果使用 `text_dense_features` 特征，需要在管道中包含一个稠密特征化器（例如：`LanguageModelFeaturizer`）。
+        如果使用 `text_dense_features` 特征，需要在流水线中包含一个稠密特征化器（例如：`LanguageModelFeaturizer`）。
 
 ### DucklingEntityExtractor {#ducklingentityextractor}
 
@@ -1474,7 +1474,7 @@
 
 - 配置
 
-    配置 Duckling 组件应该提取哪些维度，即实体类型。可以在 [Duckling 文档](https://duckling.wit.ai/)中找到可用维度的完整列表。未指定维度选项将提取所有可用维度。
+    配置 Duckling 组件应该提取哪些维度，即实体类型。可以在 [Duckling 文档](https://duckling.wit.ai)中找到可用维度的完整列表。未指定维度选项将提取所有可用维度。
 
     ```yaml
     pipeline:
@@ -1502,7 +1502,7 @@
 
 - 描述
 
-    可以在意图分类器部分找到 [DIETClassifier](/components/#dietclassifier) 的详细说明。
+    可以在意图分类器部分找到 [DIETClassifier](components.md#dietclassifier) 的详细说明。
 
 ### RegexEntityExtractor {#regexentityextractor}
 
@@ -1520,19 +1520,19 @@
 
 - 描述
 
-    该组件使用训练数据中定义的[查找表](/nlu-training-data/#lookup-tables)和[正则表达式](/nlu-training-data/#regular-expressions-for-entity-extraction)提取实体。该组件检查用户消息中是否包含查找表之一的条目或匹配的一个正则表达式。如果找到匹配项，则将该值提取为实体。
+    该组件使用训练数据中定义的[查找表](nlu-training-data.md#lookup-tables)和[正则表达式](nlu-training-data.md#regular-expressions-for-entity-extraction)提取实体。该组件检查用户消息中是否包含查找表之一的条目或匹配的一个正则表达式。如果找到匹配项，则将该值提取为实体。
 
     该组件仅使用名称与训练数据中定义的一个实体相同的那些正则表达式特征。确保每个实体至少有一个样本。
 
-    !!! note "注意"
+    !!! info "注意"
 
-        当将此提取器与 [MitieEntityExtractor](/components/#mitieentityextractor)，[CRFEntityExtractor](/components/#crfentityextractor) 或 [DIETClassifier](/components/#dietclassifier-1) 结合使用时，它可能会导致实体被多次提取。特别是如果很多训练句子具有正则表达式也定义了的实体类型标注。有关多重提取的更多信息，请参见[实体提取器部分](/components/#entity-extractors)开头的信息框。
+        当将此提取器与 [MitieEntityExtractor](components.md#mitieentityextractor)，[CRFEntityExtractor](components.md#crfentityextractor) 或 [DIETClassifier](components.md#dietclassifier-1) 结合使用时，它可能会导致实体被多次提取。特别是如果很多训练句子具有正则表达式也定义了的实体类型标注。有关多重提取的更多信息，请参见[实体提取器部分](components.md#entity-extractors)开头的信息框。
 
         如果需要 RegexEntityExtractor 和另一个上述统计提取器，建议考虑如下两个选项之一。
 
         选项一是当对每种类型的提取器都具有专有实体类型时，建议使用本选项。为了确保提取器不会互相干扰，只为每个正则表达式/查找表实体类型配置一个句子样本，不要有多个。
 
-        选项二是当想使用正则表达式匹配作为统计提取器的附加，但没有单独的实体类型是，本选项会很有用。在这种情况下，你需要 1) 在管道中的提取器之前添加 [RegexFeaturizer](/components/#regexfeaturizer)，2) 在训练数据中标注所有实体样本，3) 从管道中删除 RegexEntityExtractor。这样，你的统计提取器将收到有关存在正则表达式匹配的附加信息，并且能够统计确定何时依赖这些匹配以及何时不依赖这些匹配。
+        选项二是当想使用正则表达式匹配作为统计提取器的附加，但没有单独的实体类型是，本选项会很有用。在这种情况下，你需要 1) 在流水线中的提取器之前添加 [RegexFeaturizer](components.md#regexfeaturizer)，2) 在训练数据中标注所有实体样本，3) 从流水线中删除 RegexEntityExtractor。这样，你的统计提取器将收到有关存在正则表达式匹配的附加信息，并且能够统计确定何时依赖这些匹配以及何时不依赖这些匹配。
 
 - 配置
 
@@ -1565,7 +1565,7 @@
 
 - 要求
 
-    [实体提取器](/components/)中的一个提取器。
+    [实体提取器](components.md)中的一个提取器。
 
 - 描述
 
@@ -1605,9 +1605,9 @@
     - name: "EntitySynonymMapper"
     ```
 
-    !!! note "注意"
+    !!! info "注意"
 
-        当使用 `EntitySynonymMapper` 作为 NLU 管道的一部分时，需要将其放置在配置文件中的任何实体提取器下方。
+        当使用 `EntitySynonymMapper` 作为 NLU 流水线的一部分时，需要将其放置在配置文件中的任何实体提取器下方。
 
 ## 组合的意图分类器和实体提取器 {#combined-intent-classifiers-and-entity-extractors}
 
@@ -1768,11 +1768,11 @@
 
     响应选择器组件可用于构建响应检索模型，来直接从一组候选响应中预测对话机器人响应。对话管理器使用该模型的预测来发出预测的响应。它将用户输入和响应标签嵌入到相同的空间中，并遵循与 `DIETClassifier` 完全相同的神经网络架构和优化。
 
-    要使用此组件，训练数据应包含[检索意图](/glossary/#retrieval-intent)。要定义这些，请查看有关 [NLU 训练样本的文档](/training-data-format/#training-examples)和有关[为检索意图定义响应消息的文档](/responses/#defining-responses)。
+    要使用此组件，训练数据应包含[检索意图](glossary.md#retrieval-intent)。要定义这些，请查看有关 [NLU 训练样本的文档](training-data-format.md#training-examples)和有关[为检索意图定义响应消息的文档](responses.md#defining-responses)。
 
-    !!! note "注意"
+    !!! info "注意"
 
-        在预测期间，如果消息仅包含训练期间为见过的单词，并且没有使用 Out-Of-Vocabulary 预处理器，则会以置信度为 `0` 的 `None` 空意图作为预测结果。如果仅将 [CountVectorsFeaturizer](/components/#countvectorsfeaturizer) 与 `word` 分析器一起用作特征化器，则可能发生这种情况。如使用 `char_wb` 分析器，你可以始终获得置信度大于 `0.0` 的意图。
+        在预测期间，如果消息仅包含训练期间为见过的单词，并且没有使用 Out-Of-Vocabulary 预处理器，则会以置信度为 `0` 的 `None` 空意图作为预测结果。如果仅将 [CountVectorsFeaturizer](components.md#countvectorsfeaturizer) 与 `word` 分析器一起用作特征化器，则可能发生这种情况。如使用 `char_wb` 分析器，你可以始终获得置信度大于 `0.0` 的意图。
 
 - 配置
 
@@ -1784,21 +1784,21 @@
 
     !!! info "示例和教程"
 
-        查看 [responseselectorbot](https://github.com/RasaHQ/rasa/tree/main/examples/responseselectorbot) 作为一个示例来了解如何在对话机器人中使用 `ResponseSelector` 组件。此外，你会发现此教程在使用 `ResponseSelector` 来[处理 FAQs](/chitchat-faqs/) 也很有用。
+        查看 [responseselectorbot](https://github.com/RasaHQ/rasa/tree/main/examples/responseselectorbot) 作为一个示例来了解如何在对话机器人中使用 `ResponseSelector` 组件。此外，你会发现此教程在使用 `ResponseSelector` 来[处理 FAQs](chitchat-faqs.md) 也很有用。
 
 ## 自定义组件 {#custom-components}
 
-!!! info "3.0 版本新功能"
+!!! info "3.0 版本新特性"
 
-    开源 Rasa 3.0 版本统一了 NLU 组件和策略的实现。这需要更改为早期版本的开源 Rasa 编写的自定义组件。有关逐步的迁移指南请参见[迁移指南](/migration-guide/#custom-policies-and-custom-components)。
+    开源 Rasa 3.0 版本统一了 NLU 组件和策略的实现。这需要更改为早期版本的开源 Rasa 编写的自定义组件。有关逐步的迁移指南请参见[迁移指南](migration-guide.md#custom-policies-and-custom-components)。
 
 你可以创建一个自定义组件来执行 NLU 目前不提供的特定任务（例如：情感分析）。
 
-你可以通过添加模块路径将自定义组件添加到管道中。因此，如果你有一个包含名为 `SentimentAnalyzer` 的类的模块：
+你可以通过添加模块路径将自定义组件添加到流水线中。因此，如果你有一个包含名为 `SentimentAnalyzer` 的类的模块：
 
 ```yaml
 pipeline:
 - name: "sentiment.SentimentAnalyzer"
 ```
 
-有关自定义组件的完整指南，请参见[自定义图组件指南](/custom-graph-components/)。还请务必阅读有关[组件生命周期](/tuning-your-model/#component-lifecycle)的部分。
+有关自定义组件的完整指南，请参见[自定义图组件指南](custom-graph-components.md)。还请务必阅读有关[组件生命周期](tuning-your-model.md#component-lifecycle)的部分。

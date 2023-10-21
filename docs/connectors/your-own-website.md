@@ -1,6 +1,6 @@
 # 个人网站
 
-如果你已经有一个网站并想为其添加 Rasa 对话机器人，可以使用 [Rasa Chat Widget](/connectors/your-own-website/#chat-widget) 小组件，通过添加 HTML 片段将其合并到现有的网页中。
+如果你已经有一个网站并想为其添加 Rasa 对话机器人，可以使用 [Rasa Chat Widget](your-own-website.md#chat-widget) 小组件，通过添加 HTML 片段将其合并到现有的网页中。
 
 或者，你也可以构建自己的聊天小组件。
 
@@ -89,13 +89,13 @@ socketio:
 
 重启 Rasa 服务器，以使 SocketIO 频道可用于接收消息。然后，你可以将消息发送到 `http://<host>:<port>/socket.io`，用你正在运行的 Rasa 服务器中适当值替换主机和端口。
 
-!!! note "会话持久性"
+!!! info "会话持久性"
 
     默认情况下，SocketIO 频道使用套接字 ID 作为 `sender_id`，这会导致会话在每次页面重新加载时重新启动。`session_persistence` 设置为 `true` 可以避免这种情况。在这种情况下，前端负责生成会话 ID 并将其发送到 Rasa Core 服务器，方法是在连接事件之后立即发出带有 `{session_id: [session_id]}` 事件的 `session_request`。
 
     示例 [Webchat](https://github.com/botfront/rasa-webchat) 实现了这种会话创建机制（版本 >= 0.5.0）。
 
-!!! note "ScoketIO 客户端 / 服务器兼容性"
+!!! info "ScoketIO 客户端 / 服务器兼容性"
 
     连接 Rasa 的 SocketIO 客户端版本必须与 Rasa 使用的 [`python-socketio`](https://github.com/miguelgrinberg/python-socketio) 或 [`python-engineio`](https://github.com/miguelgrinberg/python-engineio) 包的版本兼容。请参考你的 Rasa 版本相关的 [`pyproject.toml`](https://github.com/RasaHQ/rasa/blob/main/pyproject.toml) 文件和官方的 `python-socketio` 兼容性表。
 

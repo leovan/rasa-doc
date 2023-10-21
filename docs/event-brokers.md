@@ -1,6 +1,6 @@
 # 事件代理
 
-事件代理允许将正在运行的对话机器人连接到处理来自对话的数据的其他服务。事件代理将消息发送到消息流服务（也称为消息代理），来将 Rasa [事件](https://rasa.com/docs/action-server/events)从 Rasa 服务器转发到其他服务。
+事件代理允许将正在运行的对话机器人连接到处理来自对话的数据的其他服务。事件代理将消息发送到消息流服务（也称为消息代理），来将 Rasa [事件](action-server/events.md)从 Rasa 服务器转发到其他服务。
 
 ## 格式 {#format}
 
@@ -19,11 +19,11 @@
 }
 ```
 
-`event` 字段采用事件的 `type_name`（有关事件类型的更多信息，请参见[事件](/action-server/events/)文档）。
+`event` 字段采用事件的 `type_name`（有关事件类型的更多信息，请参见[事件](action-server/events.md)文档）。
 
 ## Pika 事件代理 {#pika-event-broker}
 
-如下展示的示例实现了使用 [RabbitMQ](https://www.rabbitmq.com/) 的 Python 客户端库 [Pika](https://pika.readthedocs.io/)。
+如下展示的示例实现了使用 [RabbitMQ](https://www.rabbitmq.com) 的 Python 客户端库 [Pika](https://pika.readthedocs.io)。
 
 ### 使用 Endpoint 配置添加 Pika 事件代理 {#adding-a-pika-event-broker-using-the-endpoint-configuration}
 
@@ -43,7 +43,7 @@ event_broker:
   exchange_name: exchange
 ```
 
-可以在[参考文档](https://rasa.com/docs/rasa/reference/rasa/core/brokers/pika/#__init__)中找到在 `endpoints.yml` 文件中自定义的所有参数的完整列表。当重新启动 Rasa 服务时，Rasa 将自动启动流式传输事件。
+可以在[参考文档](https://rasa.com/docs/rasa/reference/rasa/core/brokers/pika/#__init__){:target="_blank"}中找到在 `endpoints.yml` 文件中自定义的所有参数的完整列表。当重新启动 Rasa 服务时，Rasa 将自动启动流式传输事件。
 
 ### 向 Pika 事件代理添加 SSL 选项 {#adding-ssl-options-to-the-pika-event-broker}
 
@@ -108,7 +108,7 @@ if __name__ == "__main__":
 
 ## Kafka 事件代理 {#kafka-event-broker}
 
-虽然 RabbitMQ 是默认的事件代理，但可以使用 [Kafka](https://kafka.apache.org/) 作为事件的主要代理。Rasa 使用 [kafka-python](https://kafka-python.readthedocs.io/en/master/usage.html) 库，这是一个用 Python 编写的 Kafka 客户端。你需要一个正在运行的 Kafka 服务器。
+虽然 RabbitMQ 是默认的事件代理，但可以使用 [Kafka](https://kafka.apache.org) 作为事件的主要代理。Rasa 使用 [kafka-python](https://kafka-python.readthedocs.io/en/master/usage.html) 库，这是一个用 Python 编写的 Kafka 客户端。你需要一个正在运行的 Kafka 服务器。
 
 ### 分区键 {#partition-key}
 
@@ -134,7 +134,7 @@ Rasa 的 Kafka 生产者接受以下类型的安全协议：`SASL_PLAINTEXT`、`
 
 使用 `SASL_PLAINTEXT` 和 `SASL_SSL` 协议时，可选配置 `sasl_mechanism`，默认设置为 `PLAIN`。`sasl_mechanism` 的有效值为：`PLAIN`、`GSSAPI`、`OAUTHBEARER`、`SCRAM-SHA-256` 和 `SCRAM-SHA-512`。
 
-如果 `GSSAPI` 用于 `sasl_mechanism`，则需要额外安装 [python-gssapi](https://pypi.org/project/python-gssapi/) 和必要的 C 库 Kerberos 依赖。
+如果 `GSSAPI` 用于 `sasl_mechanism`，则需要额外安装 [python-gssapi](https://pypi.org/project/python-gssapi) 和必要的 C 库 Kerberos 依赖。
 
 如果启用了 `ssl_check_hostname` 参数，客户端将验证代理的主机名是否与证书匹配。它用于客户端连接和代理间的连接，以防止中间人攻击。
 
@@ -200,7 +200,7 @@ event_broker:
 
 ## SQL 事件代理 {#sql-event-broker}
 
-可以将 SQL 数据库用作事件代理。使用 [SQLAlchemy](https://www.sqlalchemy.org/) 建立与数据库的连接，SQLAlchemy 是一个可以与多种不同类型的 SQL 数据库（例如：[SQLite](https://sqlite.org/index.html)、[PostgreSQL](https://www.postgresql.org/) 等）进行交互的 Python 库。默认的 Rasa 安装允许连接到 SQLite 和 PostgreSQL 数据库。其他选项请参见 [SQLAlchemy 文档的 SQL 方言](https://docs.sqlalchemy.org/en/13/dialects/index.html)。
+可以将 SQL 数据库用作事件代理。使用 [SQLAlchemy](https://www.sqlalchemy.org) 建立与数据库的连接，SQLAlchemy 是一个可以与多种不同类型的 SQL 数据库（例如：[SQLite](https://sqlite.org/index.html)、[PostgreSQL](https://www.postgresql.org) 等）进行交互的 Python 库。默认的 Rasa 安装允许连接到 SQLite 和 PostgreSQL 数据库。其他选项请参见 [SQLAlchemy 文档的 SQL 方言](https://docs.sqlalchemy.org/en/13/dialects/index.html)。
 
 ### 使用 Endpoint 配置添加 SQL 事件代理 {#adding-a-sql-event-broker-using-the-endpoint-configuration}
 
@@ -239,7 +239,7 @@ event_broker:
 自定义事件代理类必须实现如下基类方法：
 
 - `from_endpoint_config`：从 Endpoint 配置创建一个 `EventBroker` 对象。（[源代码](https://github.com/RasaHQ/rasa/blob/main/rasa/core/brokers/broker.py#L45)）
-- `publish`：将 JSON 格式的 [Rasa 事件](https://rasa.com/docs/rasa/reference/rasa/shared/core/events/)发布到事件队列中。（[源代码](https://github.com/RasaHQ/rasa/blob/main/rasa/core/brokers/broker.py#L63)）
+- `publish`：将 JSON 格式的 [Rasa 事件](https://rasa.com/docs/rasa/reference/rasa/shared/core/events){:target="_blank"}发布到事件队列中。（[源代码](https://github.com/RasaHQ/rasa/blob/main/rasa/core/brokers/broker.py#L63)）
 - `is_ready`：判断事件代理是否准备好。（[源代码](https://github.com/RasaHQ/rasa/blob/main/rasa/core/brokers/broker.py#L67)）
 - `close`：关闭与事件代理的连接。（[源代码](https://github.com/RasaHQ/rasa/blob/main/rasa/core/brokers/broker.py#L75)）
 

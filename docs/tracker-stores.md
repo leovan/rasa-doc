@@ -6,7 +6,7 @@
 
 `InMemoryTrackerStore` 是默认的追踪器存储。如果没有配置其他追踪器存储，则默认使用它。它将对话历史存储在内存中。
 
-!!! note "注意"
+!!! info "注意"
 
     由于此存储将所有历史记录保存在内存中，因此如果你重新启动 Rasa 服务器，则整个历史记录都会丢失。
 
@@ -121,11 +121,11 @@ USER 1001
 docker build . -t rasa-oracle:3.2.5-oracle-full
 ```
 
-现在可以如上述在 `endpoints.yml` 中配置追踪器存储，并启动容器了。此设置的方言参数为 `oracle+cx_oracle`。更多信息请参见[部署 Rasa 对话机器人](/deploy/introduction/)。
+现在可以如上述在 `endpoints.yml` 中配置追踪器存储，并启动容器了。此设置的方言参数为 `oracle+cx_oracle`。更多信息请参见[部署 Rasa 对话机器人](deploy/introduction.md)。
 
 ## RedisTrackerStore {#redistrackerstore}
 
-可以使用 `RedisTrackerStore` 将对话机器人的历史记录存储在 [Redis](https://redis.io/) 中。Redis 是一种快速的内存键值存储，其可选的也可以持久化数据。
+可以使用 `RedisTrackerStore` 将对话机器人的历史记录存储在 [Redis](https://redis.io) 中。Redis 是一种快速的内存键值存储，其可选的也可以持久化数据。
 
 ### 配置 {#configuration-2}
 
@@ -171,17 +171,18 @@ docker build . -t rasa-oracle:3.2.5-oracle-full
 
 #### 配置参数 {#configuration-parameters-1}
 
-    - `url`（默认：`localhost`）：Redis 实例的 URL。
-    - `port`（默认：`6379`）：Redis 运行的端口。
-    - `db`（默认：`0`）：Redis 数据库的数量。
-    - `key_prefix`（默认：`None`）：添加到追踪器存储键的前缀。必须是字母数字。
-    - `password`（默认：`None`）：用于认证的密码（`None` 表示不认证）。
-    - `record_exp`（默认：`None`）：过期秒数。
-    - `use_ssl`（默认：`False`）：是否使用 SSL 进行传输加密。
+- `url`（默认：`localhost`）：Redis 实例的 URL。
+- `port`（默认：`6379`）：Redis 运行的端口。
+- `db`（默认：`0`）：Redis 数据库的数量。
+- `key_prefix`（默认：`None`）：添加到追踪器存储键的前缀。必须是字母数字。
+- `username`（默认：`None`）：用于认证的用户名（`None` 表示不认证）。
+- `password`（默认：`None`）：用于认证的密码（`None` 表示不认证）。
+- `record_exp`（默认：`None`）：过期秒数。
+- `use_ssl`（默认：`False`）：是否使用 SSL 进行传输加密。
 
 ## MongoTrackerStore {#mongotrackerstore}
 
-可以使用 `MongoTrackerStore` 将对话机器人的对话历史存储在 [MongoDB](https://www.mongodb.com/) 中。MongoDB 是一个免费开源的跨平台面向文档的 NoSQL 数据库。
+可以使用 `MongoTrackerStore` 将对话机器人的对话历史存储在 [MongoDB](https://www.mongodb.com) 中。MongoDB 是一个免费开源的跨平台面向文档的 NoSQL 数据库。
 
 ### 配置 {#configuration-3}
 
@@ -246,7 +247,7 @@ docker build . -t rasa-oracle:3.2.5-oracle-full
 
 ## DynamoTrackerStore {#dynamotrackerstore}
 
-可以使用 `DynamoTrackerStore` 将对话机器人的对话历史记录存储在 [DynamoDB](https://aws.amazon.com/dynamodb/) 中。DynamoDB 是由 Amazon Web Services (AWS) 提供的托管 NoSQL 数据库。
+可以使用 `DynamoTrackerStore` 将对话机器人的对话历史记录存储在 [DynamoDB](https://aws.amazon.com/dynamodb) 中。DynamoDB 是由 Amazon Web Services (AWS) 提供的托管 NoSQL 数据库。
 
 ### 配置 {#configuration-4}
 
@@ -320,3 +321,13 @@ tracker_store:
   a_parameter: a value
   another_parameter: another value
 ```
+
+## 回退追踪存储
+
+如果 `endpoints.yml` 中配置的主追踪存储不可用时，rasa 代理将发出错误信息并使用 `InMemoryTrackerStore`。每次都会启动一个新的对话会话，该对话会话将单独保存在 `InMemoryTrackerStore` 回退存储中。
+
+一旦主追踪存储回复，它将取代回退追踪存储并保存从此刻开始的对话。但是请注意保存在 `InMemoryTrackerStore` 回退存储中的任何先前状态都将丢失。
+
+!!! danger "使用同一个 Redis 作为锁存储和追踪器存储"
+
+    不应该使用同一个 Redis 实例作为锁存储和追踪器存储。如果 Redis 实例不可用，会话将被挂起，因为没有为锁存储实线回退机制。

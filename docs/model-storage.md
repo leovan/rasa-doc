@@ -4,9 +4,9 @@
 
 你可以通过三种不同的方式加载经过训练的模型：
 
-1. 从本地磁盘加载模型（请参见[从磁盘加载模型](/model-storage/#load-model-from-disk)）
-2. 从 HTTP 服务器获取模型（请参见[从服务器加载模型](/model-storage/#load-model-from-server)）
-3. 从 S3 等云存储中获取模型（请参见[从云处加载模型](/model-storage/#load-model-from-cloud)）
+1. 从本地磁盘加载模型（请参见[从磁盘加载模型](#load-model-from-disk)）
+2. 从 HTTP 服务器获取模型（请参见[从服务器加载模型](#load-model-from-server)）
+3. 从 S3 等云存储中获取模型（请参见[从云处加载模型](#load-model-from-cloud)）
 
 默认情况下，Rasa CLI 的所有命令都会从本地磁盘加载模型。
 
@@ -84,10 +84,10 @@ rasa run --model 20190506-100418.tar.gz --remote-storage aws
 
 压缩后的模型将从云存储中下载、解压缩并部署。Rasa 支持从如下位置加载模型：
 
-- 亚马逊 S3
-- 谷歌云存储
-- Azure 存储
-- 其他自定义实现的远程存储
+- [亚马逊 S3](https://aws.amazon.com/s3)
+- [谷歌云存储](https://cloud.google.com/storage)
+- [Azure 存储](https://azure.microsoft.com/services/storage)
+- 其他自定义实现的[远程存储](#other-remote-storages)
 
 模型需要存储在存储服务的根文件夹中。目前无法手动指定云存储上的路径。
 
@@ -105,7 +105,7 @@ pip3 install boto3
 - `AWS_ACCESS_KEY_ID`：AWS S3 访问密钥 ID。
 - `AWS_DEFAULT_REGION`：AWS S3 存储桶区域。
 - `BUCKET_NAME`：AWS S3 存储桶名称。
-- `AWS_ENDPOINT_URL`：AWS S3 请求的完整 URL。需要指定一个完整的 URL（包括 http/https 协议）。
+- `AWS_ENDPOINT_URL`：AWS S3 请求的完整 URL。需要指定一个完整的 URL（包括 http/https 协议）。例如：`https://s3.amazonaws.com`。注意，通过将存储桶名称设置为 `BUCKET_NAME` 环境变量，不应该向 `AWS_ENDPOINT_URL` 提供存储桶或对象 URL。
 
 设置好所有环境变量后，可以将 `remote-storage` 选项设置为 `aws` 来启动 Rasa 服务器：
 
@@ -156,7 +156,7 @@ rasa run --model 20190506-100418.tar.gz --remote-storage azure
 
 ### 其他远程存储 {#other-remote-storages}
 
-如果你想使用任何其他云存储，可以提供自己的 [`rasa.nlu.persistor.Persistor`](https://rasa.com/docs/rasa/reference/rasa/nlu/persistor/) 类的 Python 实现。
+如果你想使用任何其他云存储，可以提供自己的 [`rasa.nlu.persistor.Persistor`](https://rasa.com/docs/rasa/reference/rasa/nlu/persistor/){:target="_blank"} 类的 Python 实现。
 
 将 `remote-storage` 设置为持久器实现的模块路径来启动 Rasa 服务器：
 

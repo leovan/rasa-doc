@@ -6,6 +6,12 @@
 
 你已将天气机器人部署到 Facebook 和 Slack。用户可以使用 `ask_weather` 意图来询问天气。如果用户指定了 `location`，则会有一个槽位置。`action_tell_weather` 动作将使用 API 获取天气预报，如果用户未指定，则使用默认位置。该操作会将 `temperature` 设置为天气预报的最高温度。返回的消息将根据他们使用的频道有所不同。
 
+!!! info "在 HTTP 请求中压缩请求体"
+
+    Rasa 可以对自定义动作的 HTTP 请求体进行压缩。默认情况下此选项处于关闭状态，以保证能向后兼容旧版本不能接受压缩的 HTTP 请求体的自定义动作。要启用此选项，请将环境变量 `COMPRESS_ACTION_SERVER_REQUEST` 设置为 `True`。
+
+    Rasa SDK 的 3.2.2，3.3.1，3.4.1 和更高版本的自定义动作服务器支持压缩和非压缩的 HTTP 请求体。无需额外进行设置。
+
 ## 自定义动作输入 {#custom-action-input}
 
 你的动作服务器从 Rasa 服务器接受如下负载：
@@ -155,7 +161,7 @@
 - `latest_event_time`：最后一个事件添加到追踪器的时间戳
 - `followup_action`：调用的动作是强制的后续动作
 - `paused`：对话当前是否暂停
-- `events`：所有先前[事件](/action-server/events/)的列表
+- `events`：所有先前[事件](events.md)的列表
 - `latest_input_channel`：接收到最后一条用户消息的输入频道
 - `active_form`：当前活动表单的名称，如果有
 - `latest_action_name`：机器人执行的最后一个动作的名称
@@ -165,6 +171,8 @@
 ### `domain` {#domain}
 
 `domain` 是 `domain.yml` 文件的 JSON 表示形式。自定义动作不太可能引用其内容，因为他们是静态的并且不指示对话的状态。
+
+你可以控制一个动作是否接受领域，参见[选择性领域](../domain.md#select-which-actions-should-receive-domain)。
 
 ### `version` {#version}
 
@@ -176,7 +184,7 @@ Rasa 服务器需要一个 `events` 和 `responses` 字典作为对自定义动�
 
 ### `events` {#events}
 
-[事件](/action-server/events/)表示动作服务器如何影响对话。在示例中，自定义动作应将最高温度存储在 `temperature` 槽中，因此它需要返回一个 [`slot` 事件](/action-server/events/#slot)。要设置槽并不执行任何其他操作，响应负载应如下所示：
+[事件](events.md)表示动作服务器如何影响对话。在示例中，自定义动作应将最高温度存储在 `temperature` 槽中，因此它需要返回一个 [`slot` 事件](events.md#slot)。要设置槽并不执行任何其他操作，响应负载应如下所示：
 
 ```json
 {
@@ -196,7 +204,7 @@ Rasa 服务器需要一个 `events` 和 `responses` 字典作为对自定义动�
 
 ### `responses` {#responses}
 
-响应可以是[富响应文档](/responses/#rich-responses)中描述的任何响应类型。有关预期格式，请参阅 [API 规范](https://rasa.com/docs/rasa/pages/action-server-api/)的响应示例。
+响应可以是[富响应文档](../responses.md#rich-responses)中描述的任何响应类型。有关预期格式，请参阅 [API 规范](https://rasa.com/docs/rasa/pages/action-server-api/){:target="_blank"}的响应示例。
 
 在示例案例中，你希望向用户发送包含天气预报的消息。要发送常规文本消息，响应负载将如下所示：
 
@@ -256,8 +264,8 @@ Rasa 服务器需要一个 `events` 和 `responses` 字典作为对自定义动�
 
 ## 特殊动作类型 {#special-action-types}
 
-在某些情况下会自动触发一些特殊的动作类型，即[默认动作](/default-actions/)和[槽验证动作](/slot-validation-actions/)。这些特殊动作类型具有预定义的命名约定，必须遵循这些约定以保持自动触发行为。
+在某些情况下会自动触发一些特殊的动作类型，即[默认动作](../default-actions.md)和[槽验证动作](../slot-validation-actions.md)。这些特殊动作类型具有预定义的命名约定，必须遵循这些约定以保持自动触发行为。
 
-可以通过实现具有完全相同名称的自定义动作来自定义默认动作。请参阅有关[默认动作的文档](/default-actions/)来了解每个动作的预期行为。
+可以通过实现具有完全相同名称的自定义动作来自定义默认动作。请参阅有关[默认动作的文档](../default-actions.md)来了解每个动作的预期行为。
 
-槽验证动作在每个用户轮次运行，具体取决于表单是否处于活动状态。当表单不活动时应该运行的槽验证动作必须名为 `action_validate_slot_mappings`。当表单处于活动状态时应该运行的槽验证动作必须名为 `validate_<form name>`。这些动作应该只返回 `SlotSet` 事件，并且分别表现得像 Rasa SDK [`ValidationAction` 类](/action-server/validation-action/#validationaction-class-implementation)和 [`FormValidationAction` 类](/action-server/validation-action/#formvalidationaction-class-implementation)。
+槽验证动作在每个用户轮次运行，具体取决于表单是否处于活动状态。当表单不活动时应该运行的槽验证动作必须名为 `action_validate_slot_mappings`。当表单处于活动状态时应该运行的槽验证动作必须名为 `validate_<form name>`。这些动作应该只返回 `SlotSet` 事件，并且分别表现得像 Rasa SDK [`ValidationAction` 类](validation-action.md#validationaction-class-implementation)和 [`FormValidationAction` 类](validation-action.md#formvalidationaction-class-implementation)。

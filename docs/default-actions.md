@@ -2,7 +2,7 @@
 
 默认动作是默认内置到对话管理器中的动作。其中大部分是根据某些对话情况自动预测的。你可能需要自定义这些来个性化对话机器人。
 
-这些动作中的每一个都有一个默认行为，在下面的部分中进行了描述。为了覆盖此默认行为，请编写一个[自定义动作](/custom-actions/)，其 `name()` 方法返回默认动作相同的名称：
+这些动作中的每一个都有一个默认行为，在下面的部分中进行了描述。为了覆盖此默认行为，请编写一个[自定义动作](custom-actions.md)，其 `name()` 方法返回默认动作相同的名称：
 
 ```python
 class ActionRestart(Action):
@@ -26,7 +26,7 @@ actions:
   - action_restart
 ```
 
-!!! caution "注意"
+!!! warning "警告"
 
     将此动作添加到领域文件后，使用 `rasa train --force` 重新训练模型。否则 Rasa 不会知道你已经改变了任何东西，并且可能会跳过重新训练你的对话模型。
 
@@ -38,14 +38,14 @@ actions:
 
 此动作会重置整个对话历史记录，包括在此期间设置的任何槽。
 
-如果模型配置中包含 [`RulePolicy`](/rules/)，它可以由用户在对话中通过发送 `/restart` 消息来触发。如果你在领域中定义了一个 `utter_restart` 响应，它也会被发送给用户。
+如果模型配置中包含 [`RulePolicy`](rules.md)，它可以由用户在对话中通过发送 `/restart` 消息来触发。如果你在领域中定义了一个 `utter_restart` 响应，它也会被发送给用户。
 
 ## `action_session_start` {#action_session_start}
 
 此动作会启动一个新的对话会话，并在如下情况下执行：
 
 - 每次新对话开始时。
-- 用户在领域[会话配置](/domain/#session-configuration)中的 `session_expiration_time` 参数定义的一段时间内处于非活动状态后。
+- 用户在领域[会话配置](domain.md#session-configuration)中的 `session_expiration_time` 参数定义的一段时间内处于非活动状态后。
 - 当用户在对话期间发送 `/session_start` 消息时。
 
 该动作将重置对话跟踪器，但默认情况下不会清除任何已设置的槽。
@@ -119,19 +119,19 @@ class ActionSessionStart(Action):
 
 ## `action_default_fallback` {#action_default_fallback}
 
-此动作撤销最后一次用户对话机器人交互并发送 `utter_default` 响应（如果已定义）。如果启用了此[回退机制](/fallback-handoff/)，则它是由低动作预测置信度触发的。
+此动作撤销最后一次用户对话机器人交互并发送 `utter_default` 响应（如果已定义）。如果启用了此[回退机制](fallback-handoff.md)，则它是由低动作预测置信度触发的。
 
 ## `action_deactivate_loop` {#action_deactivate_loop}
 
-此动作会停用活动循环并重置请求的槽。这在[处理表单中的非预期路径](/forms/#writing-stories--rules-for-unhappy-form-paths)时使用。
+此动作会停用活动循环并重置请求的槽。这在[处理表单中的非预期路径](forms.md#writing-stories--rules-for-unhappy-form-paths)时使用。
 
-!!! note "注意"
+!!! info "注意"
 
-    如果希望重置所有槽，我们建议使用自定义动作，在表单停用后返回 `AllSlotsReset` 事件。
+    如果希望重置所有槽，我们建议使用自定义动作，在表单停用后返回 [`AllSlotsReset`](https://rasa.com/docs/rasa/reference/rasa/shared/core/events#allslotsreset-objects){:target="_blank"} 事件。
 
 ## `action_two_stage_fallback` {#action_two_stage_fallback}
 
-这是一个用于处理低 NLU 置信度的回退循环。更多信息请参见[处理低 NLU 置信度](/fallback-handoff/#nlu-fallback)的信息。
+这是一个用于处理低 NLU 置信度的回退循环。更多信息请参见[处理低 NLU 置信度](fallback-handoff.md#nlu-fallback)的信息。
 
 ## `action_default_ask_affirmation` {#action_default_ask_affirmation}
 
@@ -143,15 +143,15 @@ class ActionSessionStart(Action):
 
 ## `action_back` {#action_back}
 
-此动作撤销上一次用户与对话机器人的交互。如果配置了 [RulePolicy](/policies/#rule-policy)，它可以由用户通过向对话机器人发送 `/back` 消息来触发。
+此动作撤销上一次用户与对话机器人的交互。如果配置了 [RulePolicy](policies.md#rule-policy)，它可以由用户通过向对话机器人发送 `/back` 消息来触发。
 
 ## 表单动作 {#form-action}
 
-默认情况下，开源 Rasa 使用 `FormAction` 来处理[表单逻辑](/forms/)。你可以通过将带有表单名称的自定义动作添加到领域中来使用自定义动作覆盖此默认动作。覆盖表单的默认动作只能是从开源 Rasa 1.0 迁移到 2.0 过程中使用。
+默认情况下，开源 Rasa 使用 `FormAction` 来处理[表单逻辑](forms.md)。你可以通过将带有表单名称的自定义动作添加到领域中来使用自定义动作覆盖此默认动作。覆盖表单的默认动作只能是从开源 Rasa 1.0 迁移到 2.0 过程中使用。
 
 ## `action_unlikely_intent` {#action_unlikely_intent}
 
-开源 Rasa 通过 [`UnexpecTEDIntentPolicy](/policies/#unexpected-intent-policy) 触发 `action_unlikely_intent`。你可以通过调整 `UnexpecTEDIntentPolicy` 的 [`tolerance`](/policies/#unexpected-intent-policy) 参数来控制预测此动作的频率。
+开源 Rasa 通过 [`UnexpecTEDIntentPolicy`](policies.md#unexpected-intent-policy) 触发 `action_unlikely_intent`。你可以通过调整 `UnexpecTEDIntentPolicy` 的 [`tolerance`](policies.md#unexpected-intent-policy) 参数来控制预测此动作的频率。
 
 ### 自定义 {#customization-1}
 
@@ -166,7 +166,7 @@ class ActionSessionStart(Action):
     - action: trigger_human_handoff
 ```
 
-或者，你也可以通过将 `action_unlikely_intent` 添加到领域中的动作列表并实现自定义行为来覆盖其行为作为[自定义动作](/custom-actions/)：
+或者，你也可以通过将 `action_unlikely_intent` 添加到领域中的动作列表并实现自定义行为来覆盖其行为作为[自定义动作](custom-actions.md)：
 
 ```python
 class ActionUnlikelyIntent(Action):
@@ -181,19 +181,19 @@ class ActionUnlikelyIntent(Action):
         return []
 ```
 
-!!! note "注意"
+!!! info "注意"
 
-    由于 `action_unlikely_intent` 可以在推理期间的任何对话步骤触发，所有仅在故事数据上训练的策略，例如：`TEDPolicy`、`UnexpecTEDIntentPolicy` 和 `MemoizationPolicy` 在进行预测时都会忽略它在跟踪器中的存在。但是，`RulePolicy` 考虑了它的存在，因此[对话行为是可自定义的](/default-actions/#customization-1)。
+    由于 `action_unlikely_intent` 可以在推理期间的任何对话步骤触发，所有仅在故事数据上训练的策略，例如：`TEDPolicy`、`UnexpecTEDIntentPolicy` 和 `MemoizationPolicy` 在进行预测时都会忽略它在跟踪器中的存在。但是，`RulePolicy` 考虑了它的存在，因此[对话行为是可自定义的](default-actions.md#customization-1)。
 
-!!! note "注意"
+!!! info "注意"
 
     `action_unlikely_intent` 不能包含在训练故事中。它只能添加到规则中。
 
 ## `action_extract_slots` {#action_extract_slots}
 
-此动作在每个用户轮次之后，下一个对话机器人预测和执行之前运行。`action_extract_slots` 循环遍历每个领域槽的[槽映射](/domain/#slot-mappings)，以便使用从最新用户消息中提取的信息在整个对话中设置或更新槽。
+此动作在每个用户轮次之后，下一个对话机器人预测和执行之前运行。`action_extract_slots` 循环遍历每个领域槽的[槽映射](domain.md#slot-mappings)，以便使用从最新用户消息中提取的信息在整个对话中设置或更新槽。
 
-如果 `action_extract_slots` 找到[自定义槽映射](/domain/#custom-slot-mappings)，它将首先检查是否通过 `action` 键在映射中定义了自定义动作，然后运行它。
+如果 `action_extract_slots` 找到[自定义槽映射](domain.md#custom-slot-mappings)，它将首先检查是否通过 `action` 键在映射中定义了自定义动作，然后运行它。
 
 应用所有槽映射后，`action_extract_slots` 将运行自定义验证动作 `action_validate_slot_mappings`（如果在领域动作中存在）。否则它将立即返回已经提取的槽。
 
@@ -201,6 +201,6 @@ class ActionUnlikelyIntent(Action):
 
 默认操作 `action_extract_slots` 替换了之前由 `FormAction` 执行的槽提取。如果希望根据从触发表单的意图中提取的信息设置槽，则必须显式指定不包含 `conditions` 键的映射。仅当指定的表单处于活动状态时，才会应用带有条件的槽映射。`action_extract_slots` 直接在每个用户消息之后运行，因此这在激活表单之前。因此，应该应用于触发表单的用户消息的映射不得指定条件，否则表单将在激活后重新请求槽。
 
-!!! note "注意"
+!!! info "注意"
 
     如果 `action_default_fallback` 是对话机器人预测和执行的下一个动作，这将导致 `UserUtteranceReverted` 事件，该事件将取消设置先前在最后一个用户轮次中填充的槽。

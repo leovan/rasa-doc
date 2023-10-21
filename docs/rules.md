@@ -2,15 +2,15 @@
 
 规则是一种用于训练对话机器人的对话管理模型的训练数据。规则描述了应该始终遵循的相同路径的简短对话。
 
-不要过度使用规则。规则非常适合处理小型的特定对话模式，但与[故事](/stories/)不同，规则没有能力泛化至未见过的对话路径。结合规则和故事，可以使对话机器人变得更加鲁棒并能够处理真实的用户行为。
+不要过度使用规则。规则非常适合处理小型的特定对话模式，但与[故事](stories.md)不同，规则没有能力泛化至未见过的对话路径。结合规则和故事，可以使对话机器人变得更加鲁棒并能够处理真实的用户行为。
 
-如果你无法决定是编写故事还是编写规则来实现某种行为，请参见[编写对话数据](/writing-stories/)。
+如果你无法决定是编写故事还是编写规则来实现某种行为，请参见[编写对话数据](writing-stories.md)。
 
 有关 Rasa 对话机器人实现规则的其他示例，请参见[规则示例对话机器人](https://github.com/RasaHQ/rasa/tree/main/examples/rules)。
 
 ## 编写规则 {#writing-a-rule}
 
-在开始编写规则之前，你必须确保将[规则策略](/policies/#rule-policy)添加到模型配置中：
+在开始编写规则之前，你必须确保将[规则策略](policies.md#rule-policy)添加到模型配置中：
 
 ```yaml
 policies:
@@ -111,9 +111,48 @@ rules:
 
 这表明对话机器人应该在等待更多用户输入之前执行另一个动作。
 
+### 关于一个规则 {#abort-a-rule}
+
+规则旨在处理对话机器人的多个输出步骤。一旦需要用户交互就会终止。在[启用一个表单](rules.md#rules-and-forms)时会自动发生，因为其从用户输入第一个槽开始。因此启动后的所有步骤都将被忽略。
+
+此外也可以手动终止。这对于实现有条件的终止准则时很有用。如下是一个示例：
+
+```yaml
+rules:
+
+- rule: Rule which will be conditionaly terminated
+  steps:
+  - intent: greet
+  - action: action_check_termination
+  - action: utter_greet
+  wait_for_user_input: true
+```
+
+```python
+from rasa_sdk import Action
+from rasa_sdk.events import FollowupAction
+
+class ActionCheckTermination(Action):
+
+    def name(self):
+        return "action_check_termination"
+
+    def run(self, dispatcher, tracker, domain):
+
+        # your business logic here
+        should_terminate = check_for_termination(<params>)
+
+        if should_terminate:
+            return [FollowupAction("action_listen")]
+
+        return []
+```
+
+`utter_greet` 在终止完成时从未被执行，即使在用户输入之后也是如此，因为其引发了一个新的意图预测。
+
 ### 规则和表格 {#rules-and-forms}
 
-当[表单](/forms/)处于活动状态时，对话机器人将根据表单的定义方式进行预测，而忽略规则。如果出现以下情况，规则将再次可用：
+当[表单](forms.md)处于活动状态时，对话机器人将根据表单的定义方式进行预测，而忽略规则。如果出现以下情况，规则将再次可用：
 
 - 表单填充了所有必须的槽
-- 表单拒绝执行（更多详细信息，请参见[处理预期路径](/forms/#writing-stories--rules-for-unhappy-form-paths)）
+- 表单拒绝执行（更多详细信息，请参见[处理预期路径](forms.md#writing-stories--rules-for-unhappy-form-paths)）

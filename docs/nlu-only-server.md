@@ -4,7 +4,7 @@
 
 ## 连接到 NLU 服务器 {#connecting-to-an-nlu-server}
 
-可以通过将连接详细信息添加到对话管理服务器的 Endpoint 配置文件，将[仅 Rasa NLU 服务器](/nlu-only/#running-an-nlu-server)连接到单独运行的仅 Rasa 对话管理服务器：
+可以通过将连接详细信息添加到对话管理服务器的 Endpoint 配置文件，将[仅 Rasa NLU 服务器](nlu-only.md#running-an-nlu-server)连接到单独运行的仅 Rasa 对话管理服务器：
 
 ```yaml title="endpoints.yml"
 nlu:
@@ -13,11 +13,11 @@ nlu:
     token_name: <name of the token> # [optional] (default: token)
 ```
 
-`token` 和 `token_name` 指的是可选的[身份验证参数](/http-api/#token-based-auth)。
+`token` 和 `token_name` 指的是可选的[身份验证参数](http-api.md#token-based-auth)。
 
 对话管理服务器应该为不包含 NLU 模型的模型提供服务。要获得仅对话管理的模型，请使用 `rasa train core` 或使用 `rasa train` 但排除所有 NLU 数据。
 
-对话管理服务器收到消息后，会向 `http://<your nlu host>:<your nlu port>/model/parse` [发送请求](https://rasa.com/docs/rasa/pages/http-api#operation/parseModelMessage)，并使用和解析返回的信息。
+对话管理服务器收到消息后，会向 `http://<your nlu host>:<your nlu port>/model/parse` [发送请求](https://rasa.com/docs/rasa/pages/http-api#operation/parseModelMessage){:target="_blank"}，并使用和解析返回的信息。
 
 !!! info "Endpoint 配置"
 

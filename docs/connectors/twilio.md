@@ -19,7 +19,11 @@
 
 你可以通过 Twilio 将 Rasa 对话机器人部署到 WhatsApp。为此，你必须拥有 [WhatsApp Business](https://www.whatsapp.com/business/) 资料。将 WhatsApp Business 资料与你通过 Twilio 购买的电话号码相关联，从而访问[适用于 WhatsApp 的 Twilio API](https://www.twilio.com/docs/whatsapp/api)。
 
-根据 [Twilio API 文档](https://www.twilio.com/docs/whatsapp/api#using-phone-numbers-with-whatsapp)，你使用的电话号码应以 `whatsapp:` 为前缀，如下面 `credentials.yml` 中的描述：
+根据 [Twilio API 文档](https://www.twilio.com/docs/whatsapp/api#using-phone-numbers-with-whatsapp)，你使用的电话号码应以 `whatsapp:` 为前缀，如下面 `credentials.yml` 中的描述。
+
+## 在 Twilio 上运行 {#running-on-twilio}
+
+将 Twilio 凭据添加到 `credentials.yml` 中：
 
 ```yaml
 twilio:
@@ -29,3 +33,33 @@ twilio:
 ```
 
 重启你的 Rasa 服务器，使新的频道 Endpoint 可供 Twilio 发送消息。
+
+#### 使用 Twilio 从 Whatsapp 接受位置数据 {#receiving-location-data-from-whatsapp-with-twilio-connector}
+
+你可以通过如下方式从该频道上的用户接收位置数据（WhatsApp 位置）：
+
+1. 创建一个名为 `locationData` 的意图，并分别为纬度和经度定义两个实体和槽。
+
+    ```yaml title="domain.yml"
+    intents:
+      - locationData
+
+    slots:
+      Latitude:
+        type: text
+        mappings:
+        - type: from_entity
+          entity: Latitude
+
+      Longitude:
+        type: text
+        mappings:
+        - type: from_entity
+          entity: Longitude
+
+    entities:
+      - Latitude
+      - Longitude
+    ```
+
+2. 当用户发送位置消息时，将触发 `locationData`` 意图并从实体设置槽值。请注意，不需要为实体提供训练数据，因为它们由频道处理。

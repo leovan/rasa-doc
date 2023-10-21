@@ -42,13 +42,13 @@ async Action.run(dispatcher, tracker, domain)
 
 参数：
 
-- `dispatcher`：用于将消息发送回用户的调度程序。使用 `dispatcher.utter_message()` 或任何其他 `rasa_sdk.executor.CollectingDispatcher` 方法。请参阅[调度程序文档](/action-server/sdk-dispatcher/)。
-- `tracker`：当前用户的状态追踪器。可以使用 `tracker.get_slot(slot_name)` 访问槽值，最新的用户消息是 `tracker.latest_message.text` 以及任何其他 `rasa_sdk.Tracker` 属性。请参阅[追踪器文档](/action-server/sdk-tracker/)。
+- `dispatcher`：用于将消息发送回用户的调度程序。使用 `dispatcher.utter_message()` 或任何其他 `rasa_sdk.executor.CollectingDispatcher` 方法。请参阅[调度程序文档](sdk-dispatcher.md)。
+- `tracker`：当前用户的状态追踪器。可以使用 `tracker.get_slot(slot_name)` 访问槽值，最新的用户消息是 `tracker.latest_message.text` 以及任何其他 `rasa_sdk.Tracker` 属性。请参阅[追踪器文档](sdk-tracker.md)。
 - `domain`：对话机器人的领域。
 
 返回：
 
-`rasa_sdk.events.Event` 实例的列表。请参阅[事件文档](/action-server/sdk-events/)。
+`rasa_sdk.events.Event` 实例的列表。请参阅[事件文档](sdk-events.md)。
 
 返回类型：
 

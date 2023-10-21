@@ -1,3 +1,3 @@
 # 版本迁移指南
 
-https://rasa.com/docs/rasa/migration-guide/
+<https://rasa.com/docs/rasa/migration-guide/>{:target="_blank"}

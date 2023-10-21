@@ -2,20 +2,20 @@
 
 FAQ 对话机器人是最容易构建的对话机器人，通常也是大家构建的第一种对话机器人。本页面是处理 FAQ 和闲聊等非上下文问题所需的概念和训练数据的指南。
 
-[FAQ](/glossary/#faqs) 和[闲聊](/glossary/#chitchat)是对话机器人使用一组固定的消息进行响应，同时无论之前发生什么对话机器人都应始终以相同的方式进行回答的两种情况。例如，在接下来的对话中，每个问题都可以在对话的任何时候被问到，答案与用户之前所说的内容无关。
+[FAQ](glossary.md#faqs) 和[闲聊](glossary.md#chitchat)是对话机器人使用一组固定的消息进行响应，同时无论之前发生什么对话机器人都应始终以相同的方式进行回答的两种情况。例如，在接下来的对话中，每个问题都可以在对话的任何时候被问到，答案与用户之前所说的内容无关。
 
 <figure markdown>
-  ![](/images/chitchat-faqs/chitchat.png){ width="600" }
+  ![](images/chitchat-faqs/chitchat.png){ width="600" }
   <figcaption>闲聊</figcaption>
 </figure>
 
 ## 用于 FAQ 和闲聊的响应选择器使用指南 {#step-by-step-guide-on-using-response-selector-for-faqs-and-chitchat}
 
-为了处理 FAQ 和闲聊你需要一个基于规则的对话管理策略（[RulePolicy](/policies/#rule-policy)）和一个简单的方式来对问题做出合适的响应（[ResponseSelector](/components/#responseselector)）。
+为了处理 FAQ 和闲聊你需要一个基于规则的对话管理策略（[RulePolicy](policies.md#rule-policy)）和一个简单的方式来对问题做出合适的响应（[ResponseSelector](components.md#responseselector)）。
 
 ### 更新配置 {#updating-the-configuration}
 
-对于 FAQ 和闲聊，你希望对话机器人对于每次问到的相同类型问题都以相同的方式做出回应。[规则](/rules/)可以用来达成这个效果。要使用规则，你需要在配置文件中将 [RulePolicy](/policies/#rule-policy) 添加到策略里：
+对于 FAQ 和闲聊，你希望对话机器人对于每次问到的相同类型问题都以相同的方式做出回应。[规则](rules.md)可以用来达成这个效果。要使用规则，你需要在配置文件中将 [RulePolicy](policies.md#rule-policy) 添加到策略里：
 
 ```yaml title='config.yml'
 policies:
@@ -23,7 +23,7 @@ policies:
 - name: RulePolicy
 ```
 
-之后，将 ResponseSelector 包含在配置文件中的 NLU 管道中。ResponseSelector 需要一个特征提取器和意图分类器才能工作，因此它应该位于管道中这些组件之后，例如：
+之后，将 ResponseSelector 包含在配置文件中的 NLU 流水线中。ResponseSelector 需要一个特征提取器和意图分类器才能工作，因此它应该位于流水线中这些组件之后，例如：
 
 ```yaml title='config.yml'
 pipeline:
@@ -59,9 +59,9 @@ pipeline:
 
 考虑一个包含 20 种不同 FAQ 的示例，尽管每个问题都表示为一个单独的意图，但所有 FAQ 意图在对话中都以相同的方式进行处理。对于每个 FAQ 意图，对话机器人会根据提出的问题检索正确的响应。
 
-你可以使用一个简单的动作，例如 `utter_faq`，通过一个将它们汇总成为一个单独的名为 `faq` 的[检索意图](/glossary/#retrieval-intent)来处理所有 FAQ，而不是编写 20 条规则。
+你可以使用一个简单的动作，例如 `utter_faq`，通过一个将它们汇总成为一个单独的名为 `faq` 的[检索意图](glossary.md#retrieval-intent)来处理所有 FAQ，而不是编写 20 条规则。
 
-单一的动作使用 [ResponseSelector](/components/#responseselector) 的输出来为用户询问的特定 FAQ 返回正确的响应。
+单一的动作使用 [ResponseSelector](components.md#responseselector) 的输出来为用户询问的特定 FAQ 返回正确的响应。
 
 ### 创建规则 {#creating-rules}
 
@@ -111,7 +111,7 @@ intents:
 
 ### 定义响应 {#defining-the-responses}
 
-ResponseSelector 的响应遵循检索意图相同的命名约定。除此之外，它们还可以有同常规对话机器人[响应](/domain/#responses)的所有特征。对于上面列出的闲聊意图，响应可以如下所示：
+ResponseSelector 的响应遵循检索意图相同的命名约定。除此之外，它们还可以有同常规对话机器人[响应](domain.md#responses)的所有特征。对于上面列出的闲聊意图，响应可以如下所示：
 
 ```yaml title='domain.yml'
 responses:
@@ -129,7 +129,7 @@ responses:
 
 完成如下操作后，就可以训练对话机器人并进行测试了！
 
-- [ ] 在 `config.yml` 文件中将 RulePolicy 添加至策略中，将 ResponseSelector 添加到管道中。
+- [ ] 在 `config.yml` 文件中将 RulePolicy 添加至策略中，将 ResponseSelector 添加到流水线中。
 - [ ] 添加至少一个用于响应 FAQ 或闲聊的规则。
 - [ ] 为 FAQ 或闲聊意图添加样本。
 - [ ] 为 FAQ 或闲聊意图田间响应。

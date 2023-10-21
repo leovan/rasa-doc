@@ -2,14 +2,14 @@
 
 在开源机器人框架 Rasa 中使用 `ActionQueryKnowledgeBase` 可以在对话中利用知识库中的信息。
 
-!!! caution "注意"
+!!! warning "警告"
 
     此功能是实验性的。我们通过社区反馈引入了这一实验性功能，因此鼓励大家进行尝试。但是，相关功在未来可能会发生变更或删除。如果有任何正面或负面反馈，可以在 [Rasa 论坛](https://forum.rasa.com/)上进行分享。
 
 基于知识的的动作使你能够处理如下类型的对话：
 
 <figure markdown>
-  ![](/images/action-server/knowledge-base-example.png)
+  ![](../images/action-server/knowledge-base-example.png)
   <figcaption>知识库示例</figcaption>
 </figure>
 
@@ -25,7 +25,7 @@
 
 ### 创建一个知识库 {#create-a-knowledge-base}
 
-用于回答用户请求的数据将存储在知识库中。知识库可用于存储复杂的数据结构。我们建议从使用 `InMemoryKnowledgeBase` 开始。一旦你想处理大量数据，可以切换到自定义知识库（请参见[创建自己的知识库](/action-server/knowledge-bases/#create-a-knowledge-base)）。
+用于回答用户请求的数据将存储在知识库中。知识库可用于存储复杂的数据结构。我们建议从使用 `InMemoryKnowledgeBase` 开始。一旦你想处理大量数据，可以切换到自定义知识库（请参见[创建自己的知识库](#create-a-knowledge-base)）。
 
 要初始化 `InMemoryKnowledgeBase`，你需要在 JSON 文件中提供数据。如下示例包含有关餐馆和酒店的数据。JSON 结构应该包含每个对象类型的键，即 `restaurant` 和 `hotel`。每个对象类型都映射到一个对象列表，这里我们有一个包含 3 家餐厅的列表和一个包含 3 家酒店的列表。
 
@@ -91,7 +91,7 @@
 
 一旦在 JSON 文件（例如 `data.json`）中定义了数据，就可以使用该数据文件创建你的 `InMemoryKnowledgeBase`，该数据将被传递给查询知识库动作。
 
-知识库中的每个对象都应至少具有 `name` 和 `id` 字段来使用默认实现。如果没有，你将不得不[自定义你的 `InMemoryKnowledgeBase`](/action-server/knowledge-bases/#customizing-the-inmemoryknowledgebase)。
+知识库中的每个对象都应至少具有 `name` 和 `id` 字段来使用默认实现。如果没有，你将不得不[自定义你的 `InMemoryKnowledgeBase`](#customizing-the-inmemoryknowledgebase)。
 
 ### 定义 NLU 数据 {#define-the-nlu-data}
 
@@ -99,7 +99,7 @@
 
 - 我们将引入一个新的意图 `query_knowledge_base`
 - 我们将标注 `mention` 实体，以便模型检测到对象的间接提及，例如：“the first one”
-- 我们将广泛使用同义词
+- 我们将广泛使用[同义词](../training-data-format.md#synonyms)
 
 为了让对话机器人了解用户想要从知识库中检索信息，需要定义一个新意图。我们将其称为 `query_knowledge_base`。
 
@@ -129,8 +129,8 @@ nlu:
 
 除了为每种查询类型添加各种训练样本外，还需要在训练样本中指定和标注如下实体：
 
-- `object_type`：当训练样本从知识库中引用特定对象类型时，应该将对象类型标记为实体。使用[同义词](/training-data-format/#synonyms)进行映射，例如 `restaurants` 到 `restaurant`，将正确的对象类型列为知识库中的键。
-- `mention`：如果用户通过“the first one”，“that one”或“it”来引用一个对象，你应该将这些术语标记为 `mention`。还可以使用同义词将一些提及映射到符号。你可以在[解决提及](/action-server/knowledge-bases/#resolve-mentions)中了解这一点。
+- `object_type`：当训练样本从知识库中引用特定对象类型时，应该将对象类型标记为实体。使用[同义词](../training-data-format.md#synonyms)进行映射，例如 `restaurants` 到 `restaurant`，将正确的对象类型列为知识库中的键。
+- `mention`：如果用户通过“the first one”，“that one”或“it”来引用一个对象，你应该将这些术语标记为 `mention`。还可以使用同义词将一些提及映射到符号。你可以在[解决提及](#resolve-mentions)中了解这一点。
 - `attribute`：知识库中定义的所有属性名称都应标识为 NLU 数据中的 `attribute` 。同样，使用同义词将属性名称的变体映射到知识库中使用的变体。
 
 请记住将这些实体添加到你的领域文件中（作为实体和槽）：
@@ -176,7 +176,7 @@ class MyKnowledgeBaseAction(ActionQueryKnowledgeBase):
         super().__init__(knowledge_base)
 ```
 
-每当创建 `ActionQueryKnowledgeBase` 时，都需要将 `KnowledgeBase` 传递给构造函数。它可以是 `InMemoryKnowledgeBase` 或自己的 `KnowledgeBase` 实现（请参阅[创建自己的知识库](/action-server/knowledge-bases/#create-a-knowledge-base)）。你只能从一个知识库中提取信息，因为不支持同时使用多个知识库。
+每当创建 `ActionQueryKnowledgeBase` 时，都需要将 `KnowledgeBase` 传递给构造函数。它可以是 `InMemoryKnowledgeBase` 或自己的 `KnowledgeBase` 实现（请参阅[创建自己的知识库](#create-a-knowledge-base)）。你只能从一个知识库中提取信息，因为不支持同时使用多个知识库。
 
 这是此动作的全部代码。动作的名称为 `action_query_knowledge_base`，不要忘记将其添加到领域文件中：
 
@@ -185,7 +185,7 @@ actions:
 - action_query_knowledge_base
 ```
 
-!!! note "注意"
+!!! info "注意"
 
     如果覆盖默认动作名称 `action_query_knowledge_base`，则需要将如下三个为特征化槽添加到领域文件中：`knowledge_base_objects`、`knowledge_base_last_object` 和 `knowledge_base_last_object_type`。这些槽由 `ActionQueryKnowledgeBase` 在内部使用。如果你保留默认动作名称，则会自动为你添加这些槽。
 
@@ -249,7 +249,13 @@ intents:
 
 ### 在知识库中查询对象属性 {#query-the-knowledge-base-for-an-attribute-of-an-object}
 
-如果用户想要获取有关对象的特定信息，则请求应包括感兴趣的对象和属性。例如，如果用户提出如下问题：
+如果用户想要获取有关对象的特定信息，则请求应包括感兴趣的对象和属性。
+
+!!! info "3.6 版本新特性"
+
+    用户不需要查询知识库来列入这之前的任何类型的对象。`ActionQueryKnowledgeBase` 将从用户的请求中提取对象类型，并在知识库中查询对象的属性。
+
+例如，如果用户提出如下问题：
 
 ```
 What is the cuisine of Berlin Burrito Company?
@@ -266,7 +272,7 @@ intents:
     - What is the [cuisine](attribute) of [Berlin Burrito Company](restaurant)?
 ```
 
-确保将对象类型“restaurant”作为实体和槽添加到领域文件中。
+确保将对象类型“restaurant”作为实体和槽添加到领域文件中。这将支持 `ActionQueryKnowledgeBase` 提取用户感兴趣的对象的对象类型。
 
 ### 解析提及 {#resolve-mentions}
 
@@ -311,7 +317,7 @@ What is the cuisine of the second restaurant you mentioned?
 
 序数提及映射将字符串（例如“1”）映射到列表中的对象，例如 `lambda l: l[0]` 表示索引为 `0` 的对象。
 
-例如，由于序数提及映射不包含“the first one”条目，因此使用[实体同义词](/training-data-format/#synonyms)将 NLU 数据中的“the first one”映射到“1”很重要：
+例如，由于序数提及映射不包含“the first one”条目，因此使用[实体同义词](../training-data-format.md#synonyms)将 NLU 数据中的“the first one”映射到“1”很重要：
 
 ```yaml
 intents:
@@ -322,7 +328,7 @@ intents:
 
 NER 将“first one”检测为提及实体，但将“1”放入提及槽。因此，我们的动作可以将提及槽与序数提及映射一起使用，来将“first one”解析为实际对象“I due forni”。
 
-你可以通过在知识库实现上调用 `set_ordinal_mention_mapping()` 函数来覆盖序数提及映射（请参阅[自定义 `InMemoryKnowledgeBase`](/action-server/knowledge-bases/#customizing-the-inmemoryknowledgebase)）。
+你可以通过在知识库实现上调用 `set_ordinal_mention_mapping()` 函数来覆盖序数提及映射（请参阅[自定义 `InMemoryKnowledgeBase`](#customizing-the-inmemoryknowledgebase)）。
 
 #### 其他提及
 
@@ -381,7 +387,7 @@ Did not find a valid value for attribute 'cuisine' for object 'Berlin Burrito Co
 
 如果要更改对话机器人话语，可以覆盖 `utter_attribute_value()` 方法。
 
-!!! note "注意"
+!!! info "注意"
 
     博客上有一个关于如何在自定义动作中使用知识库的[教程](https://blog.rasa.com/integrating-rasa-with-knowledge-bases/)。本教程详细解释了 `ActionQueryKnowledgeBase` 背后的实现。
 
@@ -442,7 +448,7 @@ Did not find a valid value for attribute 'cuisine' for object 'Berlin Burrito Co
     }
     ```
 
-    你可以通过调用 `set_ordinal_mention_mapping()` 函数来覆盖它。如果你想了解有关如何使用此映射的更多信息，请参见[解析提及](/action-server/knowledge-bases/#resolve-mentions)。
+    你可以通过调用 `set_ordinal_mention_mapping()` 函数来覆盖它。如果你想了解有关如何使用此映射的更多信息，请参见[解析提及](#resolve-mentions)。
 
 有关使用 `set_representation_function_of_object()` 方法覆盖对象类型“hotel”的默认表示的 `InMemoryKnowledgeBase` 的示例实现，请参见[示例对话机器人](https://github.com/RasaHQ/rasa/blob/main/examples/knowledgebasebot/actions/actions.py)。`InMemoryKnowledgeBase` 本身的实现可以在 [rasa-sdk](https://github.com/RasaHQ/rasa-sdk/tree/main/rasa_sdk/knowledge_base/) 包中找到。
 
@@ -450,8 +456,8 @@ Did not find a valid value for attribute 'cuisine' for object 'Berlin Burrito Co
 
 如果你有更多数据，或者如果你想使用更复杂的数据结构，例如涉及不同对象之间的关系，可以创建自己的知识库实现。只要继承 `KnowledgeBase` 并实现 `get_objects()`、`get_object()` 和 `get_attributes_of_object()` 方法。[知识库代码](https://github.com/RasaHQ/rasa-sdk/tree/main/rasa_sdk/knowledge_base/)提供了有关这些方法应该做什么的更多信息。
 
-你还可以通过调整[自定义 `InMemoryKnowledgeBase`](/action-server/knowledge-bases/#customizing-the-inmemoryknowledgebase) 部分中提到的方法来进一步自定义你的知识库。
+你还可以通过调整[自定义 `InMemoryKnowledgeBase`](#customizing-the-inmemoryknowledgebase) 部分中提到的方法来进一步自定义你的知识库。
 
-!!! note "注意"
+!!! info "注意"
 
     我们写了一篇[博客](https://blog.rasa.com/set-up-a-knowledge-base-to-encode-domain-knowledge-for-rasa/)来解释如何建立自己的知识库。

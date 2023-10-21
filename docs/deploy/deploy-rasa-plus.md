@@ -2,4 +2,4 @@
 
 <button data-md-color-primary="amber">仅 Rasa Pro</button>
 
-https://rasa.com/docs/rasa/deploy/deploy-rasa-plus
+<https://rasa.com/docs/rasa/deploy/deploy-rasa-plus>{:target="_blank"}

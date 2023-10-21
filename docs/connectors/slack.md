@@ -20,7 +20,7 @@ slack:
 1. 要创建应用，请转到 [Your Apps](https://api.slack.com/apps)并单击 `Create New App`。
 
     <figure markdown>
-      ![](/images/connectors/slack/slack-create-app.png)
+      ![](../images/connectors/slack/slack-create-app.png)
       <figcaption>创建应用</figcaption>
     </figure>
 
@@ -39,7 +39,7 @@ slack:
       - `reactions:write`
 
     <figure markdown>
-      ![](/images/connectors/slack/slack-scopes.png)
+      ![](../images/connectors/slack/slack-scopes.png)
       <figcaption>设置 Slack 权限</figcaption>
     </figure>
 
@@ -48,7 +48,7 @@ slack:
 3. 在 `OAuth & Permissions` 页面上，单击 `Install App to Workspace` 来将机器人添加到你的工作区。
 
     <figure markdown>
-      ![](/images/connectors/slack/slack-install-app.png)
+      ![](../images/connectors/slack/slack-install-app.png)
       <figcaption>安装应用</figcaption>
     </figure>
 
@@ -66,7 +66,7 @@ slack:
 4. 前往 `Basic Information` 来获取 `Signing Secret`。
 
     <figure markdown>
-      ![](/images/connectors/slack/slack-secret.png)
+      ![](../images/connectors/slack/slack-secret.png)
       <figcaption>Signing Secret</figcaption>
     </figure>
 
@@ -83,9 +83,9 @@ slack:
 
 ## 接受消息 {#receiving-messages}
 
-在继续之前，请确保你已配置用于[发送消息](/connectors/slack/#sending-messages)的 Slack 应用并将 Slack 凭据添加到 `credentials.yml` 文件中。
+在继续之前，请确保你已配置用于[发送消息](#sending-messages)的 Slack 应用并将 Slack 凭据添加到 `credentials.yml` 文件中。
 
-要接收消息，你需要一个公开的 URL，以便 Slack 访问你的对话机器人并告诉你最新的消息。如果在本地运行，可以使用 [ngrok 测试频道](/messaging-and-voice-channels/#testing-channels-on-your-local-machine)。
+要接收消息，你需要一个公开的 URL，以便 Slack 访问你的对话机器人并告诉你最新的消息。如果在本地运行，可以使用 [ngrok 测试频道](../messaging-and-voice-channels.md#testing-channels-on-your-local-machine)。
 
 1. 要配置对话机器人接收消息，你的机器人需要首先运行。使用如下命令启动对话机器人：
 
@@ -106,7 +106,7 @@ slack:
     你无法使用 `localhost` 网址。
 
     <figure markdown>
-      ![](/images/connectors/slack/slack-request-url.png)
+      ![](../images/connectors/slack/slack-request-url.png)
       <figcaption>请求 URL</figcaption>
     </figure>
 
@@ -118,7 +118,7 @@ slack:
     - `message.mpim`
 
     <figure markdown>
-      ![](/images/connectors/slack/slack-events.png)
+      ![](../images/connectors/slack/slack-events.png)
       <figcaption>订阅对话机器人事件</figcaption>
     </figure>
 
@@ -126,19 +126,19 @@ slack:
 
     如果你在设置发送消息时没有为你的应用授予所有必须的权限，系统会提示你重新安装需要执行的应用。否则，Slack 将通过确认你的更改。
 
-!!! note "频道邀请"
+!!! info "频道邀请"
 
-    根据 Slack 文档，请确保邀请你的对话机器人到其应该访问的问道。你可以通过在频道中使用 `/invite` 来邀请。
+    根据 [Slack 文档](https://api.slack.com/authentication/basics#calling)，请确保邀请你的对话机器人到其应该访问的问道。你可以通过在频道中使用 `/invite` 来邀请。
 
 现在你的对话机器人已准备就绪，并将接收新消息的 webhook 通知。
 
 ## 可选：交互式组件 {#optional-interactive-components}
 
-完成发送消息和接收消息后，对话机器人就可以开始使用了。如果你想使用 Slack 的交互组件（按钮或菜单），你需要做一些额外的配置：
+完成[发送消息](#sending-messages)和[接收消息](#receiving-messages)后，对话机器人就可以开始使用了。如果你想使用 Slack 的[交互组件](https://api.slack.com/block-kit/interactivity)（按钮或菜单），你需要做一些额外的配置：
 
-打开 `Interactivity & Shortcuts` 页面并将 `Interactivity` 切换为打开。之后，你需要在[接收消息](/connectors/slack/#receiving-messages)的第二步中使用的 `Request URL` 字段中输入相同的 URL，例如：`https://<host>/webhooks/slack/webhook`。
+打开 `Interactivity & Shortcuts` 页面并将 `Interactivity` 切换为打开。之后，你需要在[接收消息](#receiving-messages)的第二步中使用的 `Request URL` 字段中输入相同的 URL，例如：`https://<host>/webhooks/slack/webhook`。
     <figure markdown>
-      ![](/images/connectors/slack/slack-interactivity.png)
+      ![](../images/connectors/slack/slack-interactivity.png)
       <figcaption>开启交互</figcaption>
     </figure>
 

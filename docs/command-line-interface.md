@@ -4,23 +4,31 @@
 
 ## Cheat Sheet {#cheat-sheet}
 
-| 命令                    | 效果                                                         |
-| ----------------------- | ------------------------------------------------------------ |
-| `rasa init`             | 使用示例训练数据、动作和配置文件创建一个新项目。             |
-| `rasa train`            | 根据你的 NLU 数据和故事训练一个模型，并保存至 `./models`。   |
-| `rasa interactive`      | 通过与你的对话机器人聊天来启动交互式学习会话以创建新的训练数据。 |
-| `rasa shell`            | 加载训练好的模型并让你可以通过命令行与对话机器人交谈。       |
-| `rasa run`              | 使用训练好的模型启动服务。                                   |
-| `rasa run actions`      | 使用 Rasa SDK 启动一个动作服务。                             |
-| `rasa visualize`        | 生成故事的可视化表示。                                       |
-| `rasa test`             | 在任意以 `test_` 开头的文件上测试训练好的 Rasa 模型。        |
-| `rasa data split nlu`   | 对 NLU 训练数据进行 80/20 切分。                             |
-| `rasa data convert`     | 转换不同测试的训练数据。                                     |
-| `rasa data migrate`     | 将 2.0 的领域迁移到 3.0 格式。                               |
-| `rasa data validate`    | 检查领域，NLU 和对话数据是否存在不一致。                     |
-| `rasa export`           | 将对话从一个追踪器存储导出至一个事件代理。                   |
-| `rasa evaluate markers` | 从一个现有的追踪器存储中提取标记。                           |
-| `rasa -h`               | 显示所有可用的命令。                                         |
+| 命令                      | 效果                                                         |
+| ------------------------- | ------------------------------------------------------------ |
+| `rasa init`               | 使用示例训练数据、动作和配置文件创建一个新项目。             |
+| `rasa train`              | 根据你的 NLU 数据和故事训练一个模型，并保存至 `./models`。   |
+| `rasa interactive`        | 通过与你的对话机器人聊天来启动交互式学习会话以创建新的训练数据。 |
+| `rasa shell`              | 加载训练好的模型并让你可以通过命令行与对话机器人交谈。       |
+| `rasa run`                | 使用训练好的模型启动服务。                                   |
+| `rasa run actions`        | 使用 Rasa SDK 启动一个动作服务。                             |
+| `rasa visualize`          | 生成故事的可视化表示。                                       |
+| `rasa test`               | 在任意以 `test_` 开头的文件上测试训练好的 Rasa 模型。        |
+| `rasa test e2e`           | 运行与充当验收测试的操作服务器完全集成的端到端测试。         |
+| `rasa data split nlu`     | 对 NLU 训练数据进行 80/20 切分。                             |
+| `rasa data split stories` | 对故事数据进行 80/20 切分。                                  |
+| `rasa data convert`       | 转换不同测试的训练数据。                                     |
+| `rasa data migrate`       | 将 2.0 的领域迁移到 3.0 格式。                               |
+| `rasa data validate`      | 检查领域，NLU 和对话数据是否存在不一致。                     |
+| `rasa export`             | 将对话从一个追踪器存储导出至一个事件代理。                   |
+| `rasa evaluate markers`   | 从一个现有的追踪器存储中提取标记。                           |
+| `rasa marker upload`      | 将标记配置上传至分析数据流水线。                             |
+| `rasa license`            | 显示许可证信息。                                             |
+| `rasa -h`                 | 显示所有可用的命令。                                         |
+
+!!! info "注意"
+
+    如果你在 Windows 系统中遇到字符编码问题，例如：`UnicodeEncodeError: 'charmap' codec can't encode character ...` 或者终端为正常显示带有颜色的消息，请将 `winpty` 添加到命令的前面，例如 `winpty rasa init` 而不是 `rasa init`。
 
 ## 日志级别 {#log-level}
 
@@ -30,8 +38,10 @@ Rasa 可以生成不同级别的日志信息（例如：警告、信息、错误
 
 1. `LOG_LEVEL_LIBRARIES`：这是一个用于配置开源 Rasa 所用主要库日志级别的通用环境变量。包括 Tensorflow，`asyncio`，APScheduler，SocketIO，Matplotlib，RabbitMQ，Kafka。
 2. `LOG_LEVEL_MATPLOTLIB`：这是一个专门用于配置 Matplotlib 日志级别的环境变量。
-3. `LOG_LEVEL_RABBITMQ`：这是一个专门用于配置 AMQP 库日志级别的环境变量，目前可以处理 `aio_pika` 和 `aiormq` 的日志级别。
+3. `LOG_LEVEL_RABBITMQ`：这是一个专门用于配置 AMQP 库日志级别的环境变量，目前可以设置 `aio_pika` 和 `aiormq` 的日志级别。
 4. `LOG_LEVEL_KAFKA`：这是一个专门用于配置 kafka 日志级别的环境变量。
+5. `LOG_LEVEL_PRESIDIO`：这是一个专门用于配置 Presidio 日志级别的环境变量，目前可以设置 `presidio_analyzer` 和 `presidio_anonymizer` 的日志级别。
+4. `LOG_LEVEL_FAKER`：这是一个专门用于配置 Faker 日志级别的环境变量。
 
 通用配置（`LOG_LEVEL_LIBRARIES`）的优先级相比于专用配置（`LOG_LEVEL_MATPLOTLIB`，`LOG_LEVEL_RABBITMQ` 等）更低。命令行参数设置了最低级别的日志。这意味着可以与这些变量一同使用，例如：
 
@@ -53,6 +63,14 @@ LOG_LEVEL_LIBRARIES=DEBUG LOG_LEVEL_MATPLOTLIB=DEBUG rasa shell --verbose
 ```
 
 命令行日志级别设置了根日志的级别（它包含了重要的 `coloredlogs` 处理器）。这意味着即使环境变量设置一个库日志较低的日志级别，根日志也会拒绝来自该库的消息。如果没有指定，命令行日志级别将被设置为 `INFO`。
+
+## 自定义日志配置
+
+!!! info "3.4 版本新特性"
+
+    Rasa 命令行现在包含一个新参数 `--logging-config-file`，其接受一个 YAML 文件。
+
+你可以在单独的 YAML 文件中配置任意日志格式化器和处理器。日志配置 YAML 文件必须遵循 [Python 内置字典结构](https://docs.python.org/3/library/logging.config.html#dictionary-schema-details)，否则将会验证失败。你可以将此文件作为参数传递给命令行的 `--logging-config-file` 参数，将其同任意 Rasa 命令一起使用。
 
 ## rasa init
 
@@ -100,11 +118,17 @@ rasa train
 
 `rasa train` 会将模型存储在 `--out` 定义的目录中，默认为 `models/`。模型的默认名称为 `<timestamp>.tar.gz`。如果想以不同的方式命名模型，可以通过 `--fixed-model-name` 参数来指定名称。
 
+默认情况下，在训练模型之前需要运行验证。如果想跳过验证，可以使用 `--skip-validation`。如果想在收到验证警告时失败，可以使用 `--fail-on-validation-warnings`。`--validation-max-history` 类似于 `rasa data validate` 中的 `--max-history` 参数。
+
 如下参数可用于设置训练过程：
 
 ```
-usage: rasa train [-h] [-v] [-vv] [--quiet] [--data DATA [DATA ...]]
-                  [-c CONFIG] [-d DOMAIN] [--out OUT] [--dry-run]
+usage: rasa train [-h] [-v] [-vv] [--quiet]
+                  [--logging-config-file LOGGING_CONFIG_FILE]
+                  [--data DATA [DATA ...]] [-c CONFIG] [-d DOMAIN] [--out OUT]
+                  [--dry-run] [--skip-validation]
+                  [--fail-on-validation-warnings]
+                  [--validation-max-history VALIDATION_MAX_HISTORY]
                   [--augmentation AUGMENTATION] [--debug-plots]
                   [--num-threads NUM_THREADS]
                   [--fixed-model-name FIXED_MODEL_NAME] [--persist-nlu-data]
@@ -117,7 +141,7 @@ positional arguments:
     core                Trains a Rasa Core model using your stories.
     nlu                 Trains a Rasa NLU model using your NLU data.
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   --data DATA [DATA ...]
                         Paths to the Core and NLU data files. (default:
@@ -143,6 +167,13 @@ optional arguments:
                         needs to be retrained - 8 means the training was
                         forced (--force argument is specified) (default:
                         False)
+  --skip-validation     Skip validation step before training. (default: False)
+  --fail-on-validation-warnings
+                        Fail on validation warnings. If omitted only errors
+                        will exit with a non zero status code (default: False)
+  --validation-max-history VALIDATION_MAX_HISTORY
+                        Number of turns taken into account for story structure
+                        validation. (default: None)
   --augmentation AUGMENTATION
                         How much data augmentation to use during training.
                         (default: 50)
@@ -184,9 +215,12 @@ Python Logging Options:
                         to DEBUG. (default: None)
   --quiet               Be quiet! Sets logging level to WARNING. (default:
                         None)
+  --logging-config-file LOGGING_CONFIG_FILE
+                        If set, the name of the logging configuration file
+                        will be set to the given name. (default: None)
 ```
 
-有关数据增强如何工作以及如果为参数设置值可以参阅[数据增强](/policies/#data-augmentation)部分。注意 `TEDPilicy` 是唯一受到数据增强影响的策略。
+有关数据增强如何工作以及如果为参数设置值可以参阅[数据增强](policies.md#data-augmentation)部分。注意 `TEDPilicy` 是唯一受到数据增强影响的策略。
 
 有关 `--epoch-fraction` 参数的更多信息，请参见如下有关[增量训练](#incremental-training)的部分。
 
@@ -196,7 +230,7 @@ Python Logging Options:
 
     此功能是实验性的。我们通过社区反馈引入了这一实验性功能，因此鼓励大家进行尝试。但是，相关功在未来可能会发生变更或删除。如果有任何正面或负面反馈，可以在[Rasa 论坛](https://forum.rasa.com/)上进行分享。
 
-为了提高对话机器人的性能，践行 [CDD](/conversation-driven-development/) 和根据用户与机器人交谈的方式增加新的训练样本会很有帮助。通过 `rasa train --finetune` 可以使用已训练的模型来初始化整个流程，之后通过包含额外训练样本的新训练数据进行微调。这有助于减少训练新模型的时间。
+为了提高对话机器人的性能，践行 [CDD](conversation-driven-development.md) 和根据用户与机器人交谈的方式增加新的训练样本会很有帮助。通过 `rasa train --finetune` 可以使用已训练的模型来初始化整个流程，之后通过包含额外训练样本的新训练数据进行微调。这有助于减少训练新模型的时间。
 
 默认情况下，命令会选择 `models/` 目录中的最新模型。如果你希望改进特定的模型，则需要通过执行 `rasa train --finetune <path to model to finetune>` 来指定路径。微调模型通常在训练机器学习组件例如：`DIETClassifier`，`ResponseSelector` 和 `TEDPolicy` 时相比从头开始需要更少的时间。要么使用定义更少批次的模型微调配置，要么使用 `--epoch-fraction` 参数。在模型配置文件中，`--epoch-fraction` 会为每个机器学习组件指定部分批次。例如，训练 `DIETClassifier` 配置使用 100 个批次，指定 `--epoch-fraction 0.5` 将仅使用 50 个批次进行微调。
 
@@ -216,7 +250,7 @@ Python Logging Options:
 rasa interactive
 ```
 
-这将首先训练一个模型，然后启动一个交互式 Shell 会话。之后随着同对话机器人的交谈可以对其预测进行不断修正。如果 [UnexpecTEDIntentPolicy](/policies/#unexpected-intent-policy) 包含在流程中，则可以在任意对话抡次中触发 [`action_unlikely_intent`](/default-actions/#action_unlikely_intent)，之后会显示：
+这将首先训练一个模型，然后启动一个交互式 Shell 会话。之后随着同对话机器人的交谈可以对其预测进行不断修正。如果 [UnexpecTEDIntentPolicy](policies.md#unexpected-intent-policy) 包含在流程中，则可以在任意对话抡次中触发 [`action_unlikely_intent`](default-actions.md#action_unlikely_intent)，之后会显示：
 
 ```
 The bot wants to run 'action_unlikely_intent' to indicate that the last user message was unexpected
@@ -227,13 +261,19 @@ at this point in the conversation. Check out UnexpecTEDIntentPolicy docs to lear
 
 如果使用 `--model` 参数提供一个训练好的模型，则会跳过训练过程直接加载这个模型。
 
-在交互式学习过程中，Rasa 将会可视化当前对话和训练数据中的一些相似对话，来帮助你跟踪当前的进度。会话开始后，可以在 http://localhost:5005/visualization.html 中查看相关可视化。图表生成需要一些时间。运行 `rasa interactive --skip-visualization` 可以跳过可视化。
+在交互式学习过程中，Rasa 将会可视化当前对话和训练数据中的一些相似对话，来帮助你跟踪当前的进度。会话开始后，可以在 <http://localhost:5005/visualization.html> 中查看相关可视化。图表生成需要一些时间。运行 `rasa interactive --skip-visualization` 可以跳过可视化。
+
+!!! info "添加 3.5 版本中引入的 `ASSISTANT_ID` 健"
+
+    在利用元数据不包含 `assistant_id` 的预训练模型运行交互式学习会出现错误并退出。如果发生这种情况，请在 `config.yml` 中添加具有唯一标示值的 `assistant_id` 并重新训练。
 
 如下参数可用于配置交互式学习会话：
 
 ```
-usage: rasa interactive [-h] [-v] [-vv] [--quiet] [--e2e] [-p PORT] [-m MODEL]
-                        [--data DATA [DATA ...]] [--skip-visualization]
+usage: rasa interactive [-h] [-v] [-vv] [--quiet]
+                        [--logging-config-file LOGGING_CONFIG_FILE] [--e2e]
+                        [-p PORT] [-m MODEL] [--data DATA [DATA ...]]
+                        [--skip-visualization]
                         [--conversation-id CONVERSATION_ID]
                         [--endpoints ENDPOINTS] [-c CONFIG] [-d DOMAIN]
                         [--out OUT] [--augmentation AUGMENTATION]
@@ -253,7 +293,7 @@ positional arguments:
                         specified, it will use the latest model in this
                         directory. (default: None)
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   --e2e                 Save story files in e2e format. In this format user
                         messages will be included in the stories. (default:
@@ -271,7 +311,7 @@ optional arguments:
   --conversation-id CONVERSATION_ID
                         Specify the id of the conversation the messages are
                         in. Defaults to a UUID that will be randomly
-                        generated. (default: ddeafee8cf6749edb0a75cd7c36b39ac)
+                        generated. (default: f7e1ab52ece842389eece27b8d4c30c6)
   --endpoints ENDPOINTS
                         Configuration file for the model server and the
                         connectors as a yml file. (default: endpoints.yml)
@@ -287,6 +327,9 @@ Python Logging Options:
                         to DEBUG. (default: None)
   --quiet               Be quiet! Sets logging level to WARNING. (default:
                         None)
+  --logging-config-file LOGGING_CONFIG_FILE
+                        If set, the name of the logging configuration file
+                        will be set to the given name. (default: None)
 
 Train Arguments:
   -c CONFIG, --config CONFIG
@@ -341,9 +384,9 @@ rasa shell
 rasa shell --debug
 ```
 
-!!! note "注意"
+!!! info "注意"
 
-    为了在外部频道中查看问候语和会话起始行为，你可以通过显式发送 `/session_start` 作为第一条消息。否则，会话起始行为将按照[会话配置](/domain/#session-configuration)中的描述开始。
+    为了在外部频道中查看问候语和会话起始行为，你可以通过显式发送 `/session_start` 作为第一条消息。否则，会话起始行为将按照[会话配置](domain.md#session-configuration)中的描述开始。
 
 如下参数可以用于配置此命令。大部分参数同 `rasa run` 相同。有关这些参数的更多信息，请参见[如下部分](#rasa-run)。
 
@@ -351,6 +394,7 @@ rasa shell --debug
 
 ```
 usage: rasa shell [-h] [-v] [-vv] [--quiet]
+                  [--logging-config-file LOGGING_CONFIG_FILE]
                   [--conversation-id CONVERSATION_ID] [-m MODEL]
                   [--log-file LOG_FILE] [--use-syslog]
                   [--syslog-address SYSLOG_ADDRESS]
@@ -365,6 +409,7 @@ usage: rasa shell [-h] [-v] [-vv] [--quiet]
                   [--ssl-password SSL_PASSWORD] [--credentials CREDENTIALS]
                   [--connector CONNECTOR] [--jwt-secret JWT_SECRET]
                   [--jwt-method JWT_METHOD]
+                  [--jwt-private-key JWT_PRIVATE_KEY]
                   {nlu} ... [model-as-positional-argument]
 
 positional arguments:
@@ -376,11 +421,11 @@ positional arguments:
                         specified, it will use the latest model in this
                         directory. (default: None)
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   --conversation-id CONVERSATION_ID
                         Set the conversation ID. (default:
-                        78ccd7a0e719424ca7e910cdc99d1918)
+                        0f80b53f01c44c05b7f60a1d2871cfaf)
   -m MODEL, --model MODEL
                         Path to a trained Rasa model. If a directory is
                         specified, it will use the latest model in this
@@ -411,6 +456,9 @@ Python Logging Options:
                         to DEBUG. (default: None)
   --quiet               Be quiet! Sets logging level to WARNING. (default:
                         None)
+  --logging-config-file LOGGING_CONFIG_FILE
+                        If set, the name of the logging configuration file
+                        will be set to the given name. (default: None)
 
 Server Settings:
   -i INTERFACE, --interface INTERFACE
@@ -465,6 +513,11 @@ JWT Authentication:
   --jwt-method JWT_METHOD
                         Method used for the signature of the JWT
                         authentication payload. (default: HS256)
+  --jwt-private-key JWT_PRIVATE_KEY
+                        A private key used for generating web tokens,
+                        dependent upon which hashing algorithm is used. It
+                        must be used together with --jwt-secret for providing
+                        the public key. (default: None)
 ```
 
 ## rasa run
@@ -493,14 +546,15 @@ Rasa 默认会连接到 credentials 文件中指定的所有频道。在 `--conn
 rasa run --connector rest
 ```
 
-频道的名称需要同 credentials 文件中指定的名称相匹配。关于支持的频道请参见[消息和语音频道](/messaging-and-voice-channels/)。
+频道的名称需要同 credentials 文件中指定的名称相匹配。关于支持的频道请参见[消息和语音频道](messaging-and-voice-channels.md)。
 
 如下参数可用于配置 Rasa 服务：
 
 ```
-usage: rasa run [-h] [-v] [-vv] [--quiet] [-m MODEL] [--log-file LOG_FILE]
-                [--use-syslog] [--syslog-address SYSLOG_ADDRESS]
-                [--syslog-port SYSLOG_PORT]
+usage: rasa run [-h] [-v] [-vv] [--quiet]
+                [--logging-config-file LOGGING_CONFIG_FILE] [-m MODEL]
+                [--log-file LOG_FILE] [--use-syslog]
+                [--syslog-address SYSLOG_ADDRESS] [--syslog-port SYSLOG_PORT]
                 [--syslog-protocol SYSLOG_PROTOCOL] [--endpoints ENDPOINTS]
                 [-i INTERFACE] [-p PORT] [-t AUTH_TOKEN] [--cors [CORS ...]]
                 [--enable-api] [--response-timeout RESPONSE_TIMEOUT]
@@ -510,7 +564,7 @@ usage: rasa run [-h] [-v] [-vv] [--quiet] [-m MODEL] [--log-file LOG_FILE]
                 [--ssl-keyfile SSL_KEYFILE] [--ssl-ca-file SSL_CA_FILE]
                 [--ssl-password SSL_PASSWORD] [--credentials CREDENTIALS]
                 [--connector CONNECTOR] [--jwt-secret JWT_SECRET]
-                [--jwt-method JWT_METHOD]
+                [--jwt-method JWT_METHOD] [--jwt-private-key JWT_PRIVATE_KEY]
                 {actions} ... [model-as-positional-argument]
 
 positional arguments:
@@ -521,7 +575,7 @@ positional arguments:
                         specified, it will use the latest model in this
                         directory. (default: None)
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -m MODEL, --model MODEL
                         Path to a trained Rasa model. If a directory is
@@ -553,6 +607,9 @@ Python Logging Options:
                         to DEBUG. (default: None)
   --quiet               Be quiet! Sets logging level to WARNING. (default:
                         None)
+  --logging-config-file LOGGING_CONFIG_FILE
+                        If set, the name of the logging configuration file
+                        will be set to the given name. (default: None)
 
 Server Settings:
   -i INTERFACE, --interface INTERFACE
@@ -607,9 +664,14 @@ JWT Authentication:
   --jwt-method JWT_METHOD
                         Method used for the signature of the JWT
                         authentication payload. (default: HS256)
+  --jwt-private-key JWT_PRIVATE_KEY
+                        A private key used for generating web tokens,
+                        dependent upon which hashing algorithm is used. It
+                        must be used together with --jwt-secret for providing
+                        the public key. (default: None)
 ```
 
-有关其他参数的更多信息，请参见[模型存储](/model-storage/)。有关所有服务 API 的详细文档，请参见 Rasa [HTTP API](/http-api/) 页面。
+有关其他参数的更多信息，请参见[模型存储](model-storage.md)。有关所有服务 API 的详细文档，请参见 Rasa [HTTP API](http-api.md) 页面。
 
 ## rasa run actions
 
@@ -622,13 +684,14 @@ rasa run actions
 如下参数可用于调整服务设置：
 
 ```
-usage: rasa run actions [-h] [-v] [-vv] [--quiet] [-p PORT]
+usage: rasa run actions [-h] [-v] [-vv] [--quiet]
+                        [--logging-config-file LOGGING_CONFIG_FILE] [-p PORT]
                         [--cors [CORS ...]] [--actions ACTIONS]
                         [--ssl-keyfile SSL_KEYFILE]
                         [--ssl-certificate SSL_CERTIFICATE]
                         [--ssl-password SSL_PASSWORD] [--auto-reload]
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -p PORT, --port PORT  port to run the server at (default: 5055)
   --cors [CORS ...]     enable CORS for the passed origin. Use * to whitelist
@@ -657,6 +720,9 @@ Python Logging Options:
                         to DEBUG. (default: None)
   --quiet               Be quiet! Sets logging level to WARNING. (default:
                         None)
+  --logging-config-file LOGGING_CONFIG_FILE
+                        If set, the name of the logging configuration file
+                        will be set to the given name. (default: None)
 ```
 
 ## rasa visualize
@@ -672,10 +738,12 @@ rasa visualize
 如下参数可以用于配置此命令：
 
 ```
-usage: rasa visualize [-h] [-v] [-vv] [--quiet] [-d DOMAIN] [-s STORIES]
-                      [--out OUT] [--max-history MAX_HISTORY] [-u NLU]
+usage: rasa visualize [-h] [-v] [-vv] [--quiet]
+                      [--logging-config-file LOGGING_CONFIG_FILE] [-d DOMAIN]
+                      [-s STORIES] [--out OUT] [--max-history MAX_HISTORY]
+                      [-u NLU]
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -d DOMAIN, --domain DOMAIN
                         Domain specification. This can be a single YAML file,
@@ -705,6 +773,9 @@ Python Logging Options:
                         to DEBUG. (default: None)
   --quiet               Be quiet! Sets logging level to WARNING. (default:
                         None)
+  --logging-config-file LOGGING_CONFIG_FILE
+                        If set, the name of the logging configuration file
+                        will be set to the given name. (default: None)
 ```
 
 ## rasa test
@@ -729,15 +800,16 @@ rasa test core
 rasa rest nlu
 ```
 
-你可以在[评估 NLU 模型](/testing-your-assistant/#evaluating-an-nlu-model)和[评估对话管理模型](/testing-your-assistant/#evaluating-a-dialogue-model)中找到有关每种测试类型参数的更多信息。
+你可以在[评估 NLU 模型](testing-your-assistant.md#evaluating-an-nlu-model)和[评估对话管理模型](testing-your-assistant.md#evaluating-a-dialogue-model)中找到有关每种测试类型参数的更多信息。
 
 如下参数可以用于 `rasa test`：
 
 ```
-usage: rasa test [-h] [-v] [-vv] [--quiet] [-m MODEL] [-s STORIES]
-                 [--max-stories MAX_STORIES] [--endpoints ENDPOINTS]
-                 [--fail-on-prediction-errors] [--url URL]
-                 [--evaluate-model-directory] [-u NLU]
+usage: rasa test [-h] [-v] [-vv] [--quiet]
+                 [--logging-config-file LOGGING_CONFIG_FILE] [-m MODEL]
+                 [-s STORIES] [--max-stories MAX_STORIES]
+                 [--endpoints ENDPOINTS] [--fail-on-prediction-errors]
+                 [--url URL] [--evaluate-model-directory] [-u NLU]
                  [-c CONFIG [CONFIG ...]] [-d DOMAIN] [--cross-validation]
                  [-f FOLDS] [-r RUNS] [-p PERCENTAGES [PERCENTAGES ...]]
                  [--no-plot] [--successes] [--no-errors] [--no-warnings]
@@ -749,7 +821,7 @@ positional arguments:
     core                Tests Rasa Core models using your test stories.
     nlu                 Tests Rasa NLU models using your test NLU data.
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -m MODEL, --model MODEL
                         Path to a trained Rasa model. If a directory is
@@ -776,6 +848,9 @@ Python Logging Options:
                         to DEBUG. (default: None)
   --quiet               Be quiet! Sets logging level to WARNING. (default:
                         None)
+  --logging-config-file LOGGING_CONFIG_FILE
+                        If set, the name of the logging configuration file
+                        will be set to the given name. (default: None)
 
 Core Test Arguments:
   -s STORIES, --stories STORIES
@@ -815,22 +890,27 @@ NLU Test Arguments:
                         be read and merged together. (default: domain.yml)
 ```
 
+## rasa test e2e
+
+<button data-md-color-primary="amber">仅 Rasa Pro</button>
+
 ## rasa data split
 
 运行如下命令可以对 NLU 训练数据进行拆分：
 
 ```shell
-rasa data split
+rasa data split nlu
 ```
 
 默认情况下，这将对数据进行 80/20 拆分为训练集和测试集。通过如下参数可以指定训练数据、比例和输出目录：
 
 ```
-usage: rasa data split nlu [-h] [-v] [-vv] [--quiet] [-u NLU]
-                           [--training-fraction TRAINING_FRACTION]
+usage: rasa data split nlu [-h] [-v] [-vv] [--quiet]
+                           [--logging-config-file LOGGING_CONFIG_FILE]
+                           [-u NLU] [--training-fraction TRAINING_FRACTION]
                            [--random-seed RANDOM_SEED] [--out OUT]
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -u NLU, --nlu NLU     File or folder containing your NLU data. (default:
                         data)
@@ -854,6 +934,9 @@ Python Logging Options:
                         to DEBUG. (default: None)
   --quiet               Be quiet! Sets logging level to WARNING. (default:
                         None)
+  --logging-config-file LOGGING_CONFIG_FILE
+                        If set, the name of the logging configuration file
+                        will be set to the given name. (default: None)
 ```
 
 如果有用于检索动作的 NLG 数据，则会将其保存到单独的文件中：
@@ -864,6 +947,14 @@ ls train_test_split
       nlg_test_data.yml     test_data.yml
       nlg_training_data.yml training_data.yml
 ```
+
+运行如下命令可以对故事数据进行拆分：
+
+```shell
+rasa data split stories
+```
+
+其与 `split nlu` 命令具有相同的参数，但会加载故事的 yaml 文件并进行随机拆分。目录 `train_test_split` 将处理后的前缀位 `train_` 的训练部分或前缀为 `test_` 的测试部分的所有 yaml 文件。
 
 ## rasa data convert nlu
 
@@ -888,11 +979,12 @@ rasa data convert nlu
 如下参数可以指定输入文件或目录、输出文件或目录和输出格式：
 
 ```shell
-usage: rasa data convert nlu [-h] [-v] [-vv] [--quiet] [-f {json,yaml}]
-                             [--data DATA [DATA ...]] [--out OUT]
-                             [-l LANGUAGE]
+usage: rasa data convert nlu [-h] [-v] [-vv] [--quiet]
+                             [--logging-config-file LOGGING_CONFIG_FILE]
+                             [-f {json,yaml}] [--data DATA [DATA ...]]
+                             [--out OUT] [-l LANGUAGE]
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -f {json,yaml}, --format {json,yaml}
                         Output format the training data should be converted
@@ -917,6 +1009,9 @@ Python Logging Options:
                         to DEBUG. (default: None)
   --quiet               Be quiet! Sets logging level to WARNING. (default:
                         None)
+  --logging-config-file LOGGING_CONFIG_FILE
+                        If set, the name of the logging configuration file
+                        will be set to the given name. (default: None)
 ```
 
 ## rasa data migrate
@@ -939,9 +1034,9 @@ rasa data migrate -d DOMAIN --out OUT_PATH
 
 此命令还会将 2.0 版本的领域文件备份到不同的 `original_domain.yml` 文件或标有 `original_domain` 的目录中。
 
-请注意，如果这些槽是表单 `required_slots` 的一部分，则迁移领域中的槽将包含[映射条件](/domain/#mapping-conditions)。
+请注意，如果这些槽是表单 `required_slots` 的一部分，则迁移领域中的槽将包含[映射条件](domain.md#mapping-conditions)。
 
-!!! caution "警告"
+!!! warning "警告"
 
     当领域文件无效或已经为 3.0 版本格式时，当槽或表单分布在多个领域文件中且原始文件中缺少槽或表单时，迁移过程会终止并触发异常。这样做是为了避免在领域文件中出现重复的迁移部分。请确保所有槽或表单的定义都被整合到一个文件中。
 
@@ -961,6 +1056,10 @@ rasa data validate
 
 校验器会在数据中搜寻错误，例如：两个意图具有一些相同的训练样本。校验器也会检查是否存不同的对话响应来自相同的对话历史的故事。故事之间的冲突会阻碍模型学习正确的对话模式。
 
+!!! info "搜索 3.5 版本中引入的 `ASSISTANT_ID` 健"
+
+    验证器会检查配置文件中是否存在 `assistant_id` 健，如果不存在或未修改默认值，则会发出警告。
+
 如果在 `config.yml` 文件中对一个或多个策略提供了 `max_history` 的值，可以使用 `--max-history <max_history>` 参数为验证命令的提供对应的最小值。
 
 运行如下命令可以仅验证故事的结构：
@@ -969,9 +1068,9 @@ rasa data validate
 rasa data validate stories
 ```
 
-!!! note "注意"
+!!! info "注意"
 
-    运行 `asa data validate` 不会测试[规则](/rules/)是否和故事一致。但是在训练期间，`RulePolicy` 会检查规则和故事之间的冲突。任何此类冲突都会终止训练。
+    运行 `asa data validate` 不会测试[规则](rules.md)是否和故事一致。但是在训练期间，`RulePolicy` 会检查规则和故事之间的冲突。任何此类冲突都会终止训练。
 
     此外，如果你使用端到端的故事，那么可能无法捕获所有冲突。例如，如果两个用户的输入有不同的分词但有相同特征，那么这些输入之后可能存在冲突动作且不会被工具报告。
 
@@ -985,6 +1084,7 @@ rasa data validate stories
 
 ```
 usage: rasa data validate [-h] [-v] [-vv] [--quiet]
+                          [--logging-config-file LOGGING_CONFIG_FILE]
                           [--max-history MAX_HISTORY] [-c CONFIG]
                           [--fail-on-warnings] [-d DOMAIN]
                           [--data DATA [DATA ...]]
@@ -994,7 +1094,7 @@ positional arguments:
   {stories}
     stories             Checks for inconsistencies in the story files.
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   --max-history MAX_HISTORY
                         Number of turns taken into account for story structure
@@ -1025,6 +1125,9 @@ Python Logging Options:
                         to DEBUG. (default: None)
   --quiet               Be quiet! Sets logging level to WARNING. (default:
                         None)
+  --logging-config-file LOGGING_CONFIG_FILE
+                        If set, the name of the logging configuration file
+                        will be set to the given name. (default: None)
 ```
 
 ## rasa export
@@ -1038,12 +1141,15 @@ rasa export
 你可以指定环境文件的位置、发布时间时间戳的最小值和最大值、以及发布的对话 ID：
 
 ```
-usage: rasa export [-h] [-v] [-vv] [--quiet] [--endpoints ENDPOINTS]
+usage: rasa export [-h] [-v] [-vv] [--quiet]
+                   [--logging-config-file LOGGING_CONFIG_FILE]
+                   [--endpoints ENDPOINTS]
                    [--minimum-timestamp MINIMUM_TIMESTAMP]
                    [--maximum-timestamp MAXIMUM_TIMESTAMP]
+                   [--offset-timestamps-by-seconds OFFSET_TIMESTAMPS_BY_SECONDS]
                    [--conversation-ids CONVERSATION_IDS]
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   --endpoints ENDPOINTS
                         Endpoint configuration file specifying the tracker
@@ -1056,6 +1162,11 @@ optional arguments:
                         Maximum timestamp of events to be exported. The
                         constraint is applied in a 'less than' comparison.
                         (default: None)
+  --offset-timestamps-by-seconds OFFSET_TIMESTAMPS_BY_SECONDS
+                        Offset all event timestamps by the specified amount of
+                        seconds. This won't modify the stored events in the
+                        tracker store, but only change the timestamps in the
+                        events exported to the broker. (default: None)
   --conversation-ids CONVERSATION_IDS
                         Comma-separated list of conversation IDs to migrate.
                         If unset, all available conversation IDs will be
@@ -1072,19 +1183,22 @@ Python Logging Options:
                         to DEBUG. (default: None)
   --quiet               Be quiet! Sets logging level to WARNING. (default:
                         None)
+  --logging-config-file LOGGING_CONFIG_FILE
+                        If set, the name of the logging configuration file
+                        will be set to the given name. (default: None)
 ```
 
-!!! tips "将对话导入企业版 Rasa"
+!!! tip "将对话导入企业版 Rasa"
 
-    此命令常用于将旧的对话导入企业版 Rasa 中并对其进行标注。可以在[导入对话至企业版 Rasa](https://rasa.com/docs/rasa-enterprise/installation-and-setup/deploy#1-import-existing-conversations-from-rasa-open-source)中获取更多信息。
+    此命令常用于将旧的对话导入企业版 Rasa 中并对其进行标注。可以在[导入对话至企业版 Rasa](https://rasa.com/docs/rasa-enterprise/installation-and-setup/deploy#1-import-existing-conversations-from-rasa-open-source){:target="_blank"}中获取更多信息。
 
 ## rasa evaluate markers
 
-!!! caution "警告"
+!!! warning "警告"
 
     此功能目前是实验性的，未来可能发生更改或删除。你可以在论坛中进行反馈，来帮助其变为生产可用。
 
-如下命令将你在标记配置文件中定义的[标记](/markers/)应用于存储在[追踪存储](/tracker-stores/)中预先存在的对话，同时生成包含提取的标记和统计概要信息的 `.csv` 文件：
+如下命令将你在标记配置文件中定义的[标记](markers.md)应用于存储在[追踪存储](tracker-stores.md)中预先存在的对话，同时生成包含提取的标记和统计概要信息的 `.csv` 文件：
 
 ```shell
 rasa evaluate markers all extracted_markers.csv
@@ -1121,3 +1235,11 @@ Python Logging Options:
   -vv, --debug          Print lots of debugging statements. Sets logging level to DEBUG. (default: None)
   --quiet               Be quiet! Sets logging level to WARNING. (default: None)
 ```
+
+## rasa markers upload
+
+<button data-md-color-primary="amber">仅 Rasa Pro</button>
+
+## rasa license
+
+<button data-md-color-primary="amber">仅 Rasa Pro</button>

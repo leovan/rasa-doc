@@ -1,8 +1,8 @@
 # 事件
 
-在内部，Rasa 对话表示为事件列表。Rasa SDK 为每个事件提供类，并负责将事件类的实例转换为格式正确的事件负载。
+在内部，Rasa 对话表示为[事件](events.md)列表。Rasa SDK 为每个事件提供类，并负责将事件类的实例转换为格式正确的事件负载。
 
-本页面是关于 `rasa_sdk` 中的事件类。无论使用 `rasa_sdk` 还是其他动作服务器，事件及其底层负载的副作用都是相同的。有关事件的副作用、其底层负载和 Rasa 中的类的详细信息，它被转换为查看所有动作服务器的事件文档（每个小结也有对应链接）。
+本页面是关于 `rasa_sdk` 中的事件类。无论使用 `rasa_sdk` 还是其他动作服务器，事件及其底层负载的副作用都是相同的。有关事件的副作用、其底层负载和 Rasa 中的类的详细信息，它被转换为查看[所有动作服务器的事件文档](events.md)（每个小结也有对应链接）。
 
 !!! tip "重要事件"
 
@@ -20,12 +20,12 @@ rasa_sdk.events.SlotSet(
 )
 ```
 
-底层事件：[`slot`](/action-server/events/#slot)
+底层事件：[`slot`](events.md#slot)
 
 参数：
 
 - `key`：要设置的槽的名称。
-- `value`：将槽设置为的值。数据类型必须与槽的类型匹配。
+- `value`：将槽设置为的值。数据类型必须与槽的[类型](../domain.md#slot-types)匹配。
 - `timestamp`：可选的事件时间戳。
 
 示例：
@@ -40,7 +40,7 @@ evt = SlotSet(key = "name", value = "Mary")
 rasa_sdk.events.AllSlotsReset(timestamp: Optional[float] = None)
 ```
 
-底层事件：[`reset_slots`](/action-server/events/#reset_slots)
+底层事件：[`reset_slots`](events.md#reset_slots)
 
 参数：
 
@@ -65,7 +65,7 @@ rasa_sdk.events.ReminderScheduled(
 )
 ```
 
-底层事件：[`reminder`](/action-server/events/#reminder)
+底层事件：[`reminder`](events.md#reminder)
 
 参数：
 
@@ -100,7 +100,7 @@ ReminderCancelled(
 )
 ```
 
-底层事件：[`cancel_reminder`](/action-server/events/#cancel_reminder)
+底层事件：[`cancel_reminder`](events.md#cancel_reminder)
 
 参数：
 
@@ -121,7 +121,7 @@ evt = ReminderCancelled(name = "remind_water_plants")
 ConversationPaused(timestamp: Optional[float] = None)
 ```
 
-底层事件：[`pause`](/action-server/events/#pause)
+底层事件：[`pause`](events.md#pause)
 
 参数：
 
@@ -139,7 +139,7 @@ evt = ConversationPaused()
 ConversationResumed(timestamp: Optional[float] = None)
 ```
 
-底层事件：[`resume`](/action-server/events/#resume)
+底层事件：[`resume`](events.md#resume)
 
 参数：
 
@@ -160,7 +160,7 @@ FollowupAction(
 )
 ```
 
-底层事件：[`followup`](/action-server/events/#followup)
+底层事件：[`followup`](events.md#followup)
 
 参数：
 
@@ -179,7 +179,7 @@ evt = FollowupAction(name = "action_say_goodbye")
 UserUtteranceReverted(timestamp: Optional[float] = None)
 ```
 
-底层事件：[`rewind`](/action-server/events/#rewind)
+底层事件：[`rewind`](events.md#rewind)
 
 参数：
 
@@ -197,7 +197,7 @@ evt = UserUtteranceReverted()
 ActionReverted(timestamp: Optional[float] = None)
 ```
 
-底层事件：[`undo`](/action-server/events/#undo)
+底层事件：[`undo`](events.md#undo)
 
 参数：
 
@@ -215,7 +215,7 @@ evt = Restarted()
 Restarted(timestamp: Optional[float] = None)
 ```
 
-底层事件：[`restart`](/action-server/events/#restart)
+底层事件：[`restart`](events.md#restart)
 
 参数：
 
@@ -233,7 +233,7 @@ evt = Restarted()
 SessionStarted(timestamp: Optional[float] = None)
 ```
 
-底层事件：[`session_started`](/action-server/events/#session_started)
+底层事件：[`session_started`](events.md#session_started)
 
 参数：
 
@@ -256,7 +256,7 @@ UserUttered(
 )
 ```
 
-底层事件：[`user`](/action-server/events/#user)
+底层事件：[`user`](events.md#user)
 
 参数：
 
@@ -282,12 +282,12 @@ BotUttered(
 )
 ```
 
-底层事件：[`bot`](/action-server/events/#bot)
+底层事件：[`bot`](events.md#bot)
 
 参数：
 
 - `text`：对话机器人发送给用户的文本
-- `data`：对话机器人响应的任何非文本元素。数据结构与 [API 规范](https://rasa.com/docs/rasa/pages/action-server-api/)中给出的 `responses` 结构相匹配。
+- `data`：对话机器人响应的任何非文本元素。数据结构与 [API 规范](https://rasa.com/docs/rasa/pages/action-server-api/){:target="_blank"}中给出的 `responses` 结构相匹配。
 - `metadata`：任意 KV 元数据
 - `timestamp`：可选的事件时间戳
 
@@ -308,7 +308,7 @@ ActionExecuted(
 )
 ```
 
-底层事件：[`action`](/action-server/events/#action)
+底层事件：[`action`](events.md#action)
 
 参数：
 

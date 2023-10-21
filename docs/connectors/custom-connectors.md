@@ -6,7 +6,7 @@
 
 ## `name` 方法 {#the-name-method}
 
-`name` 方法定义连接器的 webhook 的 URL 前缀。它还定义了你应该在任何[频道特定的响应变体](/responses/#channel-specific-response-variations)中使用的频道名称，以及你应该传递给[触发器意图 endpoint](/pages/http-api/#operation/triggerConversationIntent) 上的 `output_channel` 查询参数的名称。
+`name` 方法定义连接器的 webhook 的 URL 前缀。它还定义了你应该在任何[频道特定的响应变体](../responses.md#channel-specific-response-variations)中使用的频道名称，以及你应该传递给[触发器意图 endpoint](https://www.rasa.com/docs/rasa/pages/http-api#operation/triggerConversationIntent) 上的 `output_channel` 查询参数的名称。
 
 例如，如果自定义频道名为 `myio`，则 `name` 方法应定义为：
 

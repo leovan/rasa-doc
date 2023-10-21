@@ -10,7 +10,7 @@
 
 了解如何从其他工具迁移：
 
-- [Google Dialogflow](https://rasa.com/docs/rasa/migrate-from/google-dialogflow-to-rasa/)
-- [Wit.ai](https://rasa.com/docs/rasa/migrate-from/facebook-wit-ai-to-rasa/)
-- [Microsoft LUIS](https://rasa.com/docs/rasa/migrate-from/microsoft-luis-to-rasa/)
-- [IBM Watson](https://rasa.com/docs/rasa/migrate-from/ibm-watson-to-rasa/)
+- [Google Dialogflow](https://rasa.com/docs/rasa/migrate-from/google-dialogflow-to-rasa/){:target="_blank"}
+- [Wit.ai](https://rasa.com/docs/rasa/migrate-from/facebook-wit-ai-to-rasa/){:target="_blank"}
+- [Microsoft LUIS](https://rasa.com/docs/rasa/migrate-from/microsoft-luis-to-rasa/){:target="_blank"}
+- [IBM Watson](https://rasa.com/docs/rasa/migrate-from/ibm-watson-to-rasa/){:target="_blank"}

@@ -8,7 +8,7 @@
 
 - `sender_id`：与对话机器人聊天的人的唯一 ID。
 - `slot`：在领域 `ref` 中定义的填充的槽列表。
-- `latest_message`：包含最新消息属性的字典：意图、实体和文本。
+- `latest_message`：包含最新消息属性的字典：` intent`、`entities` 和 `text`。
 - `events`：所有先前事件的列表。
 - `active_loop`：当前活动循环的名称。
 - `latest_action_name`：对话机器人执行的最后一个动作的名称。

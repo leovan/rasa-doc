@@ -4,7 +4,7 @@
 
 ## CollectingDispatcher {#collectingdispatcher}
 
-`CollectingDispatcher` 有一个 `utter_message` 方法和一个 `messages` 属性。它用于动作的 `run` 方法中，用来向返回到 Rasa 服务器的有效负载添加响应。Rasa 服务器依次将 `BotUttered` 事件添加到每个响应的追踪器。因此，使用调度程序添加的响应不应作为[事件](/action-server/events/)显式返回。例如，如下自定义动作不显式返回任何事件，但将返回响应“Hi, User!”给用户：
+`CollectingDispatcher` 有一个 `utter_message` 方法和一个 `messages` 属性。它用于动作的 `run` 方法中，用来向返回到 Rasa 服务器的有效负载添加响应。Rasa 服务器依次将 `BotUttered` 事件添加到每个响应的追踪器。因此，使用调度程序添加的响应不应作为[事件](events.md)显式返回。例如，如下自定义动作不显式返回任何事件，但将返回响应“Hi, User!”给用户：
 
 ```python
 class ActionGreetUser(Action):
@@ -43,7 +43,7 @@ class ActionGreetUser(Action):
     dispatcher.utter_message(image = "https://i.imgur.com/nGF1K8f.jpg")
     ```
 
-- `json_message`：字典格式的自定义 JSON 有效负载。它可用于发送[特定于频道的响应](/responses/)。如下示例将在 Slack 中返回日期选择器：
+- `json_message`：字典格式的自定义 JSON 有效负载。它可用于发送[特定于频道的响应](../responses.md)。如下示例将在 Slack 中返回日期选择器：
 
     ```python
     date_picker = {
@@ -70,7 +70,7 @@ class ActionGreetUser(Action):
     dispatcher.utter_message(json_message = date_picker)
     ```
 
-- `response`：返回给用户的响应的名称。此响应应在对话机器人领域中指定。
+- `response`：返回给用户的响应的名称。此响应应在对话机器人[领域](../domain.md)中指定。
 
     ```python
     dispatcher.utter_message(response = "utter_greet")
@@ -92,7 +92,7 @@ class ActionGreetUser(Action):
     ```
 
 - `elements`：特定于使用 Facebook 作为消息传递频道。有关预期格式的详细信息，请参阅 [Facebook 的文档](https://developers.facebook.com/docs/messenger-platform/send-messages/template/generic/)。
-- `**kwargs`：任意关键字参数，可用于指定[响应变化中变量](/responses/)的值。例如。给定如下响应：
+- `**kwargs`：任意关键字参数，可用于指定[响应变化中变量](../responses.md)的值。例如。给定如下响应：
 
     ```yaml
     responses:

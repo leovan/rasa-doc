@@ -15,13 +15,13 @@ copyright: 翻译：<a href="https://leovan.me" target="_blank">Leo Van | 范叶
 # Navigation
 nav:
   - 简介: index.md
-  - Rasa Playground: playground.md
+  - Rasa Pro: rasa-pro.md
   - 安装:
     - 环境配置: installation/environment-set-up.md
     - 安装开源 Rasa: installation/installing-rasa-open-source.md
     - 安装 Rasa Pro:
-      - 架构概述: rasa-pro/architecture-overview.md
-      - Rasa Pro 安装: rasa-pro/installation.md
+      - Rasa Pro 成果: installation/rasa-pro/rasa-pro-artifacts.md
+      - Rasa Pro 安装: installation/rasa-pro/installation.md
   - 构建对话机器人:
     - 从其他工具迁移（测试）: migrate-from.md
     - 命令行界面: command-line-interface.md
@@ -51,9 +51,12 @@ nav:
   - 监控和分析对话机器人:
     - 分析:
       - 开始使用: monitoring/analytics/getting-started-with-analytics.md
+      - 实时标记分析: monitoring/analytics/realtime-markers.md
       - 示例查询: monitoring/analytics/example-queries.md
       - 数据结构参考: monitoring/analytics/data-structure-reference.md
     - 追踪: monitoring/tracing.md
+    - 负载测试指南: monitoring/load-testing-guidelines.md
+  - 个人身份信息管理: pii-management.md
   - 概念:
     - 训练数据:
       - 训练数据格式: training-data-format.md
@@ -63,12 +66,13 @@ nav:
     - 领域: domain.md
     - 配置:
       - 概述: model-configuration.md
-      - 管道组件: components.md
+      - 组件: components.md
       - 策略: policies.md
       - 自定义图组件: custom-graph-components.md
       - 导入器: training-data-importers.md
       - 语言支持: language-support.md
       - 图配方: graph-recipe.md
+      - 空间: spaces.md
     - 动作:
       - 概述: actions.md
       - 响应: responses.md
@@ -79,16 +83,19 @@ nav:
     - 验证:
       - 标记: markers.md
     - 频道连接器:
-      - 个人网站: connectors/your-own-website.md
-      - Facebook Messenger: connectors/facebook-messenger.md
-      - Slack: connectors/slack.md
-      - Telegram: connectors/telegram.md
-      - Twilio: connectors/twilio.md
-      - Google Hangouts Chat: connectors/hangouts.md
-      - Microsoft Bot Framework: connectors/microsoft-bot-framework.md
-      - Cisco Webex Teams: connectors/cisco-webex-teams.md
-      - RocketChat: connectors/rocketchat.md
-      - Mattermost: connectors/mattermost.md
+      - 文本和聊天:
+        - 个人网站: connectors/your-own-website.md
+        - Facebook Messenger: connectors/facebook-messenger.md
+        - Slack: connectors/slack.md
+        - Telegram: connectors/telegram.md
+        - Twilio: connectors/twilio.md
+        - Google Hangouts Chat: connectors/hangouts.md
+        - Microsoft Bot Framework: connectors/microsoft-bot-framework.md
+        - Cisco Webex Teams: connectors/cisco-webex-teams.md
+        - RocketChat: connectors/rocketchat.md
+        - Mattermost: connectors/mattermost.md
+      - 语音:
+        - Audiocodes VoiceAI Connect: connectors/audiocodes-voiceai-connect.md
       - 自定义连接器: connectors/custom-connectors.md
     - 架构:
       - 概述: arch-overview.md
@@ -96,6 +103,7 @@ nav:
       - 事件代理: event-brokers.md
       - 模型存储: model-storage.md
       - 锁存储: lock-stores.md
+      - 密钥管理: secrets-managers.md
       - 仅使用 NLU: nlu-only.md
       - NLG 服务器: nlg.md
   - 动作服务器:
@@ -120,16 +128,16 @@ nav:
   - 参考:
     - Rasa 遥测: telemetry/telemetry.md
     - 遥测事件参考: telemetry/reference.md
-    - 代码参考: https://rasa.com/docs/rasa/reference/rasa/cli/arguments/data/
+    - 代码参考: reference.md
   - 更新日志:
     - 开源 Rasa 变更日志: changelog.md
     - Rasa SDK 变更日志: sdk_changelog.md
     - 兼容性矩阵: compatibility-matrix.md
     - 版本迁移指南: migration-guide.md
-    - 活跃维护版本: https://rasa.com/rasa-product-release-and-maintenance-policy/
+    - 活跃维护版本: rasa-product-release-and-maintenance-policy.md
   - API 规范页面:
-    - Rasa HTTP API: https://rasa.com/docs/rasa/pages/http-api/
-    - Rasa Action Server API: https://rasa.com/docs/rasa/pages/action-server-api/
+    - Rasa HTTP API: pages/http-api.md
+    - Rasa Action Server API: pages/action-server-api.md
 
 # Theme
 theme:
@@ -138,10 +146,11 @@ theme:
   search_index_only: true
   language: zh
   features:
+    - content.code.copy
+    - navigation.indexes
     - navigation.top
     - search.highlight
     - search.suggest
-    - tabs
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -184,7 +193,6 @@ extra_css:
   - css/button.css
   - css/image.css
   - css/table.css
-  - css/google-adsense.css
 extra_javascript:
   - js/math.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
@@ -192,19 +200,15 @@ extra_javascript:
 
 # Markdown extensions
 markdown_extensions:
-  - admonition
   - abbr
+  - admonition
   - attr_list
   - def_list
   - footnotes
-  - meta
   - md_in_html
-  - tables
+  - meta
   - toc:
       permalink: true
-      slugify: !!python/object/apply:pymdownx.slugs.slugify
-        kwds:
-          case: lower
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.betterem:
@@ -213,16 +217,21 @@ markdown_extensions:
   - pymdownx.critic
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
-  - pymdownx.highlight
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.keys
   - pymdownx.magiclink:
+      normalize_issue_symbols: true
       repo_url_shorthand: true
       user: leovan
       repo: rasa-doc
   - pymdownx.mark
+  - pymdownx.snippets
   - pymdownx.smartsymbols
   - pymdownx.superfences:
       custom_fences:
@@ -231,6 +240,10 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
+      combine_header_slug: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde

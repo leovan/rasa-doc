@@ -31,19 +31,19 @@ SANIC_HOST=192.168.69.150 python -m rasa_sdk --actions actions
 使用命令运行动作服务器的完整选项列表如下：
 
 ```
-usage: __main__.py [-h] [-p PORT] [--cors [CORS [CORS ...]]]
-                   [--actions ACTIONS] [--ssl-keyfile SSL_KEYFILE]
+usage: __main__.py [-h] [-p PORT] [--cors [CORS ...]] [--actions ACTIONS]
+                   [--ssl-keyfile SSL_KEYFILE]
                    [--ssl-certificate SSL_CERTIFICATE]
                    [--ssl-password SSL_PASSWORD] [--auto-reload] [-v] [-vv]
                    [--quiet] [--log-file LOG_FILE]
+                   [--logging-config_file LOGGING_CONFIG_FILE]
 
 starts the action endpoint
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -p PORT, --port PORT  port to run the server at
-  --cors [CORS [CORS ...]]
-                        enable CORS for the passed origin. Use * to whitelist
+  --cors [CORS ...]     enable CORS for the passed origin. Use * to whitelist
                         all origins
   --actions ACTIONS     name of action package to be loaded
   --ssl-keyfile SSL_KEYFILE
@@ -62,5 +62,7 @@ optional arguments:
                         to DEBUG
   --quiet               Be quiet! Sets logging level to WARNING
   --log-file LOG_FILE   Store logs in specified file.
-
+  --logging-config_file LOGGING_CONFIG_FILE
+                        If set, the name of the logging configuration file
+                        will be set to the given name.
 ```

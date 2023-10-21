@@ -19,19 +19,19 @@ CDD 不是一个线性过程，在开发和改进对话机器人的过程中可�
 
 在 [Rasa 博客](https://blog.rasa.com/conversation-driven-development-a-better-approach-to-building-ai-assistants/)上可以阅读有关这些操作和 CDD 概念的更多信息。
 
-你还可以查看专门为 CDD 构建的工具 [Rasa X/Enterprise](https://rasa.com/docs/rasa-enterprise/)。
+你还可以查看专门为 CDD 构建的工具 [Rasa X/Enterprise](https://rasa.com/docs/rasa-enterprise/){:target="_blank"}。
 
 ## 早期开发阶段中的 CDD {#cdd-in-early-stages-of-development}
 
 如果你还处在对话机器人开发的早期阶段，那么 CDD 似乎没有什么作用，毕竟此时还没有任何对话。但是，你在对话机器人开发的一开始就可以采用如下 CDD 动作：
 
-1. 使用 CDD 创建训练数据的详细信息，请参见有关 [NUL 数据](/generating-nlu-data/)和[故事](/writing-stories/)的最佳实践。
+1. 使用 CDD 创建训练数据的详细信息，请参见有关 [NUL 数据](generating-nlu-data.md)和[故事](writing-stories.md)的最佳实践。
 2. 将对话机器人尽早的交付测试用户。CDD 就是为了倾听用户的声音，因此越早越好。测试用户可以是并不了解对话机器内部如何工作的任意用户。对话机器人开发团队的人不应该作为测试用户，因为他们明确知道对话机器人能做什么不能做什么。测试用户应该同最终使用用户一样仅对对话机器人的领域知识有一定了解。
-3. 设置 CI/CD 管道。由于可以从对话中获得洞察信息，CDD 可以对对话机器人进行快速小步迭代。在早期开发中就[设置 CI/CD 管道](/setting-up-ci-cd/)能够让你基于对话快速做出反应。
+3. 设置 CI/CD 流水线。由于可以从对话中获得洞察信息，CDD 可以对对话机器人进行快速小步迭代。在早期开发中就[设置 CI/CD 流水线](setting-up-ci-cd.md)能够让你基于对话快速做出反应。
 
 ## 对话机器人生产环境中的 CDD {#cdd-with-a-bot-in-production}
 
-一旦对话机器人投入生产，你将有更多的对话来获得洞察信息。然后就可以全面应用 CDD 操作。在这个阶段，可以[在服务器上安装 Rasa X/Enterprise](https://rasa.com/docs/rasa-enterprise/installation-and-setup/installation-guide/#helm-chart) 来部署对话机器人并在生产中使用中启用 CDD。
+一旦对话机器人投入生产，你将有更多的对话来获得洞察信息。然后就可以全面应用 CDD 操作。在这个阶段，可以[在服务器上安装 Rasa X/Enterprise](https://rasa.com/docs/rasa-enterprise/installation-and-setup/installation-guide/#helm-chart){:target="_blank"} 来部署对话机器人并在生产中使用中启用 CDD。
 
 ### 回顾 {#review}
 
@@ -41,19 +41,19 @@ CDD 不是一个线性过程，在开发和改进对话机器人的过程中可�
 
 - 查看发生 `out_of_scope` 意图或回退行为时的对话。这些可能为潜在的新技能，或只是错误分类的用户对话。
 - 查看用户不满意的情况，例如转接到人工的请求。
-- 如果对话机器人在管道中通过 [`UnexpecTEDIntentPolicy`](/policies/#unexpected-intent-policy) 进行训练，你可以在任意对话轮次中查看预测值为 `action_unlikely_intent` 的对话。当用户表达的最后一个意图在当前对话上下文中是非预期的时候，则会预测为 `action_unlikely_intent`。还可以通过运行如下的[独立脚本](https://gist.github.com/alwx/b426b7b573ff963c85c65ea6466528d7)来过滤出这类对话：
+- 如果对话机器人在流水线中通过 [`UnexpecTEDIntentPolicy`](policies.md#unexpected-intent-policy) 进行训练，你可以在任意对话轮次中查看预测值为 `action_unlikely_intent` 的对话。当用户表达的最后一个意图在当前对话上下文中是非预期的时候，则会预测为 `action_unlikely_intent`。还可以通过运行如下的[独立脚本](https://gist.github.com/alwx/b426b7b573ff963c85c65ea6466528d7)来过滤出这类对话：
     - 从追踪存储中获取真实对话。
-    - 在获取的对话中运行 `rasa test` 并在单独的警告文件中过滤包含 `action_unlikely_intent` 的对话。你可以在[如何解释这些告警](/testing-your-assistant/#interpreting-the-generated-warnings)中阅读更多信息。
+    - 在获取的对话中运行 `rasa test` 并在单独的警告文件中过滤包含 `action_unlikely_intent` 的对话。你可以在[如何解释这些告警](testing-your-assistant.md#interpreting-the-generated-warnings)中阅读更多信息。
 
-回顾这些对话子集可以帮助你了解真实用户是否出现了训练数据中不存在的对话路径，对于 `TEDPolicy` 等机器学习策略来说会“令人惊讶”。添加这些对话路径（如果 `TEDPolicy` 失败，可能会进行更正）作为训练故事将取得通过 `TEDPolicy` 等策略更鲁棒的动作预测。鼓励用户调整 [`UnexpecTEDIntentPolicy` 的 `tolerance` 参数](/policies/#tuning-the-tolerance-parameter)，来控制在警告文件中对话包含“令人惊讶”的程度。
+回顾这些对话子集可以帮助你了解真实用户是否出现了训练数据中不存在的对话路径，对于 `TEDPolicy` 等机器学习策略来说会“令人惊讶”。添加这些对话路径（如果 `TEDPolicy` 失败，可能会进行更正）作为训练故事将取得通过 `TEDPolicy` 等策略更鲁棒的动作预测。鼓励用户调整 [`UnexpecTEDIntentPolicy` 的 `tolerance` 参数](policies.md#tuning-the-tolerance-parameter)，来控制在警告文件中对话包含“令人惊讶”的程度。
 
 ### 标记 {#annotate}
 
-将来自真实对话的新用户对话添加到训练数据中来持续践行 [NLU 的最佳实践](/generating-nlu-data/)。注意不要将 NLU 模型过度拟合到训练数据中已经存在的对话。当不断将已经正确预测且具有较高置信度的用户对话添加到训练数据中时就会发生这样的问题。为了避免过拟合并帮助模型针对多样化的用户对话更加泛化，应该仅添加模型先前预测不正确或置信度较低的用户对话。
+将来自真实对话的新用户对话添加到训练数据中来持续践行 [NLU 的最佳实践](generating-nlu-data.md)。注意不要将 NLU 模型过度拟合到训练数据中已经存在的对话。当不断将已经正确预测且具有较高置信度的用户对话添加到训练数据中时就会发生这样的问题。为了避免过拟合并帮助模型针对多样化的用户对话更加泛化，应该仅添加模型先前预测不正确或置信度较低的用户对话。
 
 ### 测试 {#test}
 
-将成功的用户对话添加到[测试对话](/testing-your-assistant/)中。持续地执行这样的操作有助于确保在对话机器人进行其他修复时不会导致回退。
+将成功的用户对话添加到[测试对话](testing-your-assistant.md)中。持续地执行这样的操作有助于确保在对话机器人进行其他修复时不会导致回退。
 
 ### 跟踪 {#track}
 
@@ -65,4 +65,4 @@ CDD 不是一个线性过程，在开发和改进对话机器人的过程中可�
 
 ### 修复 {#fix}
 
-随着扩展和提高对话机器人的能力，持续践行[故事的最佳实践](/writing-stories/)。让用户需求来指导添加哪些技能以及进行哪些修复。实施小步快速而不是偶尔进行较大的更改。这有助于衡量更改的有效性，因为这可以更加频繁的获取用户的反馈。你的 [CI/CD 管道](/setting-up-ci-cd/)可以让你有信心完成此工作。
+随着扩展和提高对话机器人的能力，持续践行[故事的最佳实践](writing-stories.md)。让用户需求来指导添加哪些技能以及进行哪些修复。实施小步快速而不是偶尔进行较大的更改。这有助于衡量更改的有效性，因为这可以更加频繁的获取用户的反馈。你的 [CI/CD 流水线](setting-up-ci-cd.md)可以让你有信心完成此工作。

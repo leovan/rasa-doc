@@ -5,7 +5,7 @@
 对话机器人通常在支持用户目标时需要在做某些事之前从用户那里收集所需的信息。例如：一个餐厅搜索对话机器人需要收集一些有关用户偏好的信息，以便找到合适的餐厅：
 
 <figure markdown>
-  ![](/images/business-logic/find-a-restaurant.png){ width="600" }
+  ![](images/business-logic/find-a-restaurant.png){ width="600" }
   <figcaption>寻找一个餐厅</figcaption>
 </figure>
 
@@ -13,7 +13,7 @@
 
 ## 使用表单处理业务逻辑指南 {#step-by-step-guide-on-using-forms-to-handle-business-logic}
 
-[表单](/forms/)通过提示用户输入信息来完成工作，直至收集所有必须的信息。信息存储在[槽](/domain/#slots)中。一旦所有必须的槽都被填满，对话机器人就会处理用户的原始请求。
+[表单](forms.md)通过提示用户输入信息来完成工作，直至收集所有必须的信息。信息存储在[槽](domain.md#slots)中。一旦所有必须的槽都被填满，对话机器人就会处理用户的原始请求。
 
 ### 定义表单 {#defining-the-form}
 
@@ -41,7 +41,7 @@ forms:
         - outdoor_seating
 ```
 
-这些槽需要添加到领域的 `slots` 部分，以及定义如何填充槽的[槽映射](/domain/#slot-mappings)。对于从 `from_entity` 填充的槽，还需要将实体添加到领域中。由表单填充的槽通常不会影响对话，因此需要将 `influence_conversation` 设置为 `false`：
+这些槽需要添加到领域的 `slots` 部分，以及定义如何填充槽的[槽映射](domain.md#slot-mappings)。对于从 `from_entity` 填充的槽，还需要将实体添加到领域中。由表单填充的槽通常不会影响对话，因此需要将 `influence_conversation` 设置为 `false`：
 
 ```yaml title='domain.yml'
 entities:
@@ -75,7 +75,7 @@ slots:
         requested_slot: outdoor_seating
 ```
 
-`number` 槽通过实体进行填充。[DucklingEntityExtractor](/components/#ducklingentityextractor) 可以提取像数字这样的实体。要使用它，请将 DucklingEntityExtractor 添加到 NLU 管道中：
+`number` 槽通过实体进行填充。[DucklingEntityExtractor](components.md#ducklingentityextractor) 可以提取像数字这样的实体。要使用它，请将 DucklingEntityExtractor 添加到 NLU 流水线中：
 
 ```yaml title='config.yml'
 language: en
@@ -89,15 +89,15 @@ pipeline:
 
 `outdoor_seating` 槽会基于用户的意图进行填充，如果是 `affirm` 则为 `true`，如果是 `deny` 则为 `false`。
 
-但是，只有在用户回答问题“Do you want to sit outside?”时，才应该将槽设置为 `true` 或 `false`。要强制此条件，`outdoor_seating` 槽的条件要求 `restaurant_form` 处于活动状态，并且请求的槽为 `outdoor_seating`。如果没有条件并且用户在对话的早些时候发送了一条带有 `affirm` 或 `deny` 意图的消息，那么当激活表单时，`outdoor_seating` 槽就已经被填充了。因此，该表格不会提示用户对于座位的偏好。更多信息请参见[条件映射](/domain/#mapping-conditions)。
+但是，只有在用户回答问题“Do you want to sit outside?”时，才应该将槽设置为 `true` 或 `false`。要强制此条件，`outdoor_seating` 槽的条件要求 `restaurant_form` 处于活动状态，并且请求的槽为 `outdoor_seating`。如果没有条件并且用户在对话的早些时候发送了一条带有 `affirm` 或 `deny` 意图的消息，那么当激活表单时，`outdoor_seating` 槽就已经被填充了。因此，该表格不会提示用户对于座位的偏好。更多信息请参见[条件映射](domain.md#mapping-conditions)。
 
 #### 验证槽 {#validating-slots}
 
-通常，你需要在接受用户输入之前对其进行验证，例如检查给定的菜系是否在对话机器人的可用菜系数据库中。有关验证动作的更多信息，请参阅[验证表单输入](/forms/#validating-form-input)的文档。
+通常，你需要在接受用户输入之前对其进行验证，例如检查给定的菜系是否在对话机器人的可用菜系数据库中。有关验证动作的更多信息，请参阅[验证表单输入](forms.md#validating-form-input)的文档。
 
 #### 请求槽 {#requesting-slots}
 
-要指定机器人如何询问所需的信息，你可以在领域中定义名为 `utter_ask_{slotname}` 的 [`responses`](/domain/#responses)：
+要指定机器人如何询问所需的信息，你可以在领域中定义名为 `utter_ask_{slotname}` 的 [`responses`](domain.md#responses)：
 
 ```yaml title='domain.yml'
 responses:
@@ -111,7 +111,7 @@ responses:
 
 ### 更新配置 {#updating-the-configuration}
 
-一个表单的[期望路径](/glossary/#happy--unhappy-paths)应该定义为[规则](/rules/)，这意味着你需要将 [RulePolicy](/policies/#rule-policy) 添加到策略中：
+一个表单的[期望路径](glossary.md#happy--unhappy-paths)应该定义为[规则](rules.md)，这意味着你需要将 [RulePolicy](policies.md#rule-policy) 添加到策略中：
 
 ```yaml title='config.yml'
 policies:
@@ -140,7 +140,7 @@ rules:
       - action: utter_slots_values   # action to take after the form is complete
 ```
 
-通过拆分表单的激活和提交，如果用户提供[非预期的输入](/unexpected-input/)或通过[闲聊](/chitchat-faqs/)打断了表单，规则仍然可用。
+通过拆分表单的激活和提交，如果用户提供[非预期的输入](unexpected-input.md)或通过[闲聊](chitchat-faqs.md)打断了表单，规则仍然可用。
 
 ### 更新 NLU 训练数据 {#updating-the-nlu-training-data}
 
@@ -241,4 +241,4 @@ responses:
 - [ ] 定义表单完成时对话机器人要采取的动作或响应
 - [ ] 使用定义的新意图和动作更新领域
 
-要尝试新定义的表单，需要通过运行 `rasa train` 重新训练对话机器人模型并启动 `rasa shell`。由于 DucklingEntityExtractor 将用于提取实体，你需要在后台启动 Duckling（请参见[运行 Duckling 说明](/components/#DucklingEntityExtractor)）。
+要尝试新定义的表单，需要通过运行 `rasa train` 重新训练对话机器人模型并启动 `rasa shell`。由于 DucklingEntityExtractor 将用于提取实体，你需要在后台启动 Duckling（请参见[运行 Duckling 说明](components.md#DucklingEntityExtractor)）。

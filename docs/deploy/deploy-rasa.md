@@ -2,7 +2,7 @@
 
 本页面介绍如何使用 Helm 部署开源 Rasa。
 
-!!! note "注意"
+!!! info "注意"
 
     Rasa Helm Chart 是开源的，位于 [helm-charts 仓库](https://github.com/rasahq/helm-charts)中。如果你发现任何错误或有改进建议，可以在次仓库中[创建 issue](https://github.com/RasaHQ/helm-charts/issues/new)。
 
@@ -91,7 +91,7 @@
 
 你可以在 [Rasa Helm Chart 仓库](https://github.com/RasaHQ/helm-charts/tree/main/charts/rasa#values)中找到所有可用的值。
 
-!!! note "注意"
+!!! info "注意"
 
     Rasa chart 的默认配置会部署一个开源 Rasa 服务器，下载一个模型，并为下载的模型提供服务。访问 [Rasa Helm Chart 仓库](https://github.com/RasaHQ/helm-charts/tree/main/charts/rasa#quick-start)来获取更多配置示例。
 
@@ -106,7 +106,7 @@ applicationSettings:
   initialModel: "https://github.com/RasaHQ/rasa-x-demo/blob/master/models/model.tar.gz?raw=true"
 ```
 
-!!! note "注意"
+!!! info "注意"
 
     初始模型下载的 URL 必须指向一个 tar.gz 文件，同时不能要求身份验证。
 
@@ -115,6 +115,13 @@ applicationSettings:
 ### 部署开源 Rasa 对话机器人 {#deploy-rasa-assistant}
 
 运行如下命令：
+
+```shell
+kubectl version --short --client
+
+# The output should be similar to this
+# Client Version: v1.19.11
+```
 
 ```shell
 # Add the repository which contains the Rasa Helm Chart
@@ -128,7 +135,7 @@ helm install \
     rasa/rasa
 ```
 
-!!! note "注意"
+!!! info "注意"
 
     仅适用于 OpenShift：如果部署失败并且 `oc get events` 返回 `1001 is not an allowed group spec.containers[0].securityContext.securityContext.runAsUser`，请使用如下值重新安装命令：
 

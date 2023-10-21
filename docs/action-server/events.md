@@ -29,7 +29,7 @@ JSON：
 参数：
 
 - `name`：要设置的槽的名称。
-- `value`：将槽设置为的值。数据类型必须与槽的类型匹配。
+- `value`：将槽设置为的值。数据类型必须与槽的[类型](../domain.md#slot-types)匹配。
 
 Rasa 类：`rasa.core.events.SlotSet`
 
@@ -108,7 +108,7 @@ JSON：
 
 ### `pause` {#pause}
 
-阻止对话机器人响应用户消息。对话将保持暂停状态，并且在明确恢复对话之前不会预测任何动作。
+阻止对话机器人响应用户消息。对话将保持暂停状态，并且在明确[恢复](#resume)对话之前不会预测任何动作。
 
 自动追踪：从不
 
@@ -218,7 +218,7 @@ Rasa 类：`rasa.core.events.Restarted`
 - 每当用户第一次开始与对话机器人对话时。
 - 每当会话过期的（在领域中指定 `session_expiration_time` 之后），用户恢复他们的对话。
 
-使用 [`restart`](/action-server/events/#restart) 事件重新启动对话不会自动导致 `session_started` 事件。
+使用 [`restart`](#restart) 事件重新启动对话不会自动导致 `session_started` 事件。
 
 JSON：
 
@@ -289,7 +289,7 @@ JSON：
 参数：
 
 - `text`：对话机器人发送给用户的文本
-- `data`：对话机器人响应的任何非文本元素。数据结构与 [API 规范](https://rasa.com/docs/rasa/pages/action-server-api/)中给出的 `responses` 结构相匹配。
+- `data`：对话机器人响应的任何非文本元素。数据结构与 [API 规范](https://rasa.com/docs/rasa/pages/action-server-api/){:target="_blank"}中给出的 `responses` 结构相匹配。
 
 Rasa 类：`rasa.core.events.BotUttered`
 

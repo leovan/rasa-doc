@@ -8,17 +8,17 @@
 
 让对话机器人优雅地处理非预期的路径很重要，但同时无法预测一个用户可能采取的路径。通常，开发者在设计非预期的路径时会尝试考虑所有可能的分歧路径。为状态机中的每个可能状态（其中很多永远无法达到）进行规划需要大量额外的工作并会显著增加训练时间。
 
-相反，我们建议在设计非预期的路径时采用[对话驱动的开发](/conversation-driven-development/)。对话驱动开发建议尽早与测试用户分享对话机器人，并收集真实的对话数据，这些数据可以准确地告诉你用户是如何偏离预期路径的。从这些数据中，你可以创建故事来完成用户的请求，并思考如何引导他们回到预期的路径上来。
+相反，我们建议在设计非预期的路径时采用[对话驱动的开发](conversation-driven-development.md)。对话驱动开发建议尽早与测试用户分享对话机器人，并收集真实的对话数据，这些数据可以准确地告诉你用户是如何偏离预期路径的。从这些数据中，你可以创建故事来完成用户的请求，并思考如何引导他们回到预期的路径上来。
 
 ## 何时编写故事或规则 {#when-to-write-stories-vs-rules}
 
-[规则](/rules/)是对话管理用于处理应始终遵循相同路径的对话片段的一种训练数据。
+[规则](rules.md)是对话管理用于处理应始终遵循相同路径的对话片段的一种训练数据。
 
 规则在实现如下场景中很有用：
 
-- [单轮交互](/chitchat-faqs/)：有些消息不需要上下文就可以进行回答。规则是一种将意图映射到响应的简单方法，可以为这些消息指定固定的答案。
-- [回退行为](/fallback-handoff/)：结合 [`FallbackClassifier`](/components/#fallbackclassifier)，可以编写规则来响应具有一定回退行为的低置信度用户消息。
-- [表单](/forms/)：激活和提交表单通常都会遵循固定的路径。你可以编写规则来处理表单期间的[非预期输入](/unexpected-input/)。
+- [单轮交互](chitchat-faqs.md)：有些消息不需要上下文就可以进行回答。规则是一种将意图映射到响应的简单方法，可以为这些消息指定固定的答案。
+- [回退行为](fallback-handoff.md)：结合 [`FallbackClassifier`](components.md#fallbackclassifier)，可以编写规则来响应具有一定回退行为的低置信度用户消息。
+- [表单](forms.md)：激活和提交表单通常都会遵循固定的路径。你可以编写规则来处理表单期间的[非预期输入](unexpected-input.md)。
 
 因为规则无法泛化到未遇见过的对话，因此你应该将他们保留为单轮对话片段，并使用故事来训练多轮对话。
 
@@ -51,9 +51,9 @@ stories:
 
 ### 何时使用槽来影响对话 {#when-to-use-slots-to-influence-conversations}
 
-槽充当的是对话机器人的内存。当定义一个槽时，你可以定义一个[槽](/domain/#slots)是否应该影响对话。`influence_conversation` 属性设置为 `false` 的槽将仅用于存储信息。`influence_conversation` 属性设置为 `true` 的槽可以基于存储的信息来影响对话流。
+槽充当的是对话机器人的内存。当定义一个槽时，你可以定义一个[槽](domain.md#slots)是否应该影响对话。`influence_conversation` 属性设置为 `false` 的槽将仅用于存储信息。`influence_conversation` 属性设置为 `true` 的槽可以基于存储的信息来影响对话流。
 
-可以基于[槽映射](/domain/#slot-mappings)在每条用户信息之后设置槽。它们也可以通过响应用于消息的[自定义动作](/actions/)来进行设置。所有影响对话的槽都需要添加到故事或规则中。例如：你可以使用自定义动作设置的布尔值槽使用如下故事并根据其值控制对话流：
+可以基于[槽映射](domain.md#slot-mappings)在每条用户信息之后设置槽。它们也可以通过响应用于消息的[自定义动作](actions.md)来进行设置。所有影响对话的槽都需要添加到故事或规则中。例如：你可以使用自定义动作设置的布尔值槽使用如下故事并根据其值控制对话流：
 
 ```yaml
 stories:
@@ -157,7 +157,7 @@ stories:
 
 ### 使用或语句和检查点 {#using-or-statements-and-checkpoints}
 
-[或语句](/stories/#or-statements)和[检查点](/stories/#checkpoints)可用于减少必须编写的故事数量。但你应该谨慎使用它们。过度使用或语句和检查点会减慢训练速度，创建过多的检查点会让你的故事难以理解。
+[或语句](stories.md#or-statements)和[检查点](stories.md#checkpoints)可用于减少必须编写的故事数量。但你应该谨慎使用它们。过度使用或语句和检查点会减慢训练速度，创建过多的检查点会让你的故事难以理解。
 
 #### 或语句 {#or-statements}
 
@@ -310,16 +310,16 @@ stories:
 
 ## 处理上下文切换 {#handling-context-switching}
 
-通常，用户不会用你向他们询问的消息做出回应，而是会用不相关的问题来偏离预期的路径。使用 [CDD](/conversation-driven-development/) 来了解用户采用的非预期的路径，通过创建故事来处理上下文切换。
+通常，用户不会用你向他们询问的消息做出回应，而是会用不相关的问题来偏离预期的路径。使用 [CDD](conversation-driven-development.md) 来了解用户采用的非预期的路径，通过创建故事来处理上下文切换。
 
 ### 使用规则进行上下文切换 {#using-rules-for-context-switching}
 
-在某些情况下，例如单轮插入语，你可以使用[规则](/rules/)而非[故事](/stories/)来处理上下文切换。
+在某些情况下，例如单轮插入语，你可以使用[规则](rules.md)而非[故事](stories.md)来处理上下文切换。
 
 考虑如下对话场景：
 
 <figure markdown>
-  ![](/images/writing-conversation-data/single-turn-interjection.png){ width="600" }
+  ![](images/writing-conversation-data/single-turn-interjection.png){ width="600" }
   <figcaption>单轮插入语</figcaption>
 </figure>
 
@@ -342,7 +342,7 @@ rules:
 例如，如果你想在用户询问时切换上下文，然后在询问完成后返回原始流程：
 
 <figure markdown>
-  ![](/images/writing-conversation-data/contextual-interjection.png){ width="600" }
+  ![](images/writing-conversation-data/contextual-interjection.png){ width="600" }
   <figcaption>上下文插入语</figcaption>
 </figure>
 
@@ -375,11 +375,11 @@ stories:
 
 通过与对话机器人交流并提供反馈，交互式学习可以轻松编写故事。这是探索对话机器人可以做什么的一个强大方法，也是修复其所犯错误最简单的方法。基于机器学习的对话的一个优点是，当你的机器人还不知道如何做某事时，你可以直接教它！
 
-在开源 Rasa 中，你可以使用 [`rasa interactive`](/command-line-interface/#rasa-interactive) 在命令行中运行交互式学习。
+在开源 Rasa 中，你可以使用 [`rasa interactive`](command-line-interface.md#rasa-interactive) 在命令行中运行交互式学习。
 
 ### 命令行交互式学习 {#command-line-interactive-learning}
 
-`rasa interactive` 命令将在命令行中启动交互式学习。如果对话机器人有自定义动作，请确保也要在单独的终端窗口中[运行你的动作服务](/action-server/running-action-server/)。
+`rasa interactive` 命令将在命令行中启动交互式学习。如果对话机器人有自定义动作，请确保也要在单独的终端窗口中[运行你的动作服务](action-server/running-action-server.md)。
 
 在交互模式下，你将会被要求在机器人继续之前确认每个意图和动作的预测，如下为一个示例：
 

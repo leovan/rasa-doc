@@ -4,7 +4,7 @@
 
 !!! tip "寻找 API Endpoint？"
 
-    查看 [API 规范](https://rasa.com/docs/rasa/pages/http-api/)来获取所有可用的 Endpoint 以及他们的请求和响应格式。
+    查看 [API 规范](https://rasa.com/docs/rasa/pages/http-api/){:target="_blank"}来获取所有可用的 Endpoint 以及他们的请求和响应格式。
 
 ## 启用 HTTP API {#enabling-the-http-api}
 
@@ -18,15 +18,15 @@ rasa run --enable-api
 
 请主要，使用仅 NLU 模型启动服务器，并非所有可用 Endpoint 都可以调用。一些 Endpoint 将返回 409 状态码，应为需要经过训练的对话模型来处理请求。
 
-!!! caution "注意"
+!!! warning "警告"
 
-    确保通过限制对服务器的访问（例如使用防火墙）或启用身份验证方法来保护你的服务器。请参阅[安全注意事项](/http-api/#security-considerations)。
+    确保通过限制对服务器的访问（例如使用防火墙）或启用身份验证方法来保护你的服务器。请参阅[安全注意事项](#security-considerations)。
 
-默认情况下，HTTP 服务器作为单个进程运行。可以使用 `SANIC_WORKERS` 环境变量更改工作进程的数量。建议将工作进程的数量设置为可用的 CPU 核数（更多信息请参见 [Sanic 文档](https://sanicframework.org/en/guide/deployment/running.html#workers)）。这只能与 `RedisLockStore` 结合使用（请参见[锁存储](/lock-stores/)）。
+默认情况下，HTTP 服务器作为单个进程运行。可以使用 `SANIC_WORKERS` 环境变量更改工作进程的数量。建议将工作进程的数量设置为可用的 CPU 核数（更多信息请参见 [Sanic 文档](https://sanicframework.org/en/guide/deployment/running.html#workers)）。这只能与 `RedisLockStore` 结合使用（请参见[锁存储](lock-stores.md)）。
 
-!!! caution "注意"
+!!! warning "警告"
 
-    [SocketIO 频道](/connectors/your-own-website/#websocket-channel)不支持多个工作进程。
+    [SocketIO 频道](connectors/your-own-website.md#websocket-channel)不支持多个工作进程。
 
 ## 安全注意事项 {#security-considerations}
 

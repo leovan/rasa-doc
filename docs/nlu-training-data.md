@@ -2,23 +2,23 @@
 
 NLU 训练数据存储了有关用户消息的结构化信息。
 
-NLU（自然语言理解）的目标是从用户消息中提取结构化信息。这通常包括用户的[意图](/glossary/#intent)和他们消息包含的[实体](/glossary/#entity)。你可以将[正则表达式](/nlu-training-data/#regular-expressions)和[查找表](/nlu-training-data/#lookup-tables)等额外信息添加到训练数据中，来帮助模型正确的识别意图和实体。
+NLU（自然语言理解）的目标是从用户消息中提取结构化信息。这通常包括用户的[意图](glossary.md#intent)和他们消息包含的[实体](glossary.md#entity)。你可以将[正则表达式](nlu-training-data.md#regular-expressions)和[查找表](nlu-training-data.md#lookup-tables)等额外信息添加到训练数据中，来帮助模型正确的识别意图和实体。
 
 ## 训练样本 {#training-examples}
 
 NLU 训练数据由按意图分类的示例用户消息组成。为了更容易使用你的意图，请使用用户想要通过该意图完成的内容相关的内容对其命名，保证名称全部为小写字母，并避免使用空格和特殊符号。
 
-!!! note "注意"
+!!! info "注意"
 
-    `/` 符号为保留的分割符，用于将[检索意图](/glossary/#retrieval-intent)与响应文本标识符分隔。确保不要在意图的名称中使用它。
+    `/` 符号为保留的分割符，用于将[检索意图](glossary.md#retrieval-intent)与响应文本标识符分隔。确保不要在意图的名称中使用它。
 
 ## 实体 {#entities}
 
-[实体](/glossary/#entity)是用户消息中的结构化信息。要使实体提取工作，你需要指定训练数据来训练机器学习模型，或者你需要定义[正则表达式](/nlu-training-data/#regular-expressions-for-entity-extraction)来使用基于字符模式的 [`RegexEntityExtractor`](/components/#regexentityextractor) 提取实体。
+[实体](glossary.md#entity)是用户消息中的结构化信息。要使实体提取工作，你需要指定训练数据来训练机器学习模型，或者你需要定义[正则表达式](nlu-training-data.md#regular-expressions-for-entity-extraction)来使用基于字符模式的 [`RegexEntityExtractor`](components.md#regexentityextractor) 提取实体。
 
 在决定你需要提取哪些实体时，请考虑你的对话机器人需要哪些信息来实现其用户目标。用户可能会提供任何用户目标都不需要的信息，你并不需要从中提取实体。
 
-有关如何在训练数据中标注实体，请参见[训练数据格式](/training-data-format/)。
+有关如何在训练数据中标注实体，请参见[训练数据格式](training-data-format.md)。
 
 ## 同义词 {#synonyms}
 
@@ -38,19 +38,19 @@ nlu:
 
 然后，如果这些短语中的任何一个被提取为一个实体，它将被映射为 `credit` 值。
 
-!!! note "提供训练样本"
+!!! info "提供训练样本"
 
     同义词映射发生在提取实体之后。这意味着你的训练样本应包括同义词示例（`credit card account` 和 `credit account`），以便模型学会将它们识别为实体并用 `credit` 替换它们。
 
-有关如何在训练数据中包含同义词的详细信息，请参见[训练数据格式](/training-data-format/)。
+有关如何在训练数据中包含同义词的详细信息，请参见[训练数据格式](training-data-format.md)。
 
 ## 正则表达式 {#regular-expressions}
 
-你可以结合管道中的 [`RegexFeaturizer`](/components/#regexfeaturizer) 和 [`RegexEntityExtractor`](/components/#regexentityextractor) 组件使用正则表达式来改进意图分类和实体提取。
+你可以结合流水线中的 [`RegexFeaturizer`](components.md#regexfeaturizer) 和 [`RegexEntityExtractor`](components.md#regexentityextractor) 组件使用正则表达式来改进意图分类和实体提取。
 
 ### 用于意图分类的正则表达式 {#regular-expressions-for-intent-classification}
 
-你可以通过在管道中包含 `RegexFeaturizer` 组件来使用正则表达式改进意图分类。使用 `RegexFeaturizer` 时，正则表达式不会作为对意图进行分类的规则。它仅提供意图分类器用于学习意图分类模式的功能。目前，所有意图分类器均可以使用可用的正则表达式功能。
+你可以通过在流水线中包含 `RegexFeaturizer` 组件来使用正则表达式改进意图分类。使用 `RegexFeaturizer` 时，正则表达式不会作为对意图进行分类的规则。它仅提供意图分类器用于学习意图分类模式的功能。目前，所有意图分类器均可以使用可用的正则表达式功能。
 
 正则表达式的名称是一个用户可读的描述。它可以帮助你记住正则表达式的用途，它是相应模式特征的标题。其不必匹配任何意图或实体名称。一个用于“help”请求的正则表达式如下所示：
 
@@ -65,7 +65,7 @@ nlu:
 
 尽量以匹配尽可能少的单词的方式创建正则表达式。例如，使用 `\bhelp\b` 而不是 `help.*`，因为后者可能匹配整个消息，而第一个仅匹配一个单词。
 
-!!! note "提供训练样本"
+!!! info "提供训练样本"
 
     `RegexFeaturizer` 为意图分类器提供特征，但它不直接预测意图。提供足够多的包含正则表达式的样本，以便意图分类器可以学习使用正则表达式特征。
 
@@ -75,11 +75,11 @@ nlu:
 
 #### 将正则表达式作为特征 {#regular-expressions-as-features}
 
-你可以使用正则表达式为 NLU 管道中的 [`RegexFeaturizer`](/components/#regexfeaturizer) 组件创建特征。
+你可以使用正则表达式为 NLU 流水线中的 [`RegexFeaturizer`](components.md#regexfeaturizer) 组件创建特征。
 
 将正则表达式与 `RegexFeaturizer` 一起使用时，正则表达式的名称无关紧要。使用 `RegexFeaturizer` 时，正则表达式提供一种特征，可以帮助模型学习意图/实体和符合正则表达式的输入之间的关联。
 
-!!! note "提供训练样本"
+!!! info "提供训练样本"
 
     `RegexFeaturizer` 为实体提取器提供特征，但它不直接预测实体。提供足够多的包含正则表达式的样本，以便意图分类器可以学习使用正则表达式特征。
 
@@ -87,7 +87,7 @@ nlu:
 
 #### 用于基于规则实体提取的正则表达式 {#regular-expressions-for-rule-based-entity-extraction}
 
-你可以使用 NLU 管道中的 [`RegexEntityExtractor`](/components/#regexentityextractor) 组件将正则表达式用于基于规则的实体提取。
+你可以使用 NLU 流水线中的 [`RegexEntityExtractor`](components.md#regexentityextractor) 组件将正则表达式用于基于规则的实体提取。
 
 使用 `RegexEntityExtractor` 时，正则表达式的名称应与你要提取的实体名称匹配。例如，你可以通过在训练数据中包含如下正则表达式和至少两个标注的样本来提取 10-12 位的账号：
 
@@ -106,7 +106,7 @@ nlu:
 
 ### 查找表 {#lookup-tables}
 
-查找表是用于生成不区分大小写的正则表达式模式的单词列表。它们的使用方式与使用正则表达式的方式相同，与管道中的 `RegexFeaturizer` 和 `RegexEntityExtractor` 组件结合使用。
+查找表是用于生成不区分大小写的正则表达式模式的单词列表。它们的使用方式与使用[正则表达式](nlu-training-data.md#regular-expressions)的方式相同，与流水线中的 [`RegexFeaturizer`](components.md#regexfeaturizer) 和 [`RegexEntityExtractor`](components.md#regexentityextractor) 组件结合使用。
 
 你可以使用查找表来帮助提取具有一组已知可能值的实体。确保查找表足够详尽。例如，要提取国家名称，你可以添加包含所有国家的查找表：
 
@@ -146,7 +146,7 @@ Give me a [small]{"entity": "size", "group": "1"} pizza with [mushrooms]{"entity
 a [large]{"entity": "size", "group": "2"} [pepperoni]{"entity": "topping", "group": "2"}
 ```
 
-有关如何在训练数据中定义具有角色和组的实体的详细信息，请参见[训练数据格式](/training-data-format/#entities)。
+有关如何在训练数据中定义具有角色和组的实体的详细信息，请参见[训练数据格式](training-data-format.md#entities)。
 
 提取器返回的实体对象将包括检测到的角色/组标签。
 
@@ -175,13 +175,13 @@ a [large]{"entity": "size", "group": "2"} [pepperoni]{"entity": "topping", "grou
 }
 ```
 
-!!! note "注意"
+!!! info "注意"
 
-    目前仅 [`DIETClassifier`](/components/#dietclassifier) 和 [`CRFEntityExtractor`](/components/#crfentityextractor) 支持实体角色和组。
+    目前仅 [`DIETClassifier`](components.md#dietclassifier) 和 [`CRFEntityExtractor`](components.md#crfentityextractor) 支持实体角色和组。
 
 为了使用具有角色和组的实体正确训练你的模型，请确保为实体和角色或组标签的每个组合包含足够的训练样本。为了使模型能够泛化，请确保在训练样本中包含一些变化。例如，应该包括一些 `fly TO y FROM x` 的样本，而不仅仅只有 `fly FROM x TO y`。
 
-要从具有特定角色/组的实体填充槽，你需要为槽定义一个 `from_entity` [槽映射](/domain/#slot-mappings)并指定所需的角色/组。例如：
+要从具有特定角色/组的实体填充槽，你需要为槽定义一个 `from_entity` [槽映射](domain.md#slot-mappings)并指定所需的角色/组。例如：
 
 ```yaml
 entities:
@@ -207,7 +207,7 @@ slots:
 
 ### 影响对话预测的实体角色和组 {#entity-roles-and-groups-influencing-dialogue-predictions}
 
-如果你想按角色或组影响对话预测，则需要修改你的故事来包含所需的角色或组标签。你还需要在领域文件中列出实体的相应角色和组。
+如果你想按角色或组影响对话预测，则需要修改你的故事来包含所需的角色或组标签。你还需要在[领域文件](domain.md#entities)中列出实体的相应角色和组。
 
 假设你想根据用户的位置输出不同的句子。例如，如果用户刚从伦敦抵达，你可能想问一下去伦敦的行程如何。但是，如果用户正在前往马德里的途中，你可能希望该用户有一个愉快的旅途。你可以通过如下两个故事实现此目的：
 
@@ -236,7 +236,7 @@ stories:
 
 ## BILOU 实体标记 {#bilou-entity-tagging}
 
-[DIETClassifier](/components/#dietclassifier) 和 [CRFEntityExtractor](/components/#crfentityextractor) 具有 `BILOU_flag` 选项，其表示为用于机器学习模型在处理实体是的一种标记模式。`BILOU` 是 Beginning、Inside、Last、Outside 和 Unit-length 的缩写。
+[DIETClassifier](components.md#dietclassifier) 和 [CRFEntityExtractor](components.md#crfentityextractor) 具有 `BILOU_flag` 选项，其表示为用于机器学习模型在处理实体是的一种标记模式。`BILOU` 是 Beginning、Inside、Last、Outside 和 Unit-length 的缩写。
 
 例如，一个训练样本如下：
 
@@ -261,6 +261,6 @@ stories:
 
 与普通标记模式相比，BILOU 标记模式更丰富。在预测实体时，它可以有助于提高机器学习模型的性能。
 
-!!! note "不一致的 BILOU 标签"
+!!! info "不一致的 BILOU 标签"
 
     当 `BILOU_flag` 选项设置为 `True` 时，模型可能会预测不一致的 BILOU 标签，例如 `B-person`、`I-location`、`L-person`。开源 Rasa 使用一些启发式方法来清理不一致的 BILOU 标签。例如，`B-person`、`I-location`、`L-person` 改为 `B-person`、`I-person`、`L-person`。

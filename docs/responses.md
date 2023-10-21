@@ -17,7 +17,7 @@ responses:
   - text: "See you!"
 ```
 
-如果在对话机器人中使用检索意图，还需要为对话机器人对这些意图的回复添加响应：
+如果在对话机器人中使用[检索意图](glossary.md#retrieval-intent)，还需要为对话机器人对这些意图的回复添加响应：
 
 ```yaml hl_lines="5 6 8 9"
 intents:
@@ -31,9 +31,9 @@ responses:
   - text: Oh, it does look sunny right now in Berlin.
 ```
 
-!!! note "注意"
+!!! info "注意"
 
-    注意检索意图的响应名称的特殊格式。名称都以 `utter_` 开头，然后是检索意图的名称（此处为 `chitchat`），最后是指定不同 `response` 键的后缀（此处为 `ask_name` 和 `ask_weather`）。请参见 [NLU 训练样本文档](/training-data-format/#training-examples)来了解更多信息。
+    注意检索意图的响应名称的特殊格式。名称都以 `utter_` 开头，然后是检索意图的名称（此处为 `chitchat`），最后是指定不同 `response` 键的后缀（此处为 `ask_name` 和 `ask_weather`）。请参见 [NLU 训练样本文档](training-data-format.md#training-examples)来了解更多信息。
 
 ### 在响应中使用变量 {#using-variables-in-responses}
 
@@ -47,7 +47,7 @@ responses:
 
 当使用 `utter_greet` 响应时，Rasa 会自动使用名为 `name` 的槽中找到值来填充变量。如果槽值不存在或为空，则该变量将填充为 `None`。
 
-填充变量的另一种方法是在[自定义动作](/custom-actions/)中。在自定义动作代码中，你可以为响应提供值来填充特定变量。如果将 Rasa SDK 用于动作服务，可以将变量的值作为关键字参数传递给 [`dispatcher.utter_message`](/action-server/sdk-dispatcher/)：
+填充变量的另一种方法是在[自定义动作](custom-actions.md)中。在自定义动作代码中，你可以为响应提供值来填充特定变量。如果将 Rasa SDK 用于动作服务，可以将变量的值作为关键字参数传递给 [`dispatcher.utter_message`](action-server/sdk-dispatcher.md)：
 
 ```python hl_lines="3"
 dispatcher.utter_message(
@@ -85,6 +85,23 @@ responses:
 
 在上例中，当 `utter_greet` 被预测为下一个动作时，Rasa 将随机选择两个响应变体中的一个来使用。
 
+#### 用于响应的 ID {#ids-for-responses}
+
+!!! info "3.6 版本新特性"
+
+    你现在可以为任意响应设置 ID。当你想要使用 NLG 服务器生成响应时会非常有用。ID 的类型为字符串。
+
+带有 ID 的相应示例如下：
+
+```yaml title="domain.yml" hl_lines="3 4"
+responses:
+  utter_greet:
+  - id: "greet_1"
+    text: "Hey, {name}. How are you?"
+  - id: "greet_2"
+    text: "Hey, {name}. How is your day going?"
+```
+
 ### 特定频道的响应变体 {#channel-specific-response-variations}
 
 要根据用户连接的频道指定不同的响应变体，请使用特定于频道的响应变体。
@@ -99,7 +116,7 @@ responses:
   - text: "Which game would you like to play?"
 ```
 
-!!! note "注意"
+!!! info "注意"
 
     确保 `channel` 键与输入频道的 `name()` 方法返回的值相匹配。如果你使用的是内置频道，此值也将与 `credentials.yml` 文件中使用的频道名称相匹配。
 
@@ -107,7 +124,7 @@ responses:
 
 在上述示例中，第二个响应变体没有指定频道，对话机器人可以将其用于除 `slack` 之外的所有频道。
 
-!!! caution "注意"
+!!! warning "警告"
 
     对于每个响应，至少有一个没有 `channel` 键的响应变体。这使得对话机器人在所有环境中都可以正确的响应，例如在新的频道、命令行和交互式学习中。
 
@@ -117,7 +134,7 @@ responses:
 
 当在对话期间触发响应时，将根据当前对话状态检查每个条件响应变化的约束。如果所有约束槽值都等于当前对话状态的对应槽值，则响应变体可以被对话机器人使用。
 
-!!! note "注意"
+!!! info "注意"
 
     对话状态槽和约束槽值的比较是由相等 `==` 运算符执行的，它也需要槽值的类型匹配。例如，如果将约束指定为 `value: true`，则需要用布尔值 `true` 填充插槽，而不是字符串 `"true"`。
 
@@ -159,7 +176,7 @@ stories:
 
 在上述示例中，只要执行 `utter_greet` 动作并将 `logged_in` 槽设置为 `true`，就会使用第一个响应变体（`"Hey, {name}. Nice to see you again! How are you?"`）。没有条件的第二个变体将被视为默认值，并在 `logged_in` 不等于 `true` 时使用。
 
-!!! caution "注意"
+!!! warning "警告"
 
     强烈建议始终提供没有条件的默认响应变体，以防止没有条件响应与已填充槽匹配的情况发生。
 
@@ -260,7 +277,7 @@ responses:
 '/intent_name{{"entity_type_1":"entity_value_1", "entity_type_2": "entity_value_2"}}'
 ```
 
-!!! note "使用按钮绕过 NLU"
+!!! info "使用按钮绕过 NLU"
 
     你可以使用按钮绕过 NLU 预测并触发特定意图和实体。
 
@@ -272,11 +289,11 @@ responses:
 
     `RegexInterpreter` 将根据意图对上述信息进行分类，并提取分别为 `ORG` 和 `GPE` 类型的实体 `Rasa` 和 `Germany`。
 
-!!! note "在 domain.yml 中转义花括号"
+!!! info "在 domain.yml 中转义花括号"
 
-    你需要在 `domain.yml` 中使用双花括号编写 `/intent{entities}` 简写响应，以便对话机器人不会将其视为[响应中的变量](/responses/#using-variables-in-responses)并在花括号内插入内容。
+    你需要在 `domain.yml` 中使用双花括号编写 `/intent{entities}` 简写响应，以便对话机器人不会将其视为[响应中的变量](responses.md#using-variables-in-responses)并在花括号内插入内容。
 
-!!! caution "检查频道"
+!!! warning "检查频道"
 
     请记住，如何显示定义的按钮取决于输出频道的实现。例如，某些频道可以提供的按钮数量有限，查看 `概念 > 频道连接器` 下的频道文档，了解特定于频道的限制。
 
@@ -294,7 +311,7 @@ responses:
 
 你可以使用 `custom` 键将任意输出发送到输出频道。输出频道接受存储在 `custom` 键下的对象作为 JSON 有效载荷。
 
-如下是如何将[日期选择器](https://api.slack.com/reference/block-kit/block-elements#datepicker)发送到 [Slack 输出频道](/connectors/slack/)的示例：
+如下是如何将[日期选择器](https://api.slack.com/reference/block-kit/block-elements#datepicker)发送到 [Slack 输出频道](connectors/slack.md)的示例：
 
 ```yaml title="domain.yml" hl_lines="3-14"
 responses:
@@ -337,7 +354,7 @@ stories:
 
 当 `utter_greet` 动作运行时，它会将响应中的消息发送回用户。
 
-!!! note "改变响应"
+!!! info "改变响应"
 
     如果你想更改文本或响应的任何其他部分，需要重新训练对话机器人，然后才能获取这些更改。
 
@@ -345,7 +362,7 @@ stories:
 
 你可以使用响应从自定义动作中生成响应消息。如果你使用 Rasa SDK 作为动作服务，可以使用调度程序生成响应消息，例如：
 
-```python title="actions.py"
+```python title="actions.py" hl_lines="8"
 from rasa_sdk.interfaces import Action
 
 class ActionGreet(Action):
@@ -359,7 +376,7 @@ class ActionGreet(Action):
 
 如果你使用不同的自定义动作服务，服务应返回如下 JSON 来调用 `utter_greet` 响应：
 
-```json
+```json hl_lines="5"
 {
   "events":[],
   "responses":[

@@ -8,7 +8,7 @@ Rasa 使用一种票据锁机制来确保以正确的顺序处理给定对话 ID
 
 `InMemoryLockStore` 是默认的锁存储。它在单个进程中维护对话锁。
 
-!!! note "注意"
+!!! info "注意"
 
     当多个 Rasa 服务器并行运行时，不应该使用此锁存储。
 
@@ -26,11 +26,11 @@ Rasa 使用一种票据锁机制来确保以正确的顺序处理给定对话 ID
 
     如果不确定是否需要 Rasa Pro？[可以免费试用](https://info.rasa.com/rasa-platform-trial-request/)。
 
-`ConcurrentRedisLockStore` 是一个新的锁存储，它使用 Redis 作为持久层，可以安全地与多个 Rasa 服务器副本一起使用。参阅[迁移部分](/lock-stores/#migration-guide)来了解如何切换到此锁存储。
+`ConcurrentRedisLockStore` 是一个新的锁存储，它使用 Redis 作为持久层，可以安全地与多个 Rasa 服务器副本一起使用。参阅[迁移部分](#migration-guide)来了解如何切换到此锁存储。
 
 ### 描述 {#description-1}
 
-`ConcurrentRedisLockStore` 使用 Redis 作为已发放[票据](https://rasa.com/docs/rasa/reference/rasa/core/lock/#ticket-objects)实例和最后发放票据号的持久层。
+`ConcurrentRedisLockStore` 使用 Redis 作为已发放[票据](https://rasa.com/docs/rasa/reference/rasa/core/lock/#ticket-objects){:target="_blank"}实例和最后发放票据号的持久层。
 
 票据号从 1 开始，而 `RedisLockStore` 的初始化从 0 开始，如果票据过期，票据号将不会重新分配给未来的票据。因此，票据号对于票据实例是唯一的。票据号使用 Redis 原子事务 INCR 在持久的最后发放票据号上递增。
 
@@ -87,7 +87,7 @@ lock_store:
 
 切换到 `ConcurrentRedisLockStore` 时无需进行数据库迁移。可以使用与之前使用 `RedisLockStore` 时相同的 Redis 实例和数据库编号。如果使用相同的 Redis 数据库编号，你可能希望删除所有预先存在的键。`ConcurrentRedisLockStore` 不再需要这些以前的键值项，可以清除数据库。
 
-使用 `RedisLockStore` 和 `ConcurrentRedisLockStore` 时存储的键值项没有重叠，因为 `RedisLockStore` 保留序列化的 `TicketLock` 实例，而 `ConcurrentRedisLockStore` 存储单个 `Ticket` 实例以及最后发出的票据号。`ConcurrentRedisLockStore` 从持久的 `Ticket` 实例重新创建 `TicketLock`，这允许它处理相同会话 ID 的并发消息。
+使用 `RedisLockStore` 和 `ConcurrentRedisLockStore` 时存储的键值项没有重叠，因为 `RedisLockStore` 保留序列化的 [`TicketLock`](https://rasa.com/docs/rasa/reference/rasa/core/lock/#ticketlock-objects){:target="_blank"} 实例，而 `ConcurrentRedisLockStore` 存储单个 [`Ticket`](https://rasa.com/docs/rasa/reference/rasa/core/lock/#ticket-objects){:target="_blank"} 实例以及最后发出的票据号。`ConcurrentRedisLockStore` 从持久的 `Ticket` 实例重新创建 `TicketLock`，这允许它处理相同会话 ID 的并发消息。
 
 ## RedisLockStore {#redislockstore}
 
@@ -124,6 +124,7 @@ lock_store:
 - `port`（默认：`6379`）：Redis 运行的端口。
 - `db`（默认：`1`）：Redis 数据库的数量。
 - `key_prefix`（默认：`None`）：锁存储键的前缀。必须是字母数字。
+- `username`（默认：`None`）：用于认证的用户名（`None` 表示不认证）。
 - `password`（默认：`None`）：用于认证的密码（`None` 表示不认证）。
 - `use_ssl`（默认：`False`）：通信是否加密。
 - `ssl_keyfile`（默认：`None`）：SSL 私钥路径。

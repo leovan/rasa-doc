@@ -2,7 +2,7 @@
 
 本页介绍如何使用 Helm 构建 Action Server 镜像和部署 Rasa Action Server。部署 Rasa 对话机器人的三个步骤中的第二个。
 
-!!! note "注意"
+!!! info "注意"
 
     [Rasa Action Server chart](https://github.com/RasaHQ/helm-charts/tree/main/charts/rasa-action-server) 为开源项目，可以在 [helm-charts 代码库](https://github.com/rasahq/helm-charts)中找到。如果发现任何问题或有改进建议，请在此代码库中[创建 issue](https://github.com/RasaHQ/helm-charts/issues/new)。
 
@@ -73,7 +73,7 @@
 
 ### 创建空间 {#create-namespace}
 
-我们建议将 Rasa Action Server 安装在单独的命名空间中，以避免干扰现有的集群部署。要创建新的命名空间，请运行如下命令：
+我们建议将 Rasa Action Server 安装在单独的[命名空间](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)中，以避免干扰现有的集群部署。要创建新的命名空间，请运行如下命令：
 
 === "Kubernetes"
 
@@ -122,9 +122,9 @@ helm install \
 
 然后可以通过 `http://127.0.0.1:${SERVICE_PORT}` 访问部署。
 
-!!! note "注意"
+!!! info "注意"
 
-    Rasa Action Server Helm chart 默认使用 rasa-x-demo Docker 镜像。在构建 Action Server 镜像中，你可以了解如何构建和使用自定义 Action Server 镜像。
+    Rasa Action Server Helm chart 默认使用 [rasa-x-demo](https://github.com/RasaHQ/rasa-x-demo) Docker 镜像。在[构建 Action Server 镜像](#building-an-action-server-image)中，你可以了解如何构建和使用自定义 Action Server 镜像。
 
 ## 构建 Action Server 镜像 {#building-an-action-server-image}
 
@@ -145,7 +145,7 @@ helm install \
     `DOCKER_HUB_LOGIN`：DockerHub 用户名
     `DOCKER_HUB_PASSWORD`：DockerHub 密码
 
-2. 在你的 Github 存储库中创建一个文件 `.github/workflows/action_server.yml`。
+2. 在你的 Github 存储库中创建一个文件 [`.github/workflows/action_server.yml`](https://github.com/RasaHQ/action-server-gha/blob/master/examples/action_server.yml)。
 
 每当 `actions/` 目录中的文件发生更改并将更改推送到 `main` 分支时，下面的 GitHub Action 工作流程都会创建一个新的 Docker 镜像。
 
@@ -216,7 +216,7 @@ jobs:
 
 1. 确保动作在 `actions/actions.py` 中定义。`rasa/rasa-sdk` 镜像将自动查找此文件中的动作。
 2. 如果动作有任何额外的依赖，请在 `actions/requirements-actions.txt` 中创建相关列表。
-3. 在项目目录中创建一个名为 Dockerfile 的文件，在其中扩展官方 SDK 镜像、复制代码并添加任何自定义依赖项（如有必要）。例如：
+3. 在项目目录中创建一个名为 `Dockerfile` 的文件，在其中扩展官方 SDK 镜像、复制代码并添加任何自定义依赖项（如有必要）。例如：
 
 ```yaml
 # Extend the official Rasa SDK image

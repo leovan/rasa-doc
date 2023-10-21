@@ -4,13 +4,19 @@
 
 `recipe` 键允许不同类型的配置和模型架构。目前，支持 `default.v1` 和实验性的 `graph.v1`。
 
-`language` 和 `pipeline` 键指定模型用于进行 NLU 预测的[组件](/components/)。`policies` 键定义模型用于预测下一步动作的[策略](/policies/)。
+!!! info "3.5 版本新特性"
 
-如果你不知道要选择哪些组件或策略，可以使用[建议配置](/model-configuration/#suggested-config)功能，该功能会推荐合理的默认值。
+    配置文件现在一个新的强制键值 `assistant_id`，用于表示唯一的对话机器人标识。
+
+`assistant_id` 键必须指定一个唯一值賴区分部署的多个对话机器人。对话机器人标识将于模型 ID 一起传递给每个事件的元数据。请注意，如果配置文件不包含此必需的键值或未修改默认值，则每次运行 `rasa train` 时都会生成一个随机的对话机器人名称并将其添加到配置中。
+
+`language` 和 `pipeline` 键指定模型用于进行 NLU 预测的[组件](components.md)。`policies` 键定义模型用于预测下一步动作的[策略](policies.md)。
+
+如果你不知道要选择哪些组件或策略，可以使用[建议配置](model-configuration.md#suggested-config)功能，该功能会推荐合理的默认值。
 
 ## 建议配置 {#suggested-config}
 
-你可以将管道和/或策略密钥保留在配置文件之外。当你运行 `rasa train` 时，建议配置功能将为缺少的键选择默认配置来训练模型。
+你可以将流水线和/或策略密钥保留在配置文件之外。当你运行 `rasa train` 时，建议配置功能将为缺少的键选择默认配置来训练模型。
 
 确保在 `config.yml` 文件中使用 2 个字母的 ISO 语言代码指定 `language` 键。
 
@@ -18,6 +24,7 @@
 
 ```yaml
 recipe: default.v1
+assistant_id: example_bot
 language: en
 
 pipeline:
@@ -34,6 +41,7 @@ policies:
 
 ```yaml
 recipe: default.v1
+assistant_id: example_bot
 language: en
 
 pipeline:

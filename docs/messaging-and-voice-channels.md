@@ -14,7 +14,7 @@
 - [Microsoft Bot Framework](connectors/microsoft-bot-framework.md)
 - [Cisco Webex Teams](connectors/cisco-webex-teams.md)
 - [RocketChat](connectors/rocketchat.md)
-- [Mattermost](connectors/mattermost.md
+- [Mattermost](connectors/mattermost.md)
 - [Google Hangouts Chat](connectors/hangouts.md)
 - [自定义连接器](connectors/custom-connectors.md)
 

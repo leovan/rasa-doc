@@ -98,5 +98,4 @@ pip2 --version
 目前，并非所有 Rasa 的依赖性都原生支持 Apple Silicon。这会导致：
 
 - 你不能在 Apple Silicon 上将 Duckling 作为 Docker 容器运行。如果使用 [duckling 实体提取器](../components.md#ducklingentityextractor)，建议在云端部署 duckling。相关进展请参见 [Duckling 项目](https://github.com/facebook/duckling/issues/695)。
-- 你不能在 Apple Silicon 上的 Docker 容器中运行 Rasa，目前只能进行本地安装。在 Docker 中安装需要支持 Ubuntu aarch64，当前 2.8 版本的 Tensorflow 不提供支持，其仅支持在 aarch64 上运行的 macOS 系统。预计 Tensorflow 未来会升级允许 Apple Silicon 用户在 Docker 内运行 Rasa。
 - Apple Silicon 上的 Rasa 不支持 [ConveRTFeaturizer 组件](../components.md#convertfeaturizer)或包含它的管道。该组件依赖 Apple Silicon 目前还不可用的 `tensorflow-text`。相关进展请参见 [Tensorflow Text 项目](https://github.com/tensorflow/text/issues/823)。

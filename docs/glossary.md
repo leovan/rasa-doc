@@ -176,6 +176,10 @@ Rasa 用于在对话过程中跟踪信息的健值存储。
 
 Transformer 嵌入对话策略（Transformer Embedding Dialogue Policy）。TED 是开源 Rasa 使用的基于机器学习的默认对话策略。当没有规则用于预测下一步动作时，TED 通过处理未遇见过的情况来补充基于规则的策略。
 
+## [模版 / 回复 / 表达 Template / Response / Utterance#](responses.md) {#template-response-utterance}
+
+用于响应用户的消息模板。可以包含文本、按钮、图像和其他附件。
+
 ## [追踪器 Tracker](tracker-stores.md) {#tracker}
 
 用于维护对话状态的开源 Rasa 组件，表示为列出当前会话中数据的 JSON 对象。

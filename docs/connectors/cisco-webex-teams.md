@@ -27,3 +27,7 @@ webexteams:
 ```
 
 重启你的 Rasa 服务器，使新的频道 Endpoint 可供 Cisco Webex Teams 发送消息。
+
+!!! info "注意"
+
+    如果不设置 `room` 参数，消息将被发送回消息的发送者。

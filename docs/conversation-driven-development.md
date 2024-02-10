@@ -9,7 +9,7 @@
 CDD 包括如下操作：
 
 - 尽可能快的和用户分享对话机器人
-- 定期回顾对话
+- 定期检查对话
 - 标记消息并用作 NLU 训练数据
 - 测试对话机器人是否总是如期行事
 - 在对话机器人出现故障时跟踪并随时评估其性能
@@ -33,7 +33,7 @@ CDD 不是一个线性过程，在开发和改进对话机器人的过程中可�
 
 一旦对话机器人投入生产，你将有更多的对话来获得洞察信息。然后就可以全面应用 CDD 操作。在这个阶段，可以[在服务器上安装 Rasa X/Enterprise](https://rasa.com/docs/rasa-enterprise/installation-and-setup/installation-guide/#helm-chart){:target="_blank"} 来部署对话机器人并在生产中使用中启用 CDD。
 
-### 回顾 {#review}
+### 检查 {#review}
 
 在对话中寻找用户真正想要的东西。
 
@@ -45,7 +45,7 @@ CDD 不是一个线性过程，在开发和改进对话机器人的过程中可�
     - 从追踪存储中获取真实对话。
     - 在获取的对话中运行 `rasa test` 并在单独的警告文件中过滤包含 `action_unlikely_intent` 的对话。你可以在[如何解释这些告警](testing-your-assistant.md#interpreting-the-generated-warnings)中阅读更多信息。
 
-回顾这些对话子集可以帮助你了解真实用户是否出现了训练数据中不存在的对话路径，对于 `TEDPolicy` 等机器学习策略来说会“令人惊讶”。添加这些对话路径（如果 `TEDPolicy` 失败，可能会进行更正）作为训练故事将取得通过 `TEDPolicy` 等策略更鲁棒的动作预测。鼓励用户调整 [`UnexpecTEDIntentPolicy` 的 `tolerance` 参数](policies.md#tuning-the-tolerance-parameter)，来控制在警告文件中对话包含“令人惊讶”的程度。
+检查这些对话子集可以帮助你了解真实用户是否出现了训练数据中不存在的对话路径，对于 `TEDPolicy` 等机器学习策略来说会“令人惊讶”。添加这些对话路径（如果 `TEDPolicy` 失败，可能会进行更正）作为训练故事将取得通过 `TEDPolicy` 等策略更鲁棒的动作预测。鼓励用户调整 [`UnexpecTEDIntentPolicy` 的 `tolerance` 参数](policies.md#tuning-the-tolerance-parameter)，来控制在警告文件中对话包含“令人惊讶”的程度。
 
 ### 标记 {#annotate}
 

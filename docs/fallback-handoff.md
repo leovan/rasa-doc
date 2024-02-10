@@ -276,34 +276,34 @@ class ActionDefaultFallback(Action):
 
 对于超出范围的意图：
 
-- [ ] 对每个超出范围的意图在 NLU 数据中添加训练样本
-- [ ] 定义超出范围的响应或动作
-- [ ] 对每个超出范围的意图定义规则
-- [ ] 将 RulePolicy 添加到 config.yml 中
+- 对每个超出范围的意图在 NLU 数据中添加训练样本
+- 定义超出范围的响应或动作
+- 对每个超出范围的意图定义规则
+- 将 RulePolicy 添加到 config.yml 中
 
 对于单阶段 NLU 回退：
 
-- [ ] 在 config.yml 中将 FallbackClassifier 添加到流水线中
-- [ ] 定义回退响应或动作
-- [ ] 定义用于 `nlu_fallback` 意图的规则
-- [ ] 将 RulePolicy 添加到 config.yml 中
+- 在 config.yml 中将 FallbackClassifier 添加到流水线中
+- 定义回退响应或动作
+- 定义用于 `nlu_fallback` 意图的规则
+- 将 RulePolicy 添加到 config.yml 中
 
 对于处理低置信度：
 
-- [ ] 在 config.yml 中为核心回退配置 RulePolicy
-- [ ] 可选地自定义配置的回退动作
-- [ ] 定义一个 `utter_default` 响应
+- 在 config.yml 中为核心回退配置 RulePolicy
+- 可选地自定义配置的回退动作
+- 定义一个 `utter_default` 响应
 
 对于两阶段回退：
 
-- [ ] 在 config.yml 中将 FallbackClassifier 添加到流水线中
-- [ ] 为触发 `action_two_stage_fallback` 动作的 `nlu_fallback` 意图定义规则
-- [ ] 在领域中定义超出范围的意图
-- [ ] 将 RulePolicy 添加到 config.yml 中
+- 在 config.yml 中将 FallbackClassifier 添加到流水线中
+- 为触发 `action_two_stage_fallback` 动作的 `nlu_fallback` 意图定义规则
+- 在领域中定义超出范围的意图
+- 将 RulePolicy 添加到 config.yml 中
 
 对于移交人工：
 
-- [ ] 配置前端以切换主机
-- [ ] 编写自定义动作（可能为回退动作）来发送移交负载
-- [ ] 添加用于触发移交的规则（如果不是回退的一部分）
-- [ ] 将 RulePolicy 添加到 config.yml 中
+- 配置前端以切换主机
+- 编写自定义动作（可能为回退动作）来发送移交负载
+- 添加用于触发移交的规则（如果不是回退的一部分）
+- 将 RulePolicy 添加到 config.yml 中

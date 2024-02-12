@@ -1,7 +1,7 @@
 # Website information
 site_name: Rasa 中文文档
 site_url: https://rasa.leovan.tech
-site_author: Leo Van | 范叶亮
+site_author: 范叶亮 | Leo Van
 site_description: Rasa 中文文档
 
 # Repository
@@ -10,7 +10,7 @@ repo_url: https://github.com/leovan/rasa-doc
 edit_uri: edit/main/docs/
 
 # Copyright
-copyright: 翻译：<a href="https://leovan.me" target="_blank">Leo Van | 范叶亮</a>
+copyright: 版权所有 &copy; 2022-2024，<a href="https://leovan.me" target="_blank">范叶亮 | Leo Van</a>
 
 # Navigation
 nav:

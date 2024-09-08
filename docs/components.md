@@ -1790,7 +1790,7 @@
 
 !!! info "3.0 版本新特性"
 
-    开源 Rasa 3.0 版本统一了 NLU 组件和策略的实现。这需要更改为早期版本的开源 Rasa 编写的自定义组件。有关逐步的迁移指南请参见[迁移指南](migration-guide.md#custom-policies-and-custom-components)。
+    开源 Rasa 3.0 版本统一了 NLU 组件和策略的实现。这需要更改为早期版本的开源 Rasa 编写的自定义组件。有关逐步的迁移指南请参见[迁移指南](migration-guide.md)。
 
 你可以创建一个自定义组件来执行 NLU 目前不提供的特定任务（例如：情感分析）。
 

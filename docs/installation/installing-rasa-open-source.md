@@ -1,6 +1,6 @@
 # 安装开源 Rasa
 
-## 安装开源 Rasa
+## 安装开源 Rasa {#install-rasa-open-source}
 
 首先确保你的 `pip` 已经更新到最新版本：
 
@@ -28,7 +28,7 @@ rasa init
 
 你可以在[命令行界面](../command-line-interface.md)中了解重要的 Rasa 命令。
 
-## 从源代码构建
+## 从源代码构建 {#building-from-source}
 
 如果需要使用开发版本的开源 Rasa，可以从 GitHub 上获取：
 
@@ -39,7 +39,7 @@ cd rasa
 poetry install
 ```
 
-## 额外依赖
+## 额外依赖 {#additional-dependencies}
 
 对于某些机器学习算法，你需要安装额外的 Python 包。为了占用较小的空间默认并不会安装它们。
 
@@ -55,7 +55,7 @@ poetry install
 
     来安装所有配置所需的依赖项。
 
-### Python 3.10 依赖
+### Python 3.10 依赖 {#python-310-requirements}
 
 如果你使用的是 Linux 系统，安装 `rasa[full]` 可能会因为 `tokenizers` 和 `cryptography` 安装包导致失败。
 
@@ -98,7 +98,7 @@ rustc --version
 export PATH="$HOME/.cargo/bin:$PATH"
 ```
 
-### spaCy 依赖项
+### spaCy 依赖项 {#dependencies-for-spacy}
 
 有关 spaCy 模型的更多信息，请参见 [spaCy 文档](https://spacy.io/usage/models)。
 
@@ -115,7 +115,7 @@ python3 -m spacy download en_core_web_md
 
 这将安装开源 Rasa、spaCy 及其英语语言模型，其他语言模型也可用。建议至少使用中等大小的模型（`_md`）而不是 spaCy 默认的 `en_core_web_sm` 小模型。小模型占用更少的内存，但可能会降低意图分类的性能。
 
-### MITIE 依赖项
+### MITIE 依赖项 {#dependencies-for-mitie}
 
 首先，运行：
 
@@ -126,7 +126,7 @@ pip3 install rasa[mitie]
 
 然后下载 [MITIE 模型](https://github.com/mit-nlp/MITIE/releases/download/v0.4/MITIE-models-v0.2.tar.bz2)。所需的文件是 `total_word_feature_extractor.dat`。保存到任意路径，如果使用 MITIE，则需要告诉它在哪里可以找到这个文件（在本例中，其保存在项目目录的 `data` 文件夹中）。
 
-## 升级版本
+## 升级版本 {#upgrading-versions}
 
 将已安装的 Rasa 升级至 PyPI 的最新版本：
 

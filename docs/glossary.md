@@ -30,7 +30,7 @@
 
 ## [对话驱动的开发 Conversation-Driven Development (CDD)](conversation-driven-development.md) {#conversation-driven-development-cdd}
 
-结合工程最佳实践，使用用户消息和对话数据影响对话机器人设计和训练模型的过程。CDD 有 6 个步骤：共享、审查、标注、修复、跟踪和测试。
+结合工程最佳实践，使用用户消息和对话数据影响对话机器人设计和训练模型的过程。CDD 有 6 个步骤：共享、审查、标注、修复、追踪和测试。
 
 ## [对话测试 Conversation Tests](testing-your-assistant.md) {#conversation-tests}
 
@@ -166,7 +166,7 @@ Rasa NLU 是开源 Rasa 的一部分，它执行自然语言理解（[NLU](#nlu)
 
 ## [槽 Slot](domain.md#slots) {#slot}
 
-Rasa 用于在对话过程中跟踪信息的健值存储。
+Rasa 用于在对话过程中追踪信息的健值存储。
 
 ## [故事 Story](stories.md) {#story}
 

@@ -322,7 +322,7 @@ tracker_store:
   another_parameter: another value
 ```
 
-## 回退追踪存储
+## 回退追踪存储 {#fallback-tracker-store}
 
 如果 `endpoints.yml` 中配置的主追踪存储不可用时，rasa 代理将发出错误信息并使用 `InMemoryTrackerStore`。每次都会启动一个新的对话会话，该对话会话将单独保存在 `InMemoryTrackerStore` 回退存储中。
 

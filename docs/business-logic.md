@@ -4,10 +4,7 @@
 
 对话机器人通常在支持用户目标时需要在做某些事之前从用户那里收集所需的信息。例如：一个餐厅搜索对话机器人需要收集一些有关用户偏好的信息，以便找到合适的餐厅：
 
-<figure markdown>
-  ![](images/business-logic/find-a-restaurant.png){ width="600" }
-  <figcaption>寻找一个餐厅</figcaption>
-</figure>
+<div class="md-chat"><div class="chat-container"><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">Help me find a restaurant</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">What cuisine?</span></p></div><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">I'm looking for Tuscan food</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">How many people?</span></p></div><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">5</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">Do you want to sit outside?</span></p></div><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">Yes</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">All done!</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">I am going to run a restaurant search using the following parameters:</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">- cuisine: Tuscan<br/>- num_people: 5<br/>- outdoor_seating: True</span></p></div></div><figcaption>寻找一个餐厅</figcaption></div>
 
 本页面是处理收集用户信息以完成请求的业务逻辑的指南。在上面的示例中，业务逻辑包含了解用户喜欢的菜系、聚会人数和座位偏好。本页面的示例来自于 [formbot 示例对话机器人](https://github.com/RasaHQ/rasa/tree/main/examples/formbot)。
 
@@ -241,4 +238,4 @@ responses:
 - 定义表单完成时对话机器人要采取的动作或响应
 - 使用定义的新意图和动作更新领域
 
-要尝试新定义的表单，需要通过运行 `rasa train` 重新训练对话机器人模型并启动 `rasa shell`。由于 DucklingEntityExtractor 将用于提取实体，你需要在后台启动 Duckling（请参见[运行 Duckling 说明](components.md#DucklingEntityExtractor)）。
+要尝试新定义的表单，需要通过运行 `rasa train` 重新训练对话机器人模型并启动 `rasa shell`。由于 DucklingEntityExtractor 将用于提取实体，你需要在后台启动 Duckling（请参见[运行 Duckling 说明](components.md#ducklingentityextractor)）。

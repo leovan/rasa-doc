@@ -318,10 +318,7 @@ stories:
 
 考虑如下对话场景：
 
-<figure markdown>
-  ![](images/writing-conversation-data/single-turn-interjection.png){ width="600" }
-  <figcaption>单轮插入语</figcaption>
-</figure>
+<div class="md-chat"><div class="chat-container"><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">Hi, I want to pay my credit card bill</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">Can do! Which of these credit accounts do you want to make a payment towards?</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content"><p>- Credit Account A</p><p>- Credit Account B</p></span></p></div><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">Credit account B</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">How much do you want to pay?</span></p></div><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">What's my account balance?</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">Your current account balance is $1532.00</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">How much do you want to pay?</span></p></div><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">I want to pay the minimum balance</span></p></div></div><figcaption>单轮插入语</figcaption></div>
 
 在这个示例中，用户在支付信用卡账单的过程中询问账户余额，之后被引导回信用卡支付表单。因为无论上下文如何询问用户余额都应该始终得到相同的响应，因此你可以在现有流程中创建一个可以自动触发的规则：
 
@@ -341,10 +338,7 @@ rules:
 
 例如，如果你想在用户询问时切换上下文，然后在询问完成后返回原始流程：
 
-<figure markdown>
-  ![](images/writing-conversation-data/contextual-interjection.png){ width="600" }
-  <figcaption>上下文插入语</figcaption>
-</figure>
+<div class="md-chat"><div class="chat-container"><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">Hi, I want to pay my credit card bill</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">Can do! Which of these credit accounts do you want to make a payment towards?</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content"><p>- Credit Account A</p><p>- Credit Account B</p></span></p></div><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">Credit account B</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">How much do you want to pay?</span></p></div><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">Actually, I want to make a transfer</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">No problem!</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">Who would you like to transfer money to?</span></p></div><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">I want to send $500 to Katy Parrow</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">Successfully transferred $500 to Katy Parrow.</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">Would you like to pay your credit card bill now?</span></p></div></div><figcaption>上下文插入语</figcaption></div>
 
 你需要创建一个故事来描述这种上下文切换交互：
 

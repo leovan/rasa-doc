@@ -81,7 +81,7 @@ stories:
 
 姓名、地址、城市等常见实体需要大量训练数据才能让 NLU 模型获得有效的泛化。
 
-开源 Rasa 为预训练提取提供了两个不错的选项：[`SpacyEntityExtractor`](components.md#SpacyEntityExtractor) 和 [`DucklingEntityExtractor`](components.md#DucklingEntityExtractor)。由于这些提取器已经在大量数据上进行了预训练，因此可以利用它们在无需对训练数据标注的情况下提取支持类型的实体。
+开源 Rasa 为预训练提取提供了两个不错的选项：[`SpacyEntityExtractor`](components.md#spacyentityextractor) 和 [`DucklingEntityExtractor`](components.md#ducklingentityextractor)。由于这些提取器已经在大量数据上进行了预训练，因此可以利用它们在无需对训练数据标注的情况下提取支持类型的实体。
 
 ### 正则表达式 {#regexes}
 

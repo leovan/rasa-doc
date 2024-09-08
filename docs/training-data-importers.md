@@ -23,7 +23,7 @@ importers:
 
 !!! info "注意"
 
-    `TrainingDataImporter` 及其子类从 Rasa 3.0 开始不包含异步方法。为了迁移自定义导入器并是他们与 Rasa 3.0 兼容，你还需要将异步方法替换为同步方法。请参见[迁移指南](migration-guide.md#rasa-2x-to-30)了解更多信息。
+    `TrainingDataImporter` 及其子类从 Rasa 3.0 开始不包含异步方法。为了迁移自定义导入器并是他们与 Rasa 3.0 兼容，你还需要将异步方法替换为同步方法。请参见[迁移指南](migration-guide.md)了解更多信息。
 
 !!! tip "提示"
 

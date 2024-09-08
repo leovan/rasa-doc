@@ -137,14 +137,11 @@ curl -H "Content-Type: application/json" -X POST -d \
 
 你将会在你的频道中看到对话机器人的响应：
 
-<figure markdown>
-  ![](images/reaching-out-to-user/reminder.png){ width="600" }
-  <figcaption>提醒</figcaption>
-</figure>
+<div class="md-chat"><div class="chat-container"><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">Your Orchid needs some water!</span></p></div></div><figcaption>提醒</figcaption></div>
 
 ## 提醒 {#reminders}
 
-你可以使用[提醒](action-server/events.md#ReminderScheduled)让对话机器人在设定的时间后与用户联系。如下示例来自[提醒示例对话机器人](https://github.com/RasaHQ/rasa/blob/main/examples/reminderbot)。你可以克隆并按照 `README` 中的说明试用完整版。
+你可以使用[提醒](action-server/events.md#reminder)让对话机器人在设定的时间后与用户联系。如下示例来自[提醒示例对话机器人](https://github.com/RasaHQ/rasa/blob/main/examples/reminderbot)。你可以克隆并按照 `README` 中的说明试用完整版。
 
 ### 设置提醒 {#scheduling-reminders}
 

@@ -113,7 +113,7 @@ intents:
 
 如果你在没有 `use_entities` 或 `ignore_entities` 参数的情况下列出意图，实体将被正常特征化。
 
-也可以通过将实体本身的 `influence_conversation` 标识设置为 `false` 来忽略所有意图的实体。更多详细信息请参见[实体部分](domain.md#entities)。
+也可以通过将实体本身的 `influence_conversation` 标识设置为 `false` 来忽略所有意图的实体。更多详细信息请参见[实体部分](#entities)。
 
 排除的意图实体将不被特征化，因此不会影响下一个动作预测。当你有一个不关心被提取的实体的意图时，这很有用。
 
@@ -123,7 +123,7 @@ intents:
 
     如果你希望这些实体不通过槽影响动作预测，请为具有相同名称的槽设置 [`influence_conversation: false`](domain.md#slots-and-conversation-behavior)。
 
-## 实体
+## 实体 {#entities}
 
 !!! info "3.1 版本新特性"
 
@@ -481,7 +481,7 @@ stories:
 
 !!! info "3.0 版本新特性"
 
-    从 3.0 版本开始，槽映射在领域文件中 `slots` 部分中定义。此更改删除了通过自动填充设置槽的隐含机制，并用在每个用户消息后设置槽的新显示机制取而代之。你需要在 `domain.yml` 文件的 `slots` 部分为每个槽显式定义槽映射。如果你是从早期版本迁移，请参见[迁移指南](migration-guide.md#slot-mappings)来更新对话机器人。
+    从 3.0 版本开始，槽映射在领域文件中 `slots` 部分中定义。此更改删除了通过自动填充设置槽的隐含机制，并用在每个用户消息后设置槽的新显示机制取而代之。你需要在 `domain.yml` 文件的 `slots` 部分为每个槽显式定义槽映射。如果你是从早期版本迁移，请参见[迁移指南](migration-guide.md)来更新对话机器人。
 
 开源 Rasa 带有 4 个预定义的映射，用于根据最新的用户消息填充槽。
 
@@ -760,11 +760,11 @@ session_config:
 
 !!! info "注意"
 
-    会话启动会触发默认动作 `action_session_start`。它的默认实现将所有现有槽移动到新会话中。请注意，所有对话都以 `action_session_start` 开始。例如，覆盖此动作可用于使用来自外部 API 调用的槽初始化跟踪器，或使用对话机器人消息开始对话。[自定义会话启动动作](default-actions.md#customization)文档可以向你展示如何做到这一点。
+    会话启动会触发默认动作 `action_session_start`。它的默认实现将所有现有槽移动到新会话中。请注意，所有对话都以 `action_session_start` 开始。例如，覆盖此动作可用于使用来自外部 API 调用的槽初始化追踪器，或使用对话机器人消息开始对话。[自定义会话启动动作](default-actions.md#customization)文档可以向你展示如何做到这一点。
 
 ## 配置 {#config}
 
-领域文件中的 `config` 键维护 `store_entities_as_slots` 参数。此参数仅在阅读故事并将其转变为跟踪器的情况下使用。如果参数设置为 `true`，故事中存在适用的实体，则会导致从实体隐式设置槽。当实体与 `from_entity` 槽映射匹配时，`store_entities_as_slots` 定义实体值是否应放置在该槽中。因此，此参数跳过在故事中手动添加显示 `slot_was_set` 步骤。默认情况下，此行为是打开的。
+领域文件中的 `config` 键维护 `store_entities_as_slots` 参数。此参数仅在阅读故事并将其转变为追踪器的情况下使用。如果参数设置为 `true`，故事中存在适用的实体，则会导致从实体隐式设置槽。当实体与 `from_entity` 槽映射匹配时，`store_entities_as_slots` 定义实体值是否应放置在该槽中。因此，此参数跳过在故事中手动添加显示 `slot_was_set` 步骤。默认情况下，此行为是打开的。
 
 你可以通过将 `store_entities_as_slots` 设置为 `false` 来关闭此功能：
 

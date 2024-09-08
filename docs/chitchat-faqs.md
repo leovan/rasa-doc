@@ -4,10 +4,7 @@ FAQ 对话机器人是最容易构建的对话机器人，通常也是大家构�
 
 [FAQ](glossary.md#faqs) 和[闲聊](glossary.md#chitchat)是对话机器人使用一组固定的消息进行响应，同时无论之前发生什么对话机器人都应始终以相同的方式进行回答的两种情况。例如，在接下来的对话中，每个问题都可以在对话的任何时候被问到，答案与用户之前所说的内容无关。
 
-<figure markdown>
-  ![](images/chitchat-faqs/chitchat.png){ width="600" }
-  <figcaption>闲聊</figcaption>
-</figure>
+<div class="md-chat"><div class="chat-container"><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">What's your name</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">My name is Sara!</span></p></div><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">Which languages can I build assistants in?</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">You can use Rasa to build assistants in any language you want!</span></p></div><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">What’s Rasa X/Enterprise?</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">Rasa X/Enterprise is a tool to learn from real conversations and improve your assistant.</span></p></div></div><figcaption>闲聊</figcaption></div>
 
 ## 用于 FAQ 和闲聊的响应选择器使用指南 {#step-by-step-guide-on-using-response-selector-for-faqs-and-chitchat}
 

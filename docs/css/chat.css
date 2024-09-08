@@ -1,0 +1,79 @@
+.md-chat .chat-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    border: 1px solid #ddd;
+    border-radius: 8px
+}
+
+.md-chat .chat-container>* {
+    align-items: flex-start
+}
+
+.md-chat .chat-container>*+* {
+    margin-top: .75em
+}
+
+.md-chat figcaption {
+    text-align: center;
+}
+
+.chat-item {
+    margin: 0;
+    max-width: 80%;
+    display: inherit
+}
+
+.chat-item>* {
+    width: auto;
+    -ms-grid-row-align: inherit;
+    align-self: inherit
+}
+
+.chat-bubble {
+    margin: auto;
+    border-radius: 50vmin;
+    padding: .8em 2em;
+    position: relative;
+    font-size: .9em
+}
+
+.chat-note {
+    color: #888;
+    font-size: .8em;
+    --stack-gap: 0.5em!important;
+    line-height: 1.5;
+    max-width: 80%
+}
+
+.chat-input {
+    align-self: flex-end;
+    text-align: right
+}
+
+.chat-input>.chat-bubble {
+    color: #fff;
+    background: #8471ff;
+    border-bottom-right-radius: 0
+}
+
+.chat-output {
+    align-self: flex-start
+}
+
+.chat-output>.chat-bubble {
+    border-bottom-left-radius: 0;
+    background: #f2f4fa
+}
+
+.sr-only,.sr-only-focusable:not(:focus) {
+    position: absolute!important;
+    width: 1px!important;
+    height: 1px!important;
+    padding: 0!important;
+    margin: -1px!important;
+    overflow: hidden!important;
+    clip: rect(0,0,0,0)!important;
+    white-space: nowrap!important;
+    border: 0!important
+}

@@ -12,7 +12,7 @@
 
 !!! info "遗留格式"
 
-    在寻找 Markdown 数据格式？其在 Rasa 3.0 中已被删除，但你仍可以参考 [Markdown NLU 数据](https://legacy-docs-v1.rasa.com/nlu/training-data-format.md)和 [Markdown 故事](https://legacy-docs-v1.rasa.com/core/stories.md)的文档。如果你仍有 Markdown 格式的训练数据，那么推荐的方法是使用 Rasa 2.x 将数据从 Markdown 转换为 YAML。[迁移指南](migration-guide.md#training-data-files)解释了如何执行该操作。
+    在寻找 Markdown 数据格式？其在 Rasa 3.0 中已被删除，但你仍可以参考 [Markdown NLU 数据](https://legacy-docs-v1.rasa.com/nlu/training-data-format.md)和 [Markdown 故事](https://legacy-docs-v1.rasa.com/core/stories.md)的文档。如果你仍有 Markdown 格式的训练数据，那么推荐的方法是使用 Rasa 2.x 将数据从 Markdown 转换为 YAML。[迁移指南](migration-guide.md)解释了如何执行该操作。
 
 ### 高层级结构 {#high-level-structure}
 

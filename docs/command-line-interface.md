@@ -41,7 +41,7 @@ Rasa 可以生成不同级别的日志信息（例如：警告、信息、错误
 3. `LOG_LEVEL_RABBITMQ`：这是一个专门用于配置 AMQP 库日志级别的环境变量，目前可以设置 `aio_pika` 和 `aiormq` 的日志级别。
 4. `LOG_LEVEL_KAFKA`：这是一个专门用于配置 kafka 日志级别的环境变量。
 5. `LOG_LEVEL_PRESIDIO`：这是一个专门用于配置 Presidio 日志级别的环境变量，目前可以设置 `presidio_analyzer` 和 `presidio_anonymizer` 的日志级别。
-4. `LOG_LEVEL_FAKER`：这是一个专门用于配置 Faker 日志级别的环境变量。
+6. `LOG_LEVEL_FAKER`：这是一个专门用于配置 Faker 日志级别的环境变量。
 
 通用配置（`LOG_LEVEL_LIBRARIES`）的优先级相比于专用配置（`LOG_LEVEL_MATPLOTLIB`，`LOG_LEVEL_RABBITMQ` 等）更低。命令行参数设置了最低级别的日志。这意味着可以与这些变量一同使用，例如：
 
@@ -64,7 +64,7 @@ LOG_LEVEL_LIBRARIES=DEBUG LOG_LEVEL_MATPLOTLIB=DEBUG rasa shell --verbose
 
 命令行日志级别设置了根日志的级别（它包含了重要的 `coloredlogs` 处理器）。这意味着即使环境变量设置一个库日志较低的日志级别，根日志也会拒绝来自该库的消息。如果没有指定，命令行日志级别将被设置为 `INFO`。
 
-## 自定义日志配置
+## 自定义日志配置 {#custom-logging-configuration}
 
 !!! info "3.4 版本新特性"
 
@@ -226,7 +226,7 @@ Python Logging Options:
 
 ### 增量训练 {#incremental-training}
 
-!!! info "2.2 版本新增内容"
+!!! info "2.2 版本新特性"
 
     此功能是实验性的。我们通过社区反馈引入了这一实验性功能，因此鼓励大家进行尝试。但是，相关功在未来可能会发生变更或删除。如果有任何正面或负面反馈，可以在[Rasa 论坛](https://forum.rasa.com/)上进行分享。
 
@@ -261,7 +261,7 @@ at this point in the conversation. Check out UnexpecTEDIntentPolicy docs to lear
 
 如果使用 `--model` 参数提供一个训练好的模型，则会跳过训练过程直接加载这个模型。
 
-在交互式学习过程中，Rasa 将会可视化当前对话和训练数据中的一些相似对话，来帮助你跟踪当前的进度。会话开始后，可以在 <http://localhost:5005/visualization.html> 中查看相关可视化。图表生成需要一些时间。运行 `rasa interactive --skip-visualization` 可以跳过可视化。
+在交互式学习过程中，Rasa 将会可视化当前对话和训练数据中的一些相似对话，来帮助你追踪当前的进度。会话开始后，可以在 <http://localhost:5005/visualization.html> 中查看相关可视化。图表生成需要一些时间。运行 `rasa interactive --skip-visualization` 可以跳过可视化。
 
 !!! info "添加 3.5 版本中引入的 `ASSISTANT_ID` 健"
 

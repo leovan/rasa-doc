@@ -357,7 +357,7 @@ stories:
 - `UnexpecTEDIntentPolicy` 的[优先级](policies.md#policy-priority)有意保持低于所有[基于规则的策略](policies.md#rule-based-policies)，因为对于 `TEDPolicy` 和 `UnexpecTEDIntentPolicy` 的新情况可能存在其他规则。
 - 如果最后预测的意图不存在于任何训练故事中，则 `UnexpecTEDIntentPolicy` 不会预测 `action_unlikely_intent`，如果意图仅用于规则中，则可能会发生这种情况。
 
-预测 `action_unlikely_intent`
+#### 预测 `action_unlikely_intent` {#prediction-of-action_unlikely_intent}
 
 `UnexpecTEDIntentPolicy` 在用户发出消息后立即调用，并且可以触发 `action_unlikely_intent` 或放弃（在这种情况下，其他策略将会预测动作）。为了确定是否应该触发 `action_unlikely_intent`，`UnexpecTEDIntentPolicy` 计算当前对话上下文中用户意图的分数，并检查该分数是否低于某个阈值分数。
 
@@ -409,7 +409,7 @@ stories:
     ```
 
 - `ignore_intents_list`：此参数允许你将 `UnexpecTEDIntentPolicy` 配置不预测 `action_unlikely_intent` 的意图子集。当遇到生成太多错误警告时，你可能希望对于某些意图执行此操作。
-- `tolerance`：容差参数是一个介于 `0.0` 到 `1.0`（包含）之间的数。它有助于调整在推理时[预测 `action_unlikely_intent`](policies.md#prediction-of-action_unlikely_intent) 期间使用的阈值分数。
+- `tolerance`：容差参数是一个介于 `0.0` 到 `1.0`（包含）之间的数。它有助于调整在推理时[预测 `action_unlikely_intent`](#prediction-of-action_unlikely_intent) 期间使用的阈值分数。
 
     `0.0` 意味着调整阈值分数以使得在训练期间 `0%` 遇见的负样本被预测为低于阈值分数的分数。因此，来自所有负样本的对话都将触发 `action_unlikely_intent` 动作。
 
@@ -556,7 +556,7 @@ stories:
     +---------------------------------------+------------------------+--------------------------------------------------------------+
     ```
 
-tolerance 参数调优
+#### tolerance 参数调优 {#tuning-the-tolerance-parameter}
 
 在查看真实对话时，我们鼓励在 `UnexpecTEDIntentPolicy` 配置中调整容差参数，以减少错误警告的数量（实际上可能在对话上下文中给出的意图）。当以 `0.05` 的步长将容差值从 `0` 增加到 `1` 时，错误警告的数量应该会减少。然而，增加容差也将导致触发 `action_unlikely_intent` 减少，因此更多训练故事中不存在的对话路径将在标记的对话集中丢失。如果改变 `max_history` 值并重新训练模型，你可能必须重新调整容差值。
 
@@ -797,7 +797,7 @@ stories:
 
 3. Intent Max History
 
-    `IntentMaxHistoryTrackerFeaturizer` 继承自 `MaxHistoryTrackerFeaturizer`。由于被 [`UnexpecTEDIntentPolicy`](policies.md#unexpected-intent-policy) 使用，其创建的目标标签是用户可以在对话追踪器的上下文中表达的意图。与其他追踪器特征化器不同，其可以有多个目标标签。因此，它在右侧用一个常数值（`-1`）填充目标标签列表，以便为每个输入对话跟踪器返回一个大小相同的目标标签列表。
+    `IntentMaxHistoryTrackerFeaturizer` 继承自 `MaxHistoryTrackerFeaturizer`。由于被 [`UnexpecTEDIntentPolicy`](policies.md#unexpected-intent-policy) 使用，其创建的目标标签是用户可以在对话追踪器的上下文中表达的意图。与其他追踪器特征化器不同，其可以有多个目标标签。因此，它在右侧用一个常数值（`-1`）填充目标标签列表，以便为每个输入对话追踪器返回一个大小相同的目标标签列表。
 
     就像 `MaxHistoryTrackerFeaturizer` 一样，它可执行重述数据删除来过滤重复的轮次。但是，它会为相应的追踪器的每个正确意图生成一个特征化追踪器。例如，如果输入对话追踪器的正确标签具有以下索引 `[0, 2, 4]`，则特征化器将产生三对特征化追踪器和目标标签。特征化追踪器将是相同的，但每对中的目标标签为 `[0, 2, 4]`，`[4, 0, 2]`，`[2, 4, 0]`。
 
@@ -805,7 +805,7 @@ stories:
 
 !!! info "3.0 版本新特性"
 
-    开源 Rasa 3.0 版本统一了 NLU 组件和策略的实现。这需要更改为早期版本的开源 Rasa 编写的自定义组件。有关逐步的迁移指南请参见[迁移指南](migration-guide.md#custom-policies-and-custom-components)。
+    开源 Rasa 3.0 版本统一了 NLU 组件和策略的实现。这需要更改为早期版本的开源 Rasa 编写的自定义组件。有关逐步的迁移指南请参见[迁移指南](migration-guide.md)。
 
 你还可以编写自定义策略并在配置中引用它们。在如下的示例中，最后两行显示了如何使用自定义策略并将参数传递给它。有关自定义策略的完整指南，请参见[自定义图组件指南](custom-graph-components.md)。
 

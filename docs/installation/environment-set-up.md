@@ -39,7 +39,7 @@ pip2 --version
 
 === "Windows"
 
-    确保安装了 Microsoft VC++ 编译器，以便 Python 可以编译相关依赖项。您可以从 [Visual Studio](https://visualstudio.microsoft.com/visual-cpp-build-tools/) 获取编译器。下载安装程序并在列表中选择 VC++ 构建工具。安装适用于 Windows 的 64 位版本 [Python 3](https://www.python.org/downloads/windows/https://www.python.org/downloads/windows/)。
+    确保安装了 Microsoft VC++ 编译器，以便 Python 可以编译相关依赖项。你可以从 [Visual Studio](https://visualstudio.microsoft.com/visual-cpp-build-tools/) 获取编译器。下载安装程序并在列表中选择 VC++ 构建工具。安装适用于 Windows 的 64 位版本 [Python 3](https://www.python.org/downloads/windows/https://www.python.org/downloads/windows/)。
 
     ```powershell
     C:\> pip3 install -U pip

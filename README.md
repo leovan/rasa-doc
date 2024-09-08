@@ -6,8 +6,20 @@
 
 Rasa 中文文档，内容根据最新英文文档进行翻译。
 
-Latest English Version: https://rasa.com/docs/rasa/
+## 在线地址
 
-最新中文版本：https://rasa.leovan.tech/
+中文：<https://rasa.leovan.tech/>
 
-版权所有 &copy; 2022-2024，<a href="https://leovan.me" target="_blank">范叶亮 | Leo Van</a>
+英文: <https://rasa.com/docs/rasa/>
+
+## Rasa Pro 文档
+
+仓库：<https://github.com/leovan/rasa-pro-doc/>
+
+中文：<https://rasa-pro.leovan.tech/>
+
+英文: <https://rasa.com/docs/rasa-pro/>
+
+## 版权
+
+Copyright (c) 2022-2024 [范叶亮 | Leo Van](https://leovan.me)

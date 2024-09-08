@@ -1,7 +1,7 @@
 button[data-md-color-primary] {
   background-color: var(--md-primary-fg-color);
   color: var(--md-primary-bg-color);
-  display: block;
+  display: inline-block;
   padding: 4px 8px;
   border-radius: 4px;
 }

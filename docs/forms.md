@@ -113,7 +113,7 @@ rules:
 
 !!! warning "3.0 版本发生改变"
 
-    从 3.0 版本开始，[槽映射](domain.md#slot-mappings)在领域的 `slots` 部分中定义。此更改允许在多个表单中重复使用相同的槽映射，从而消除不必要的重复。请按照[迁移指南](migration-guide.md#slot-mappings)更行对话机器人。
+    从 3.0 版本开始，[槽映射](domain.md#slot-mappings)在领域的 `slots` 部分中定义。此更改允许在多个表单中重复使用相同的槽映射，从而消除不必要的重复。请按照[迁移指南](migration-guide.md)更行对话机器人。
 
     请特别注意[映射条件](domain.md#mapping-conditions)和[唯一实体映射](domain.md#unique-from_entity-mapping-matching)约束的作用。
 

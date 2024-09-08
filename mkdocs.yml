@@ -131,13 +131,13 @@ nav:
     - 代码参考: reference.md
   - 更新日志:
     - 开源 Rasa 变更日志: changelog.md
-    - Rasa SDK 变更日志: sdk_changelog.md
+    - Rasa SDK 变更日志: sdk-changelog.md
     - 兼容性矩阵: compatibility-matrix.md
     - 版本迁移指南: migration-guide.md
     - 活跃维护版本: rasa-product-release-and-maintenance-policy.md
   - API 规范页面:
     - Rasa HTTP API: pages/http-api.md
-    - Rasa Action Server API: pages/action-server-api.md
+    - Rasa 动作服务器 API: pages/action-server-api.md
 
 # Theme
 theme:
@@ -191,6 +191,7 @@ extra:
     property: G-7D9SN7BLD3
 extra_css:
   - css/button.css
+  - css/chat.css
   - css/image.css
   - css/table.css
 extra_javascript:
@@ -229,8 +230,6 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.keys
   - pymdownx.magiclink:
-      normalize_issue_symbols: true
-      repo_url_shorthand: true
       user: leovan
       repo: rasa-doc
   - pymdownx.mark

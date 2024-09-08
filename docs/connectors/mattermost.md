@@ -12,7 +12,7 @@ Mattermost 现在使用机器人账户来提高安全性。因此，你可以使
 
 如何设置传出 webhook：
 
-1. 要创建Mattermost 传出 webhook，请登录到您的 Mattermost 团队网站，然后转到 `Main Menu > Integrations > Outgoing Webhooks`。
+1. 要创建 Mattermost 传出 webhook，请登录到你的 Mattermost 团队网站，然后转到 `Main Menu > Integrations > Outgoing Webhooks`。
 2. 单击 `Add outgoing webhook`。
 3. 填写详细信息，包括希望机器人进入的频道。你需要确保使用 `@yourbotname` 设置 `trigger words` 部分，以便对话机器人不会在所有内容上触发。
 4. `Content Type` 必须设置为 `application/json`。

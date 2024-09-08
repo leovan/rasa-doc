@@ -131,7 +131,7 @@ pipeline:
 下图显示了此流水线训练期间的调用顺序：
 
 <figure markdown>
-  ![](images/tuning-your-model/component-lifecycle.png){ width="600" }
+  ![](images/tuning-your-model/component-lifecycle.png)
   <figcaption>组件生命周期</figcaption>
 </figure>
 
@@ -180,10 +180,7 @@ nlu:
 
 但是，你的机器人会收到类似如下的消息，它包含了两种意图：
 
-<figure markdown>
-  ![](images/tuning-your-model/check-balances-and-transfer-money.png){ width="600" }
-  <figcaption>用户想知道余额以便转账</figcaption>
-</figure>
+<div class="md-chat"><div class="chat-container"><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">How much money do I have? I want to transfer some to savings.</span></p></div></div><figcaption>用户想知道余额以便转账</figcaption></div>
 
 如果有足够多的样本，你可以创建一个新的意图 `check_balances+transfer_money` 并为其添加样本，例如：
 

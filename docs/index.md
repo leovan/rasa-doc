@@ -2,7 +2,7 @@
 
 !!! tip "注意"
 
-    本文档仅翻译开源 Rasa 的部分内容，Rasa Pro 相关内容、代码参考、变更记录等内容不在翻译范畴内。
+    本文档仅翻译开源 Rasa 的部分内容，Rasa Pro 相关内容详见 <https://rasa-pro.leovan.tech>。
 
 !!! tip "注意"
 

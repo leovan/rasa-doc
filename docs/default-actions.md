@@ -48,7 +48,7 @@ actions:
 - 用户在领域[会话配置](domain.md#session-configuration)中的 `session_expiration_time` 参数定义的一段时间内处于非活动状态后。
 - 当用户在对话期间发送 `/session_start` 消息时。
 
-该动作将重置对话跟踪器，但默认情况下不会清除任何已设置的槽。
+该动作将重置对话追踪器，但默认情况下不会清除任何已设置的槽。
 
 ### 自定义 {#customization}
 
@@ -183,7 +183,7 @@ class ActionUnlikelyIntent(Action):
 
 !!! info "注意"
 
-    由于 `action_unlikely_intent` 可以在推理期间的任何对话步骤触发，所有仅在故事数据上训练的策略，例如：`TEDPolicy`、`UnexpecTEDIntentPolicy` 和 `MemoizationPolicy` 在进行预测时都会忽略它在跟踪器中的存在。但是，`RulePolicy` 考虑了它的存在，因此[对话行为是可自定义的](default-actions.md#customization-1)。
+    由于 `action_unlikely_intent` 可以在推理期间的任何对话步骤触发，所有仅在故事数据上训练的策略，例如：`TEDPolicy`、`UnexpecTEDIntentPolicy` 和 `MemoizationPolicy` 在进行预测时都会忽略它在追踪器中的存在。但是，`RulePolicy` 考虑了它的存在，因此[对话行为是可自定义的](default-actions.md#customization-1)。
 
 !!! info "注意"
 

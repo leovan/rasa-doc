@@ -10,17 +10,11 @@
 
 与喜欢音乐的用户的对话：
 
-<figure markdown>
-  ![](images/contextual-conversations/user-likes-music.png){ width="600" }
-  <figcaption>喜欢音乐的用户</figcaption>
-</figure>
+<div class="md-chat"><div class="chat-container"><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">How can I get started ?</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">I can help you find concerts and venues. Do you like music?</span></p></div><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">yes</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">Awesome! You can ask me things like "Find me some concerts" or "What's a good venue"</span></p></div></div><figcaption>喜欢音乐的用户</figcaption></div>
 
 与不喜欢音乐的用户的对话：
 
-<figure markdown>
-  ![](images/contextual-conversations/user-does-not-like-music.png){ width="600" }
-  <figcaption>不喜欢音乐的用户</figcaption>
-</figure>
+<div class="md-chat"><div class="chat-container"><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">How can I get started ?</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">I can help you find concerts and venues. Do you like music?</span></p></div><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">no</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">Oh no!</span></p></div></div><figcaption>不喜欢音乐的用户</figcaption></div>
 
 ## 创建上下文对话模式的指南 {#step-by-step-guide-on-creating-contextual-conversation-patterns}
 

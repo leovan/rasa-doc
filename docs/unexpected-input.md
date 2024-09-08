@@ -19,10 +19,7 @@
 
 上下文插入语的一种常见情况是在填写[表单](forms.md)时，用户会问“Why do you need to know that?”或“Can you explain that?”。响应会根据槽的不同而不同。例如：
 
-<figure markdown>
-  ![](images/unexpected-input/contextual-interjection.png){ width="600" }
-  <figcaption>上下文插入语</figcaption>
-</figure>
+<div class="md-chat"><div class="chat-container"><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">Hi</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">Hello! I am restaurant search assistant! How can I help?</span></p></div><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">I'm looking for a restaurant</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">What cuisine?</span></p></div><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">French</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">How many people?</span></p></div><div class="chat-input chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">User: </span><span class="content">Why do you need to know that?</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">I need to know how many people are in your party to ensure the restaurant can accomodate you.</span></p></div><div class="chat-output chat-item stack-xs"><p class="chat-bubble"><span class="sr-only">Bot: </span><span class="content">How many people?</span></p></div></div><figcaption>上下文插入语</figcaption></div>
 
 由于我们希望 `requested_slot` 影响对话，因此我们需要将 `requested_slot` 槽的属性 `influence_conversation` 设置为 `true`，并为其分配分类类型：
 

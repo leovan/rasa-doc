@@ -716,7 +716,7 @@ slots:
 
     你可以控制一个动作是否应该接受领域。
 
-为此，你必须首先在 Endpoint 配置文件 `endpoints.yml` 中为 `action_endpoint` 启用选择性领域。
+为此，你必须首先在端点配置文件 `endpoints.yml` 中为 `action_endpoint` 启用选择性领域。
 
 ```yaml title="endpoints.yaml"
 action_endpoint:

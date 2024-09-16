@@ -32,7 +32,7 @@ twilio:
   twilio_number: "+440123456789"  # if using WhatsApp: "whatsapp:+440123456789"
 ```
 
-重启你的 Rasa 服务器，使新的频道 Endpoint 可供 Twilio 发送消息。
+重启你的 Rasa 服务器，使新的频道端点可供 Twilio 发送消息。
 
 #### 使用 Twilio 从 Whatsapp 接受位置数据 {#receiving-location-data-from-whatsapp-with-twilio-connector}
 

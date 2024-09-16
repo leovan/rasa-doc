@@ -4,7 +4,7 @@
 
 ## 连接到 NLU 服务器 {#connecting-to-an-nlu-server}
 
-可以通过将连接详细信息添加到对话管理服务器的 Endpoint 配置文件，将[仅 Rasa NLU 服务器](nlu-only.md#running-an-nlu-server)连接到单独运行的仅 Rasa 对话管理服务器：
+可以通过将连接详细信息添加到对话管理服务器的端点配置文件，将[仅 Rasa NLU 服务器](nlu-only.md#running-an-nlu-server)连接到单独运行的仅 Rasa 对话管理服务器：
 
 ```yaml title="endpoints.yml"
 nlu:
@@ -19,8 +19,8 @@ nlu:
 
 对话管理服务器收到消息后，会向 `http://<your nlu host>:<your nlu port>/model/parse` [发送请求](https://rasa.com/docs/rasa/pages/http-api#operation/parseModelMessage){:target="_blank"}，并使用和解析返回的信息。
 
-!!! info "Endpoint 配置"
+!!! info "端点配置"
 
-    对话管理服务器的 Endpoint 配置将包括一个指向 NLU 唯一服务器的 `nlu` Endpoint。因此，你应该为 NLU 服务器使用单独的 Endpoint 配置文件，不包括 `nlu` Endpoint。
+    对话管理服务器的端点配置将包括一个指向 NLU 唯一服务器的 `nlu` 端点。因此，你应该为 NLU 服务器使用单独的端点配置文件，不包括 `nlu` 端点。
 
-如果你正在实现自定义 NLU 服务器（例如：非 Rasa NLU），服务器应该提供一个 `/model/parse` Endpoint，其应与 Rasa NLU 服务器以相同的格式响应请求。
+如果你正在实现自定义 NLU 服务器（例如：非 Rasa NLU），服务器应该提供一个 `/model/parse` 端点，其应与 Rasa NLU 服务器以相同的格式响应请求。

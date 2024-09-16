@@ -25,7 +25,7 @@
 
 如下展示的示例实现了使用 [RabbitMQ](https://www.rabbitmq.com) 的 Python 客户端库 [Pika](https://pika.readthedocs.io)。
 
-### 使用 Endpoint 配置添加 Pika 事件代理 {#adding-a-pika-event-broker-using-the-endpoint-configuration}
+### 使用端点配置添加 Pika 事件代理 {#adding-a-pika-event-broker-using-the-endpoint-configuration}
 
 可以通过将 `event_broker` 部分添加到 `endpoints.yml` 来指示 Rasa 将所有事件流式传输到 Pika 事件代理：
 
@@ -138,11 +138,11 @@ Rasa 的 Kafka 生产者接受以下类型的安全协议：`SASL_PLAINTEXT`、`
 
 如果启用了 `ssl_check_hostname` 参数，客户端将验证代理的主机名是否与证书匹配。它用于客户端连接和代理间的连接，以防止中间人攻击。
 
-### 使用 Endpoint 配置添加 Kafka 事件代理 {#adding-a-kafka-event-broker-using-the-endpoint-configuration}
+### 使用端点配置添加 Kafka 事件代理 {#adding-a-kafka-event-broker-using-the-endpoint-configuration}
 
 可以通过将 `event_broker` 部分添加到 `endpoints.yml` 来指示 Rasa 将所有事件流式传输到 Kafka 事件代理。
 
-使用 `SASL_PLAINTEXT` 协议，Endpoint 文件必须具有如下项：
+使用 `SASL_PLAINTEXT` 协议，端点文件必须具有如下项：
 
 ```yaml
 event_broker:
@@ -156,7 +156,7 @@ event_broker:
   sasl_mechanism: PLAIN
 ```
 
-使用 `PLAINTEXT` 协议，Endpoint 文件必须具有如下项：
+使用 `PLAINTEXT` 协议，端点文件必须具有如下项：
 
 ```yaml
 event_broker:
@@ -167,7 +167,7 @@ event_broker:
   client_id: kafka-python-rasa
 ```
 
-如果使用 `SSL` 协议，Endpoint 文件应如下所示：
+如果使用 `SSL` 协议，端点文件应如下所示：
 
 ```yaml
 event_broker:
@@ -181,7 +181,7 @@ event_broker:
   ssl_check_hostname: True
 ```
 
-如果使用 `SASL_SSL` 协议，Endpoint 文件应如下所示：
+如果使用 `SASL_SSL` 协议，端点文件应如下所示：
 
 ```yaml
 event_broker:
@@ -202,7 +202,7 @@ event_broker:
 
 可以将 SQL 数据库用作事件代理。使用 [SQLAlchemy](https://www.sqlalchemy.org) 建立与数据库的连接，SQLAlchemy 是一个可以与多种不同类型的 SQL 数据库（例如：[SQLite](https://sqlite.org/index.html)、[PostgreSQL](https://www.postgresql.org) 等）进行交互的 Python 库。默认的 Rasa 安装允许连接到 SQLite 和 PostgreSQL 数据库。其他选项请参见 [SQLAlchemy 文档的 SQL 方言](https://docs.sqlalchemy.org/en/13/dialects/index.html)。
 
-### 使用 Endpoint 配置添加 SQL 事件代理 {#adding-a-sql-event-broker-using-the-endpoint-configuration}
+### 使用端点配置添加 SQL 事件代理 {#adding-a-sql-event-broker-using-the-endpoint-configuration}
 
 要指示 Rasa 将所有事件保存到 SQL 事件代理，请将 `event_broker` 部分添加到 `endpoints.yml` 中。例如，一个有效的 SQLite 配置如下所示：
 
@@ -238,7 +238,7 @@ event_broker:
 
 自定义事件代理类必须实现如下基类方法：
 
-- `from_endpoint_config`：从 Endpoint 配置创建一个 `EventBroker` 对象。（[源代码](https://github.com/RasaHQ/rasa/blob/main/rasa/core/brokers/broker.py#L45)）
+- `from_endpoint_config`：从端点配置创建一个 `EventBroker` 对象。（[源代码](https://github.com/RasaHQ/rasa/blob/main/rasa/core/brokers/broker.py#L45)）
 - `publish`：将 JSON 格式的 [Rasa 事件](https://rasa.com/docs/rasa/reference/rasa/shared/core/events){:target="_blank"}发布到事件队列中。（[源代码](https://github.com/RasaHQ/rasa/blob/main/rasa/core/brokers/broker.py#L63)）
 - `is_ready`：判断事件代理是否准备好。（[源代码](https://github.com/RasaHQ/rasa/blob/main/rasa/core/brokers/broker.py#L67)）
 - `close`：关闭与事件代理的连接。（[源代码](https://github.com/RasaHQ/rasa/blob/main/rasa/core/brokers/broker.py#L75)）

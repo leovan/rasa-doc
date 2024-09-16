@@ -38,7 +38,7 @@ rasa shell -m models/nlu-20190515-144445.tar.gz
 rasa run --enable-api -m models/nlu-20190515-144445.tar.gz
 ```
 
-然后，可以使用 `/model/parse` Endpoint 从你的模型中请求预测。为此，请运行：
+然后，可以使用 `/model/parse` 端点从你的模型中请求预测。为此，请运行：
 
 ```shell
 curl localhost:5005/model/parse -d '{"text":"hello"}'

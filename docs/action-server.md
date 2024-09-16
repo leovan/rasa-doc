@@ -20,4 +20,4 @@ Rasa SDK 是一个用于运行自定义动作的 Python SDK。除了实现所需
 
 ### 其他动作服务器 {#other-action-servers}
 
-如果你有其他语言的遗留代码或现有业务逻辑，你可能不想使用 Rasa SDK。在这种情况下，你可以使用任何你想要的语言编写自己的动作服务器。动作服务器的唯一要求是它提供一个 `/webhook` Endpoint，该 Endpoint 接受来自 Rasa 服务器的 HTTP POST 请求并返回[事件](action-server/events.md)和响应的有效负载。有关所需 `/webhook` Endpoint 的详细信息，请参阅 [API 规范](https://rasa.com/docs/rasa/pages/action-server-api){:target="_blank"}。
+如果你有其他语言的遗留代码或现有业务逻辑，你可能不想使用 Rasa SDK。在这种情况下，你可以使用任何你想要的语言编写自己的动作服务器。动作服务器的唯一要求是它提供一个 `/webhook` 端点，该端点接受来自 Rasa 服务器的 HTTP POST 请求并返回[事件](action-server/events.md)和响应的有效负载。有关所需 `/webhook` 端点的详细信息，请参阅 [API 规范](https://rasa.com/docs/rasa/pages/action-server-api){:target="_blank"}。

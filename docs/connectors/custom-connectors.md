@@ -35,7 +35,7 @@ responses:
 
 `blueprint` 方法需要创建一个可以附加 sanic 服务的 [sanic blueprint](https://sanicframework.org/en/guide/best-practices/blueprints.html#overview)。你的 `blueprint` 应该至少有两条路由，用于健康度检查的 `/` 和 `receive` 的 `/webhook`（参见如下自定义频道示例）。
 
-作为 `receive` Endpoint 的一部分，你需要告诉 Rasa 处理用用户消息。通过调用如下可以做到这一点：
+作为 `receive` 端点的一部分，你需要告诉 Rasa 处理用用户消息。通过调用如下可以做到这一点：
 
 ```python
     on_new_message(
@@ -51,7 +51,7 @@ responses:
 
 更多详细信息请参见 [`UserMessage` 对象](https://www.rasa.com/docs/rasa/reference/rasa/core/channels/channel#usermessage-objects)。
 
-`output_channel` 参数是指实现 [`OutputChannel`](https://www.rasa.com/docs/rasa/reference/rasa/core/channels/channel#outputchannel-objects) 类的输出频道。你可以使用特定频道的方法（例如发送文本和图像的方法）实现自己的输出频道类，也可以使用 [`CollectingOutputChannel`](https://www.rasa.com/docs/rasa/reference/rasa/core/channels/channel#collectingoutputchannel-objects) 收集 Rasa 在对话机器人处理消息时创建的对话机器人响应并将他们作为 Endpoint 响应的一部分返回。这就是 `RestInput` 频道的实现方式。有关如何创建和使用自己的输出频道的示例，请查看其他输出频道的实现，例如 `rasa.core.channels.slack` 中的 `SlackBot`。
+`output_channel` 参数是指实现 [`OutputChannel`](https://www.rasa.com/docs/rasa/reference/rasa/core/channels/channel#outputchannel-objects) 类的输出频道。你可以使用特定频道的方法（例如发送文本和图像的方法）实现自己的输出频道类，也可以使用 [`CollectingOutputChannel`](https://www.rasa.com/docs/rasa/reference/rasa/core/channels/channel#collectingoutputchannel-objects) 收集 Rasa 在对话机器人处理消息时创建的对话机器人响应并将他们作为端点响应的一部分返回。这就是 `RestInput` 频道的实现方式。有关如何创建和使用自己的输出频道的示例，请查看其他输出频道的实现，例如 `rasa.core.channels.slack` 中的 `SlackBot`。
 
 如下是一个使用 `CollectingOutputChannel` 的自定义频道连接器的简化示例：
 

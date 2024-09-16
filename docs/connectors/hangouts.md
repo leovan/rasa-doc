@@ -30,7 +30,7 @@ hangouts:
   project_id: "12345678901"
 ```
 
-重启你的 Rasa 服务器，使新的频道 Endpoint 可供 Google Hangouts 发送消息。
+重启你的 Rasa 服务器，使新的频道端点可供 Google Hangouts 发送消息。
 
 ### 卡片和互动卡片 {#cards-and-interactive-cards}
 

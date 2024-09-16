@@ -159,7 +159,7 @@ rasa evaluate markers all --config markers.yml extracted_markers.csv
 
 默认情况下，该脚本将根据对话机器人的 `domain.yml` 文件验证标记定义。要指定不同的领域文件，请使用可选的 `--domain` 参数。
 
-默认情况下，该脚本将处理对话机器人的 `endpoint.yml` 中的追踪器存储。但是，你可以使用可选的 `--endpoint` 参数指定不同的 Endpoint 文件。
+默认情况下，该脚本将处理对话机器人的 `endpoint.yml` 中的追踪器存储。但是，你可以使用可选的 `--endpoint` 参数指定不同的端点文件。
 
 支持三种不同的追踪器加载策略：`all`，`sample_n` 和 `first_n`。选项 `all` 将处理追踪器存储中的所有追踪器。其他两种策略处理 N 个追踪器的子集，或者顺序地（通过使用 `first_n`），或者通过无放回的均匀抽样（通过使用 `sample_n`）。采样策略还允许设置随机数种子。有关每个策略用法的更多信息，请输入如下命令，将 `<strategy>` 替换为以下之一：`all`、`first_n` 和 `sample_n`：
 

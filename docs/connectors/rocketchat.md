@@ -24,4 +24,4 @@ rocketchat:
   server_url: "https://demo.rocket.chat"
 ```
 
-重启你的 Rasa 服务器，使新的频道 Endpoint 可供 RocketChat 发送消息。
+重启你的 Rasa 服务器，使新的频道端点可供 RocketChat 发送消息。

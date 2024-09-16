@@ -2,21 +2,21 @@
 
 你可以使用 HTTP API 与正在运行的 Rasa 服务器进行交互。可以使用 API 进行模型训练、发送消息、运行测试等。
 
-!!! tip "寻找 API Endpoint？"
+!!! tip "寻找 API 端点？"
 
-    查看 [API 规范](https://rasa.com/docs/rasa/pages/http-api/){:target="_blank"}来获取所有可用的 Endpoint 以及他们的请求和响应格式。
+    查看 [API 规范](https://rasa.com/docs/rasa/pages/http-api/){:target="_blank"}来获取所有可用的端点以及他们的请求和响应格式。
 
 ## 启用 HTTP API {#enabling-the-http-api}
 
-默认情况下，运行 Rasa 服务器不会启动 API Endpoint。与对话机器人的交互可以通过暴露的 `webhooks/<channel>/webhook` Endpoint 实现。
+默认情况下，运行 Rasa 服务器不会启动 API 端点。与对话机器人的交互可以通过暴露的 `webhooks/<channel>/webhook` 端点实现。
 
-要启用 API 来同对话追踪器和其他对话机器人 Endpoint 直接交互，请将 `--enable-api` 参数添加到命令中运行：
+要启用 API 来同对话追踪器和其他对话机器人端点直接交互，请将 `--enable-api` 参数添加到命令中运行：
 
 ```shell
 rasa run --enable-api
 ```
 
-请主要，使用仅 NLU 模型启动服务器，并非所有可用 Endpoint 都可以调用。一些 Endpoint 将返回 409 状态码，应为需要经过训练的对话模型来处理请求。
+请主要，使用仅 NLU 模型启动服务器，并非所有可用端点都可以调用。一些端点将返回 409 状态码，应为需要经过训练的对话模型来处理请求。
 
 !!! warning "警告"
 
@@ -80,7 +80,7 @@ rasa run \
 }
 ```
 
-如果 `role` 为 `admin`，则所有 Endpoint 都可以访问。如果 `role` 是 `user`，则只有当 `sender_id` 与有效负载的 `username` 属性匹配时，才能访问带有 `sender_id` 参数的 Endpoint。
+如果 `role` 为 `admin`，则所有端点都可以访问。如果 `role` 是 `user`，则只有当 `sender_id` 与有效负载的 `username` 属性匹配时，才能访问带有 `sender_id` 参数的端点。
 
 ```shell
 rasa run \

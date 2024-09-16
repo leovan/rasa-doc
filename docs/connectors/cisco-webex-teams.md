@@ -14,7 +14,7 @@
 
 请按照如下链接查找房间 ID：https://developer.webex.com/endpoint-rooms-get.html。
 
-在 OAuth & Permissions 部分中，添加用于 Webex 转发消息的 Rasa Endpoint 的 URL。用于接收 Cisco Webex Teams 消息的 Endpoint 应类似于 `http://<host>:<port>/webhooks/botframework/webhook`，将主机和端口替换为你正在运行的 Rasa 服务器的适当值。
+在 OAuth & Permissions 部分中，添加用于 Webex 转发消息的 Rasa 端点的 URL。用于接收 Cisco Webex Teams 消息的端点应类似于 `http://<host>:<port>/webhooks/botframework/webhook`，将主机和端口替换为你正在运行的 Rasa 服务器的适当值。
 
 ## 在 Cisco Webex Teams 上运行 {#running-on-cisco-webex-teams}
 
@@ -26,7 +26,7 @@ webexteams:
   room: "YOUR-CISCOWEBEXTEAMS-ROOM-ID"
 ```
 
-重启你的 Rasa 服务器，使新的频道 Endpoint 可供 Cisco Webex Teams 发送消息。
+重启你的 Rasa 服务器，使新的频道端点 可供 Cisco Webex Teams 发送消息。
 
 !!! info "注意"
 

@@ -34,7 +34,7 @@ facebook:
   page-access-token: "EAAbHPa7H9rEBAAuFk4Q3gPKbDedQnx4djJJ1JmQ7CAqO4iJKrQcNT0wtD"
 ```
 
-重启你的 Rasa 服务器，使新的频道 Endpoint 可供 Facebook Messenger 发送消息。
+重启你的 Rasa 服务器，使新的频道端点可供 Facebook Messenger 发送消息。
 
 ## 支持的回复附件 {#supported-response-attachments}
 
